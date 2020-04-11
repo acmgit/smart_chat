@@ -15,8 +15,13 @@ sc["toggle"] = function(player)
     local status = sc.public[player]
 
     if(status == nil) then
-        sc.public[player] = player
-        minetest.chat_send_player(player, sc.green .. S("The permanent public chat is now on."))
+        if(sc.player[player] ~= nil) then
+            sc.public[player] = player
+            minetest.chat_send_player(player, sc.green .. S("The permanent public chat is now on."))
+        else
+            minetest.chat_send_player(player, sc.orange .. S("You are already in the public Chat."))
+            
+        end
 
     else
         sc.public[player] = nil

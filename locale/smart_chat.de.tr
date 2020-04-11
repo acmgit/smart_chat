@@ -87,6 +87,7 @@ Marks a channel permanent.=Markiert einen Kanal als permanent.
 The permanent public chat is now off.=Der permanente öffentliche Chat ist nun aus.
 The permanent public chat is now on.=Der permanente öffentliche Chat ist nun ein.
 Turn's the permanent public Chat on or off.=Schaltet den permanent öffentlichen Chat ein oder aus.
+You are already in the public Chat.=Du bist schon im öffentlichem Chat.
 
 ### cmd_where.lua ###
 

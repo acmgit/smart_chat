@@ -87,6 +87,7 @@ Marks a channel permanent.=
 The permanent public chat is now off.=
 The permanent public chat is now on.=
 Turn's the permanent public Chat on or off.=
+You are already in the public Chat.=
 
 ### cmd_where.lua ###
 
