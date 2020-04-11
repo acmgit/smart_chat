@@ -24,6 +24,9 @@ local path = sc.modpath
 
 sc.helpsystem = {}
 
+sc.storage = minetest.get_mod_storage()
+sc.permchannel = {}
+
 -- Colors for Chat
 sc.green = minetest.get_color_escape_sequence('#00FF00')
 sc.red = minetest.get_color_escape_sequence('#FF0000')
@@ -63,12 +66,19 @@ dofile(path .. "/cmd_all.lua")
 dofile(path .. "/cmd_invite.lua")
 dofile(path .. "/cmd_toggle.lua")
 dofile(path .. "/cmd_where.lua")
+dofile(path .. "/cmd_store_channel.lua")
+dofile(path .. "/cmd_free_channel.lua")
 
 --[[
    ****************************************************************
    *******        Registered Chatcommands                    ******
    ****************************************************************
 --]]
+
+local load = sc.storage:to_table()
+sc.permchannel = load.fields
+
+minetest.register_privilege("channelmod", S("Can manage Chatchannels."))
 
 minetest.register_chatcommand("c",{
     param = "<command> <parameter>",

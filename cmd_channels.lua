@@ -17,6 +17,15 @@ sc["channels"] = function(player)
 
     sc.print(player, sc.green .. S("Channels on Server:"))
 
+    if(sc.permchannel) then
+        -- Adds the permanent Channels
+        for _,channel in pairs(sc.permchannel) do
+            list[channel] = channel
+
+        end -- for _,channel
+
+    end -- if(sc.permchannel
+
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
         if(sc.player[pname] ~= nil) then

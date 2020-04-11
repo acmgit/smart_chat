@@ -12,6 +12,19 @@ Send's a message on all.=
 Channels on Server:=
 Lists all channels on the Server.=
 
+### cmd_free_channel.lua ###
+
+ removes the Channel [=
+Error: Permanent Channels not found.=
+Error: You can't free the public Chat from permanent.=
+Set a channel from permanent free.=
+] from permanent.=
+
+### cmd_free_channel.lua ###
+### cmd_store_channel.lua ###
+
+Error: You don't have the privileg to change channels.=
+
 ### cmd_help.lua ###
 
 <command>=
@@ -61,6 +74,14 @@ Leaves a channel=
 Lists all player in the channel.=
 Player in Channel=
 
+### cmd_store_channel.lua ###
+
+ marks the Channel [=
+Error: Permanent Channels exist.=
+Error: You can't set the public Chat as permanent.=
+Marks a channel permanent.=
+] as permanent.=
+
 ### cmd_toggle.lua ###
 
 The permanent public chat is now off.=
@@ -78,6 +99,7 @@ Show's the room, where <name> is.=
 
 ### init.lua ###
 
+Can manage Chatchannels.=
 Gives Simple_Chat a command with or without Parameter.=
 
 ### lib.lua ###

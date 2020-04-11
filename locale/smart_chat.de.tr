@@ -12,6 +12,19 @@ Send's a message on all.=Sendet eine Nachricht an alle.
 Channels on Server:=Kanäle am Server:
 Lists all channels on the Server.=Listet alle Kanäle auf dem Server.
 
+### cmd_free_channel.lua ###
+
+ removes the Channel [= gibt den Kanal [
+Error: Permanent Channels not found.=Fehler: Permanenter Kanal nicht gefunden.
+Error: You can't free the public Chat from permanent.=Fehler: Du kannst den öffentlichen Chat nicht von permanent freigeben.
+Set a channel from permanent free.=Gibt einen permanenten Kanal wieder frei.
+] from permanent.=] von permanent wieder frei.
+
+### cmd_free_channel.lua ###
+### cmd_store_channel.lua ###
+
+Error: You don't have the privileg to change channels.=Fehler: Du hast nicht das Privileg Kanäle zu ändern.
+
 ### cmd_help.lua ###
 
 <command>=<Kommando>
@@ -61,6 +74,14 @@ Leaves a channel=Verlässt einen Kanal
 Lists all player in the channel.=Zeigt alle Spieler in dem Kanal.
 Player in Channel=Spieler im Kanal
 
+### cmd_store_channel.lua ###
+
+ marks the Channel [= markiert den Kanal [
+Error: Permanent Channels exist.=Fehler: Permanenter Kanal existiert schon.
+Error: You can't set the public Chat as permanent.=Fehler: Du kannst den öffentlichen Chat nicht als permanent Markieren.
+Marks a channel permanent.=Markiert einen Kanal als permanent.
+] as permanent.=] als permanent.
+
 ### cmd_toggle.lua ###
 
 The permanent public chat is now off.=Der permanente öffentliche Chat ist nun aus.
@@ -78,6 +99,7 @@ Show's the room, where <name> is.=Zeigt den Raum, wo sich <Name> aufhält.
 
 ### init.lua ###
 
+Can manage Chatchannels.=Kann Chatkanäle verwalten.
 Gives Simple_Chat a command with or without Parameter.=Gibt Simple_Chat ein Kommando mit oder ohne Parameter.
 
 ### lib.lua ###
