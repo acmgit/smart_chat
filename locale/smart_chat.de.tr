@@ -30,8 +30,9 @@ found.=gefunden.
 
 ### cmd_invite.lua ###
 
+ invites = lädt 
  to join the Channel.= ein, um den Kanal zu betreten.
-Enter /c j =Gib /c j  
+Enter /c j =Gib /c j 
 Error: No Player with the name found.=Fehler: Kein Spieler mit dem Namen gefunden.
 Error: No playername given.=Fehler: Kein Spielernamen angegeben.
 Error: You can not invite a player in the public chat.=Fehler: Du kannst keinen Spieler in den öffentlichen Chat einladen.
@@ -78,3 +79,11 @@ Show's the room, where <name> is.=Zeigt den Raum, wo sich <Name> aufhält.
 ### init.lua ###
 
 Gives Simple_Chat a command with or without Parameter.=Gibt Simple_Chat ein Kommando mit oder ohne Parameter.
+
+### lib.lua ###
+
+ given.= angegeben.
+No Command for =Kein Kommando für 
+Try /c help.=Gib /c help ein.
+Unknown Command=Unbekanntes Kommando
+Unknown Command. No helpsystem available.=Unbekanntes Kommando. Hilfssystem nicht verfügbar.

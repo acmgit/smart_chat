@@ -30,6 +30,7 @@ found.=
 
 ### cmd_invite.lua ###
 
+ invites =
  to join the Channel.=
 Enter /c j =
 Error: No Player with the name found.=
@@ -78,3 +79,11 @@ Show's the room, where <name> is.=
 ### init.lua ###
 
 Gives Simple_Chat a command with or without Parameter.=
+
+### lib.lua ###
+
+ given.=
+No Command for =
+Try /c help.=
+Unknown Command=
+Unknown Command. No helpsystem available.=

@@ -33,7 +33,7 @@ function lib.check(player, cmd)
             else -- A command is given, but
             -- Command not found, report it.
                 if(cmd[1] ~= nil) then
-                    lib.print(player, lib.red .. mn ..": Unknown Command \"" ..
+                    lib.print(player, lib.red .. mn ..":" .. S("Unknown Command") .. " \"" ..
                                     lib.orange .. cmd[1] .. lib.red .. "\".")
 
                 else
@@ -41,7 +41,7 @@ function lib.check(player, cmd)
                         lib["help"](player, cmd)
 
                     else
-                        lib.print(player, lib.red .. "Unknown Command. No helpsystem available.")
+                        lib.print(player, lib.red .. S("Unknown Command. No helpsystem available."))
 
                     end --if(distancer["help"]
 
@@ -50,8 +50,8 @@ function lib.check(player, cmd)
             end -- if(distancer[cmd[1
 
         else
-            lib.print(player, lib.red .. "No Command for " .. mn .. " given.")
-            lib.print(player, lib.red .. "Try /c help.")
+            lib.print(player, lib.red .. S("No Command for ") .. mn .. S(" given."))
+            lib.print(player, lib.red .. S("Try /c help."))
 
         end -- if(not cmd)
 
@@ -150,22 +150,17 @@ function lib.chat(playername, text)
                 minetest.log("action", "CHAT: # <" .. playername .. "> " .. text)
 
             end -- if(lib.check_global(
-
+                
+            if(lib.public[pname] and pname ~= playername) then -- name is in public-mode and not the player self
+                minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
+            end
+            
         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                           .. channel .. lib.yellow .. "> " .. text)
                 minetest.log("action", "CHAT: # <" .. playername .. "@" .. channel .. ">" .. text)
 
         end -- if(channel == nil
-
-    end -- for _,players
-
-    -- Send's the message to all public Players too
-    for _,players in pairs(lib.public) do
-        if(players ~= playername) then
-            minetest.chat_send_player(players, "<" .. playername .. "> " .. text)
-
-        end -- if(players ~= playername
 
     end -- for _,players
 
