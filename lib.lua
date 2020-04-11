@@ -149,7 +149,6 @@ function lib.chat(playername, text)
         if(channel == nil) then
             if(lib.check_global(pname)) then
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
-                minetest.log("action", "CHAT: # <" .. playername .. "> " .. text)
 
             end -- if(lib.check_global(
 
@@ -160,11 +159,17 @@ function lib.chat(playername, text)
         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                           .. channel .. lib.yellow .. "> " .. text)
-                minetest.log("action", "CHAT: # <" .. playername .. "@" .. channel .. ">" .. text)
-
+    
         end -- if(channel == nil
 
     end -- for _,players
+    
+    -- Logging of the Chat
+    if(channel == nil) then
+        minetest.log("action", "CHAT: # <" .. playername .. "> " .. text)
+    else
+        minetest.log("action", "CHAT: # <" .. playername .. "@" .. channel .. "> " .. text)
+    end
 
     return true
 
