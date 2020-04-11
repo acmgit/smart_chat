@@ -25,7 +25,7 @@ sc["where"] = function(player, parameter)
             local room = sc.player[pname]
             if(room ~= nil) then
                 sc.print(player, sc.green .. S("Player [") .. sc.orange .. pname
-                         .. sc.green .. S(" is in Channel {")
+                         .. sc.green .. S("] is in Channel {")
                         .. sc.yellow .. channel .. sc.green .. "}.")
 
             else

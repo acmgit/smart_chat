@@ -90,11 +90,11 @@ Turn's the permanent public Chat on or off.=
 
 ### cmd_where.lua ###
 
- is in Channel {=
 Error: No name given.=
 Error: Player is not online.=
 Player [=
 Show's the room, where <name> is.=
+] is in Channel {=
 ] is in the public Chat.=
 
 ### init.lua ###

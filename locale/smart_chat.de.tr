@@ -90,11 +90,11 @@ Turn's the permanent public Chat on or off.=Schaltet den permanent öffentlichen
 
 ### cmd_where.lua ###
 
- is in Channel {= ist im Kanal {
 Error: No name given.=Fehler: Keinen Namen angegeben.
 Error: Player is not online.=Fehler: Spieler ist nicht online.
 Player [=Spieler [
 Show's the room, where <name> is.=Zeigt den Raum, wo sich <Name> aufhält.
+] is in Channel {=] ist im Kanal {
 ] is in the public Chat.=] ist im öffentlichem Chat.
 
 ### init.lua ###
@@ -109,3 +109,8 @@ No Command for =Kein Kommando für
 Try /c help.=Gib /c help ein.
 Unknown Command=Unbekanntes Kommando
 Unknown Command. No helpsystem available.=Unbekanntes Kommando. Hilfssystem nicht verfügbar.
+
+
+##### not used anymore #####
+
+ is in Channel {= ist im Kanal {
