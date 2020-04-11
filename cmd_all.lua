@@ -13,23 +13,27 @@ sc.register_help({
 sc["all"] = function(player, parameter)
 
     local pprivs = minetest.get_player_privs(player)
-
     if not pprivs.basic_privs then
 		minetest.chat_send_player(player,sc.red .. S("Error - require 'basic_privs' privilege."))
 		return
 	end
+    
 
     if(parameter[2] == nil or parameter[2] == "") then
         sc.print(player, sc.red .. S("Error: No Message given."))
         return
     end
+    
     local message = ""
-
-    for i = 2, #parameter, 1 do
-        message = message .. " " .. parameter[i]
-
+    local command = sc.last_command -- Get the last complete command
+    local pos = command:find(" ") -- Where is the Command
+    local option
+    local cmd, param = command, "" -- Split Command and Parameter with Message
+    if pos then -- is there a Parameter
+        cmd = command:sub(1, pos - 1)
+        message = command:sub(pos + 1)
     end
-
+        
     local channel = sc.player[player]
 
     if(sc.player[player] ~= nil) then

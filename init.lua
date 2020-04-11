@@ -13,6 +13,7 @@ smart_chat = {}
 local sc = smart_chat
 sc.player = {}
 sc.public = {}
+sc.last_command = nil
 
 sc.version = 1
 sc.revision = 0
@@ -88,6 +89,7 @@ minetest.register_chatcommand("c",{
 	},
     description = S("Gives Simple_Chat a command with or without Parameter.") .. "\n",
     func = function(player, cmd)
+                sc.last_command = cmd
                 if(cmd.type == "string") then
                     cmd = cmd:lower()
                 end
