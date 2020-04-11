@@ -146,14 +146,14 @@ function lib.chat(playername, text)
 
         if(channel == nil) then
             if(lib.check_global(pname)) then
-                minetest.chat_send_player(pname, "<" .. playername .. ">" .. text)
-                minetest.log("action", "CHAT: # <" .. playername .. ">" .. text)
+                minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
+                minetest.log("action", "CHAT: # <" .. playername .. "> " .. text)
 
             end -- if(lib.check_global(
 
         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
-                                          .. channel .. lib.yellow .. ">" .. text)
+                                          .. channel .. lib.yellow .. "> " .. text)
                 minetest.log("action", "CHAT: # <" .. playername .. "@" .. channel .. ">" .. text)
 
         end -- if(channel == nil
@@ -163,7 +163,7 @@ function lib.chat(playername, text)
     -- Send's the message to all public Players too
     for _,players in pairs(lib.public) do
         if(players ~= playername) then
-            minetest.chat_send_player(players, "<" .. playername .. ">" .. text)
+            minetest.chat_send_player(players, "<" .. playername .. "> " .. text)
 
         end -- if(players ~= playername
 
