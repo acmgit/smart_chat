@@ -30,7 +30,8 @@ sc["invite"] = function(player, parameter)
                                   .. sc.green .. S("Invites you in the channel: ") .. sc.orange .. channel .. ". "
                                   .. sc.green .. S("Enter /c j ") .. sc.green .. channel .. S(" to join the Channel.")
                                  )
-        sc.report(player,sc.green .. player .. S(" invites ") .. sc.orange .. guest .. sc.green .. S(" to join the Channel."))
+        sc.report(player,sc.green .. player .. S(" invites ") .. sc.orange .. guest
+                  .. sc.green .. S(" to join the Channel."))
 
     else
         sc.print(player, sc.red .. S("Error: No Player with the name found."))

@@ -1,5 +1,7 @@
 local lib = smart_chat
 local mn = lib.modname
+local S = lib.S
+
 --[[
    ****************************************************************
    *******        Function split(parameter)                  ******
@@ -150,11 +152,11 @@ function lib.chat(playername, text)
                 minetest.log("action", "CHAT: # <" .. playername .. "> " .. text)
 
             end -- if(lib.check_global(
-                
+
             if(lib.public[pname] and pname ~= playername) then -- name is in public-mode and not the player self
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
             end
-            
+
         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                           .. channel .. lib.yellow .. "> " .. text)
