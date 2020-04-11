@@ -14,6 +14,7 @@ sc["leave"] = function(player)
     if(sc.player[player] ~= nil) then
         sc.report(player, S("Leaves the Channel."))
         sc.player[player] = nil
+        sc.public[player] = nil -- Turns the public Chat off (Echo)
         sc.report(player, S("Enter the public Chat."))
     else
         sc.print(player, sc.red .. S("Error: You're already in the public chat."))
