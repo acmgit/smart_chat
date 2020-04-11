@@ -1,0 +1,80 @@
+# textdomain: smart_chat
+
+
+### cmd_all.lua ###
+
+Error - require 'basic_privs' privilege.=Fehler - 'basic_privs' benötigt.
+Error: No Message given.=Fehler: Keine Nachricht angebeben.
+Send's a message on all.=Sendet eine Nachricht an alle.
+
+### cmd_channels.lua ###
+
+Channels on Server:=Kanäle am Server:
+Lists all channels on the Server.=Listet alle Kanäle auf dem Server.
+
+### cmd_help.lua ###
+
+<command>=<Kommando>
+Commands for =Kommanden für 
+Description: =Beschreibung: 
+Helpsystem for =Hilfssystem für 
+Name: =Name: 
+No entry in help for command=Kein Eintrag in der Hilfe für Kommando
+Parameter: =Parameter: 
+Shortcut: =Kurzbefehl:
+Shows you the entire help for =Zeigt dir die gesamte Hilfe für 
+Shows you the help for =Zeigt dir die Hilfe für 
+Usage: =Benutzung: 
+command=Kommando
+found.=gefunden.
+
+### cmd_invite.lua ###
+
+ to join the Channel.= ein, um den Kanal zu betreten.
+Enter /c j =Gib /c j  
+Error: No Player with the name found.=Fehler: Kein Spieler mit dem Namen gefunden.
+Error: No playername given.=Fehler: Kein Spielernamen angegeben.
+Error: You can not invite a player in the public chat.=Fehler: Du kannst keinen Spieler in den öffentlichen Chat einladen.
+Invites a <player> to your Channel.=Lädt einen <Spieler> in deinen Kanal ein.
+Invites you in the channel: =Lädt dich ein in den Kanal:
+
+### cmd_join.lua ###
+
+Enter the Channel.=Betritt den Kanal.
+Error: No channel to join given.=Fehler: Kein Kanal zum Betreten angegeben.
+Join or change a channel to <channel>.=Betritt oder wechselt den Kanal zu <Kanal>.
+
+### cmd_join.lua ###
+### cmd_leave.lua ###
+
+Leaves the Channel.=Verlässt den Kanal.
+
+### cmd_leave.lua ###
+
+Enter the public Chat.=Betritt den öffentlichen Chat.
+Error: You're already in the public chat.=Fehler: Du bist schon im öffentlichem Chat.
+Leaves a channel=Verlässt einen Kanal
+
+### cmd_list.lua ###
+
+Lists all player in the channel.=Zeigt alle Spieler in dem Kanal.
+Player in Channel=Spieler im Kanal
+
+### cmd_toggle.lua ###
+
+The permanent public chat is now off.=Der permanente öffentliche Chat ist nun aus.
+The permanent public chat is now on.=Der permanente öffentliche Chat ist nun ein.
+Turn's the permanent public Chat on or off.=Schaltet den permanent öffentlichen Chat ein oder aus.
+
+### cmd_where.lua ###
+
+ is in Channel {= ist im Kanal {
+Error: No name given.=Fehler: Keinen Namen angegeben.
+Error: Player is not online.=Fehler: Spieler ist nicht online.
+Player [=Spieler [
+Show's the room, where <name> is.=Zeigt den Raum, wo sich <Name> aufhält.
+] is in the public Chat.=] ist im öffentlichem Chat.
+
+### init.lua ###
+
+Gives Simple_Chat a command with or without Parameter.=Gibt Simple_Chat ein Kommando mit oder ohne Parameter.

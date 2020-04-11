@@ -1,0 +1,80 @@
+# textdomain: smart_chat
+
+
+### cmd_all.lua ###
+
+Error - require 'basic_privs' privilege.=
+Error: No Message given.=
+Send's a message on all.=
+
+### cmd_channels.lua ###
+
+Channels on Server:=
+Lists all channels on the Server.=
+
+### cmd_help.lua ###
+
+<command>=
+Commands for =
+Description: =
+Helpsystem for =
+Name: =
+No entry in help for command=
+Parameter: =
+Shortcut: =
+Shows you the entire help for =
+Shows you the help for =
+Usage: =
+command=
+found.=
+
+### cmd_invite.lua ###
+
+ to join the Channel.=
+Enter /c j =
+Error: No Player with the name found.=
+Error: No playername given.=
+Error: You can not invite a player in the public chat.=
+Invites a <player> to your Channel.=
+Invites you in the channel: =
+
+### cmd_join.lua ###
+
+Enter the Channel.=
+Error: No channel to join given.=
+Join or change a channel to <channel>.=
+
+### cmd_join.lua ###
+### cmd_leave.lua ###
+
+Leaves the Channel.=
+
+### cmd_leave.lua ###
+
+Enter the public Chat.=
+Error: You're already in the public chat.=
+Leaves a channel=
+
+### cmd_list.lua ###
+
+Lists all player in the channel.=
+Player in Channel=
+
+### cmd_toggle.lua ###
+
+The permanent public chat is now off.=
+The permanent public chat is now on.=
+Turn's the permanent public Chat on or off.=
+
+### cmd_where.lua ###
+
+ is in Channel {=
+Error: No name given.=
+Error: Player is not online.=
+Player [=
+Show's the room, where <name> is.=
+] is in the public Chat.=
+
+### init.lua ###
+
+Gives Simple_Chat a command with or without Parameter.=
