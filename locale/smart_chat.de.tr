@@ -47,10 +47,15 @@ found.=gefunden.
  to join the Channel.= ein, um den Kanal zu betreten.
 Enter /c j =Gib /c j 
 Error: No Player with the name found.=Fehler: Kein Spieler mit dem Namen gefunden.
-Error: No playername given.=Fehler: Kein Spielernamen angegeben.
 Error: You can not invite a player in the public chat.=Fehler: Du kannst keinen Spieler in den öffentlichen Chat einladen.
 Invites a <player> to your Channel.=Lädt einen <Spieler> in deinen Kanal ein.
 Invites you in the channel: =Lädt dich ein in den Kanal:
+
+### cmd_invite.lua ###
+### cmd_kick.lua ###
+### cmd_move.lua ###
+
+Error: No playername given.=Fehler: Kein Spielernamen angegeben.
 
 ### cmd_join.lua ###
 
@@ -63,6 +68,26 @@ Join or change a channel to <channel>.=Betritt oder wechselt den Kanal zu <Kanal
 
 Leaves the Channel.=Verlässt den Kanal.
 
+### cmd_kick.lua ###
+
+ from channel: = vom Kanal: 
+ from the channel = vom Kanal
+ from the channel.= vom Kanal gekickt.
+ was kicked by = wurde gekickt von
+*** You kicked =*** Du kickst 
+*** You were kicked by =*** Du wurdest von 
+Error: You can not kick a channelmod from the channel.=Fehler: Du kannst keinen Kanalmoderator vom Kanal kicken.
+Error: You can't kick a channeladmin from the channel.=Fehler: Du kannst keinen Chatadmin vom Kanal kicken.
+Error: You can't kick a player from the public chat.=Fehler: Du kannst keinen Spieler vom öffentlichen Chat kicken.
+Error: You don't have the privileg chanelmod or channeladmin to kick players from channels.=Fehler: Du bist kein Channelmod oder Channeladmin.
+Kicks a player from the channel.=Kickt einen Spieler aus einem Kanal.
+
+### cmd_kick.lua ###
+### cmd_move.lua ###
+
+ not found.= nicht gefunden.
+Error: Player =Fehler: Spieler 
+
 ### cmd_leave.lua ###
 
 Enter the public Chat.=Betritt den öffentlichen Chat.
@@ -73,6 +98,15 @@ Leaves a channel=Verlässt einen Kanal
 
 Lists all player in the channel.=Zeigt alle Spieler in dem Kanal.
 Player in Channel=Spieler im Kanal
+
+### cmd_move.lua ###
+
+ was moved from the channel. ***= wurde vom Kanal verschoben ***.
+ was moved into the channel by = wurde in den Kanal geschoben von 
+Error: The player is already in your channel.=Fehler: Du bist schon in dem Kanal.
+Error: Use the command /c j <channel> to move yourself into another channel.=Fehler: Benutzte das Kommande /c j <channel> um dich selbst in Kanäle zu verschieben.
+Error: You don't have the privileg chanelmod or channeladmin to move players from channels.=Fehler: Du bist kein Channelmod oder Channeladmin.
+Moves a player to <channel> or to self.=Verschiebt einen Spieler in <Kanal> oder zu dir selbst.
 
 ### cmd_store_channel.lua ###
 
@@ -101,6 +135,7 @@ Show's the room, where <name> is.=Zeigt den Raum, wo sich <Name> aufhält.
 ### init.lua ###
 
 Can manage Chatchannels.=Kann Chatkanäle verwalten.
+Can manage the entire Chat.=Kann den gesamten Chat veralten.
 Gives Simple_Chat a command with or without Parameter.=Gibt Simple_Chat ein Kommando mit oder ohne Parameter.
 
 ### lib.lua ###

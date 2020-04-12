@@ -47,10 +47,15 @@ found.=
  to join the Channel.=
 Enter /c j =
 Error: No Player with the name found.=
-Error: No playername given.=
 Error: You can not invite a player in the public chat.=
 Invites a <player> to your Channel.=
 Invites you in the channel: =
+
+### cmd_invite.lua ###
+### cmd_kick.lua ###
+### cmd_move.lua ###
+
+Error: No playername given.=
 
 ### cmd_join.lua ###
 
@@ -63,6 +68,28 @@ Join or change a channel to <channel>.=
 
 Leaves the Channel.=
 
+### cmd_kick.lua ###
+
+ from channel: =
+ from the channel =
+ from the channel.=
+ was kicked by =
+*** You kicked =
+*** You were kicked by =
+Error: You can not kick a channelmod from the channel.=
+Error: You can't kick a channeladmin from the channel.=
+Error: You can't kick a player from the public chat.=
+
+Error: You don't have the privileg chanelmod or channeladmin to kick players from channels.=
+
+Kicks a player from the channel.=
+
+### cmd_kick.lua ###
+### cmd_move.lua ###
+
+ not found.=
+Error: Player =
+
 ### cmd_leave.lua ###
 
 Enter the public Chat.=
@@ -73,6 +100,18 @@ Leaves a channel=
 
 Lists all player in the channel.=
 Player in Channel=
+
+### cmd_move.lua ###
+
+ was moved from the channel. ***=
+ was moved into the channel by =
+Error: The player is already in your channel.=
+
+Error: Use the command /c j <channel> to move yourself into another channel.=
+
+Error: You don't have the privileg chanelmod or channeladmin to move players from channels.=
+
+Moves a player to <channel> or to self.=
 
 ### cmd_store_channel.lua ###
 
@@ -101,6 +140,7 @@ Show's the room, where <name> is.=
 ### init.lua ###
 
 Can manage Chatchannels.=
+Can manage the entire Chat.=
 Gives Simple_Chat a command with or without Parameter.=
 
 ### lib.lua ###

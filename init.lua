@@ -69,6 +69,8 @@ dofile(path .. "/cmd_toggle.lua")
 dofile(path .. "/cmd_where.lua")
 dofile(path .. "/cmd_store_channel.lua")
 dofile(path .. "/cmd_free_channel.lua")
+dofile(path .. "/cmd_kick.lua")
+dofile(path .. "/cmd_move.lua")
 
 --[[
    ****************************************************************
@@ -80,6 +82,7 @@ local load = sc.storage:to_table()
 sc.permchannel = load.fields
 
 minetest.register_privilege("channelmod", S("Can manage Chatchannels."))
+minetest.register_privilege("channeladmin", S("Can manage the entire Chat."))
 
 minetest.register_chatcommand("c",{
     param = "<command> <parameter>",

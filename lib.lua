@@ -115,6 +115,26 @@ end -- lib.check_channel
 
 --[[
    ****************************************************************
+   *******              Function channel_report()                    ******
+   ****************************************************************
+]]--
+function lib.channel_report(channel, message)
+    local all_player = minetest.get_connected_players()
+
+    for _,players in pairs(all_player) do
+        local pname = players:get_player_name()
+
+        if(lib.check_channel(pname, channel)) then
+            lib.print(pname, lib.orange .. message)
+
+        end -- if(check_channel
+
+    end -- for _,players
+
+end -- lib.report(
+
+--[[
+   ****************************************************************
    *******              Function report()                    ******
    ****************************************************************
 ]]--
@@ -159,11 +179,11 @@ function lib.chat(playername, text)
         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                           .. channel .. lib.yellow .. "> " .. text)
-    
+
         end -- if(channel == nil
 
     end -- for _,players
-    
+
     -- Logging of the Chat
     if(channel == nil) then
         minetest.log("action", "CHAT: # <" .. playername .. "> " .. text)
@@ -174,6 +194,27 @@ function lib.chat(playername, text)
     return true
 
 end -- function chat
+
+function lib.is_channelmod(player)
+    local power = 0
+    if(minetest.get_player_privs(player).channelmod) then
+        power = 10
+    end
+
+    return power
+
+end
+
+function lib.is_channeladmin(player)
+    local power = 0
+    if(minetest.get_player_privs(player).channeladmin) then
+        power = 20
+
+    end
+
+    return power
+
+end
 
 --[[
    ****************************************************************

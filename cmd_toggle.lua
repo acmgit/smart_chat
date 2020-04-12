@@ -20,7 +20,7 @@ sc["toggle"] = function(player)
             minetest.chat_send_player(player, sc.green .. S("The permanent public chat is now on."))
         else
             minetest.chat_send_player(player, sc.orange .. S("You are already in the public Chat."))
-            
+
         end
 
     else
