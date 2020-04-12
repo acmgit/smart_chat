@@ -15,7 +15,7 @@ sc["where"] = function(player, parameter)
 
 
     if(parameter[2] == "" or parameter[2] == nil) then
-        sc.print(sc.red .. S("Error: No name given."))
+        sc.print(player, sc.red .. S("Error: No name given."))
 
     else
         local pname = parameter[2]
