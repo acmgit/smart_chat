@@ -71,9 +71,9 @@ Leaves the Channel.=Verlässt den Kanal.
 ### cmd_kick.lua ###
 
  from channel: = vom Kanal: 
- from the channel = vom Kanal
+ from the channel = vom Kanal 
  from the channel.= vom Kanal gekickt.
- was kicked by = wurde gekickt von
+ was kicked by = wurde gekickt von 
 *** You kicked =*** Du kickst 
 *** You were kicked by =*** Du wurdest von 
 Error: You can not kick a channelmod from the channel.=Fehler: Du kannst keinen Kanalmoderator vom Kanal kicken.
@@ -145,8 +145,3 @@ No Command for =Kein Kommando für
 Try /c help.=Gib /c help ein.
 Unknown Command=Unbekanntes Kommando
 Unknown Command. No helpsystem available.=Unbekanntes Kommando. Hilfssystem nicht verfügbar.
-
-
-##### not used anymore #####
-
- is in Channel {= ist im Kanal {
