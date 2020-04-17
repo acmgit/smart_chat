@@ -121,6 +121,10 @@ Error: You can't set the public Chat as permanent.=
 Marks a channel permanent.=
 ] as permanent.=
 
+### cmd_template.lua ###
+
+Template Command with Parameter <=
+
 ### cmd_toggle.lua ###
 
 The permanent public chat is now off.=
