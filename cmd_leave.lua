@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "leave"
+local short = "l"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "leave",
-                            Usage = "/c leave",
+                            Name = cname,
+                            Usage = "/c " .. cname,
                             Description = S("Leaves a channel"),
                             Parameter = "",
-                            Shortcut = "/c l",
+                            Shortcut = "/c " .. short,
                         }
                        )
 
-sc["leave"] = function(player)
+sc[cname] = function(player)
     if(sc.player[player] ~= nil) then
         sc.report(player, S("Leaves the Channel."))
         sc.player[player] = nil
@@ -23,8 +28,8 @@ sc["leave"] = function(player)
 
 end -- sc["leave"
 
-sc["l"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["leave"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["l"

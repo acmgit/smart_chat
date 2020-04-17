@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "invite"
+local short = "i"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "invite",
-                            Usage = "/c invite <player>",
+                            Name = cname,
+                            Usage = "/c " .. cname .. " <player>",
                             Description = S("Invites a <player> to your Channel."),
                             Parameter = "<player>",
-                            Shortcut = "/c i <player>",
+                            Shortcut = "/c " .. short .. " <player>",
                         }
                        )
 
-sc["invite"] = function(player, parameter)
+sc[cname] = function(player, parameter)
 
     if(parameter[2] == nil or parameter[2] == "") then
         sc.print(player, sc.red .. S("Error: No playername given."))
@@ -40,8 +45,8 @@ sc["invite"] = function(player, parameter)
 
 end -- sc["invite"
 
-sc["i"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["invite"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["i"

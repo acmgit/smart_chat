@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "toggle"
+local short = "t"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "toggle",
-                            Usage = "/c toggle",
+                            Name = cname,
+                            Usage = "/c " .. cname,
                             Description = S("Turn's the permanent public Chat on or off."),
                             Parameter = "<>",
-                            Shortcut = "/c t",
+                            Shortcut = "/c " .. short,
                         }
                        )
 
-sc["toggle"] = function(player)
+sc[cname] = function(player)
 
     local status = sc.public[player]
 
@@ -32,8 +37,8 @@ sc["toggle"] = function(player)
 
 end -- sc["toggle"
 
-sc["t"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["toggle"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["t"

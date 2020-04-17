@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "join"
+local short = "j"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "join",
-                            Usage = "/c join <channel>",
+                            Name = cname,
+                            Usage = "/c " .. cname .. " <channel>",
                             Description = S("Join or change a channel to <channel>."),
                             Parameter = "<channel>",
-                            Shortcut = "/c j <channel>",
+                            Shortcut = "/c " .. short .. " <channel>",
                         }
                        )
 
-sc["join"] = function(player, parameter)
+sc[cname] = function(player, parameter)
 
      if(parameter[2] == nil or parameter[2] == "") then
          sc.print(player, sc.red .. S("Error: No channel to join given."))
@@ -23,8 +28,8 @@ sc["join"] = function(player, parameter)
 
 end -- sc["join"
 
-sc["j"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["join"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["j"

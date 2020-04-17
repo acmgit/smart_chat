@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "move"
+local short = "m"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "move",
-                            Usage = "/c move <player> <channel>",
+                            Name = cname,
+                            Usage = "/c " .. cname .. " <player> <channel>",
                             Description = S("Moves a player to <channel> or to self."),
                             Parameter = "<player> <channel>",
-                            Shortcut = "/c m <player> <channel>",
+                            Shortcut = "/c " .. short .. " <player> <channel>",
                         }
                        )
 
-sc["move"] = function(player, parameter)
+sc[cname] = function(player, parameter)
 
     local power = sc.is_channelmod(player) + sc.is_channeladmin(player)
 
@@ -81,8 +86,8 @@ sc["move"] = function(player, parameter)
 
 end -- sc["join"
 
-sc["m"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["move"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["j"

@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "all"
+local short = "a"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "all",
-                            Usage = "/c all <message>",
+                            Name = cname,
+                            Usage = "/c " .. cname .. " <message>",
                             Description = S("Send's a message on all."),
                             Parameter = "<message>",
-                            Shortcut = "/c a <message>",
+                            Shortcut = "/c " .. short .. " <message>",
                         }
                        )
 
-sc["all"] = function(player, parameter)
+sc[cname] = function(player, parameter)
 
     local pprivs = minetest.get_player_privs(player)
     if not pprivs.basic_privs then
@@ -46,8 +51,8 @@ sc["all"] = function(player, parameter)
 end -- sc["all"
 
 
-sc["a"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["all"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["a"

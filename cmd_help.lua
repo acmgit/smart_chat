@@ -1,9 +1,14 @@
 local lib = smart_chat
 local S = lib.S
+local cname = "help"
+local short = "h"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 lib.register_help({
-                            Name = "help",
-                            Usage = "/c help <> | <command>",
+                            Name = cname,
+                            Usage = "/c " .. cname .. " <> | <command>",
                             Description = S("Helpsystem for ") .." " .. lib.modname .. ".",
                             Parameter = "<> | " .. S("<command>") .. lib.green .. "." ..
                                         "\n" .. lib.orange .. "<>" ..
@@ -11,11 +16,11 @@ lib.register_help({
                                         "." .. "\n" .. lib.orange .. S("<command>") ..
                                         lib.green .. " - " .. S("Shows you the help for ") ..
                                         lib.modname .. "-" .. S("command") .. ".",
-                            Shortcut = "/c h <> | <command>",
+                            Shortcut = "/c " .. short .. " <> | <command>",
                         }
                        )
 
-lib["help"] = function(player, parameter)
+lib[cname] = function(player, parameter)
     if(parameter[2] == "" or parameter[2] == nil) then
         lib.print(player, lib.green .. S("Commands for ") .. lib.modname .. " " .. lib.orange ..
                         lib.version .. "." .. lib.revision .. lib.green .. ".")
@@ -54,8 +59,8 @@ lib["help"] = function(player, parameter)
 
 end -- function help
 
-lib["h"] = function(player, parameter)
+lib[short] = function(player, parameter)
 
-        lib["help"](player, parameter)
+        lib[cname](player, parameter)
 
 end -- lib["h"

@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "where"
+local short = "w"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "where",
-                            Usage = "/c where <name>",
+                            Name = cname,
+                            Usage = "/c " .. cname .. " <name>",
                             Description = S("Show's the room, where <name> is."),
                             Parameter = "<>",
-                            Shortcut = "/c w <name>",
+                            Shortcut = "/c " .. short .. " <name>",
                         }
                        )
 
-sc["where"] = function(player, parameter)
+sc[cname] = function(player, parameter)
 
 
 
@@ -43,8 +48,8 @@ sc["where"] = function(player, parameter)
 
 end -- sc["where"
 
-sc["w"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["where"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["w"

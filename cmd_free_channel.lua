@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "free_channel"
+local short = "fc"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "free_channel",
-                            Usage = "/c free_channel",
+                            Name = cname,
+                            Usage = "/c " .. cname,
                             Description = S("Set a channel from permanent free."),
                             Parameter = "",
-                            Shortcut = "/c fc",
+                            Shortcut = "/c " .. short,
                         }
                        )
 
-sc["free_channel"] = function(player)
+sc[cname] = function(player)
         local channel = sc.player[player]
         local privs = minetest.get_player_privs(player)
 
@@ -39,8 +44,8 @@ sc["free_channel"] = function(player)
 
 end -- sc["free_channel"
 
-sc["fc"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["free_channel"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["l"

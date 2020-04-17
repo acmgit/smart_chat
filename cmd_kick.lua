@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "kick"
+local short = "k"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "kick",
-                            Usage = "/c kick <player>",
+                            Name = cname,
+                            Usage = "/c " .. cname .. " <player>",
                             Description = S("Kicks a player from the channel."),
                             Parameter = "<player>",
-                            Shortcut = "/c k <player>",
+                            Shortcut = "/c " .. short .. " <player>",
                         }
                        )
 
-sc["kick"] = function(player, parameter)
+sc[cname] = function(player, parameter)
 
     local power = sc.is_channelmod(player) + sc.is_channeladmin(player)
 
@@ -75,10 +80,10 @@ sc["kick"] = function(player, parameter)
 
     end -- if(power > guestpower)
 
-end -- sc["join"
+end -- sc["kick"
 
-sc["k"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["kick"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["j"

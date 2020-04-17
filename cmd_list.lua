@@ -1,16 +1,21 @@
 local sc = smart_chat
 local S = sc.S
+local cname = "list"
+local short = "li"
+local activate = minetest.settings:get_bool("smart_chat.cmd_" .. cname, true)
+
+if(not activate) then return end
 
 sc.register_help({
-                            Name = "list",
-                            Usage = "/c list <name>",
+                            Name = cname,
+                            Usage = "/c " .. cname .. " <name>",
                             Description = S("Lists all player in the channel."),
                             Parameter = "<>",
-                            Shortcut = "/c li <name>",
+                            Shortcut = "/c " .. short .. " <name>",
                         }
                        )
 
-sc["list"] = function(player, parameter)
+sc[cname] = function(player, parameter)
 
     local channel = sc.player[player]
     local all_player = minetest.get_connected_players()
@@ -45,8 +50,8 @@ sc["list"] = function(player, parameter)
 
 end -- sc["list"
 
-sc["li"] = function(player, parameter)
+sc[short] = function(player, parameter)
 
-        sc["list"](player, parameter)
+        sc[cname](player, parameter)
 
 end -- sc["l"
