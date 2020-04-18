@@ -1,6 +1,8 @@
 # Smart Chat
 A simple chat, which supports chat-channels for minetest.
 
+![Screenshot 1](screenshot.jpg)
+
 ## Description
 Adds the ability to the plain chat, that user can join to channels.
 The mod is easy extendable, because you only have to develop a module and
