@@ -24,6 +24,7 @@ sc.modpath = minetest.get_modpath(sc.modname)
 local path = sc.modpath
 
 sc.helpsystem = {}
+sc.registered_commands = {}
 
 sc.storage = minetest.get_mod_storage()
 sc.permchannel = {}

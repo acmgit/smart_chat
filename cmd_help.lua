@@ -20,7 +20,7 @@ lib.register_help({
                         }
                        )
 
-lib[cname] = function(player, parameter)
+lib.registered_commands[cname] = function(player, parameter)
     if(parameter[2] == "" or parameter[2] == nil) then
         lib.print(player, lib.green .. S("Commands for ") .. lib.modname .. " " .. lib.orange ..
                         lib.version .. "." .. lib.revision .. lib.green .. ".")
@@ -59,8 +59,8 @@ lib[cname] = function(player, parameter)
 
 end -- function help
 
-lib[short] = function(player, parameter)
+lib.registered_commands[short] = function(player, parameter)
 
-        lib[cname](player, parameter)
+        lib.registered_commands[cname](player, parameter)
 
 end -- lib["h"

@@ -28,19 +28,19 @@ end -- function lib.split
 function lib.check(player, cmd)
 
         if(cmd ~= nil and cmd[1] ~= nil) then
-            if(lib[cmd[1]] ~= nil) then
+            if(lib.registered_commands[cmd[1]] ~= nil) then
                 -- Command is valid, execute it with parameter
-                lib[cmd[1]](player, cmd)
+                lib.registered_commands[cmd[1]](player, cmd)
 
             else -- A command is given, but
             -- Command not found, report it.
                 if(cmd[1] ~= nil) then
-                    lib.print(player, lib.red .. mn ..":" .. S("Unknown Command") .. " \"" ..
+                    lib.print(player, lib.red .. mn ..": " .. S("Unknown Command") .. " \"" ..
                                     lib.orange .. cmd[1] .. lib.red .. "\".")
 
                 else
-                    if(lib["help"]) then
-                        lib["help"](player, cmd)
+                    if(lib.registered_commands["help"]) then
+                        lib.registered_commands["help"](player, cmd)
 
                     else
                         lib.print(player, lib.red .. S("Unknown Command. No helpsystem available."))

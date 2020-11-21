@@ -15,7 +15,7 @@ sc.register_help({
                         }
                        )
 
-sc[cname] = function(player, parameter)
+sc.registered_commands[cname] = function(player, parameter)
 
      if(parameter[2] == nil or parameter[2] == "") then
          sc.print(player, sc.red .. S("Error: No channel to join given."))
@@ -28,8 +28,8 @@ sc[cname] = function(player, parameter)
 
 end -- sc["join"
 
-sc[short] = function(player, parameter)
+sc.registered_commands[short] = function(player, parameter)
 
-        sc[cname](player, parameter)
+        sc.registered_commands[cname](player, parameter)
 
 end -- sc["j"

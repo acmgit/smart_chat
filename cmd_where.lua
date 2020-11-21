@@ -15,7 +15,7 @@ sc.register_help({
                         }
                        )
 
-sc[cname] = function(player, parameter)
+sc.registered_commands[cname] = function(player, parameter)
 
 
 
@@ -48,8 +48,8 @@ sc[cname] = function(player, parameter)
 
 end -- sc["where"
 
-sc[short] = function(player, parameter)
+sc.registered_commands[short] = function(player, parameter)
 
-        sc[cname](player, parameter)
+        sc.registered_commands[cname](player, parameter)
 
 end -- sc["w"

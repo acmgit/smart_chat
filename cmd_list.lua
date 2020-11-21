@@ -15,7 +15,7 @@ sc.register_help({
                         }
                        )
 
-sc[cname] = function(player, parameter)
+sc.registered_commands[cname] = function(player, parameter)
 
     local channel = sc.player[player]
     local all_player = minetest.get_connected_players()
@@ -50,8 +50,8 @@ sc[cname] = function(player, parameter)
 
 end -- sc["list"
 
-sc[short] = function(player, parameter)
+sc.registered_commands[short] = function(player, parameter)
 
-        sc[cname](player, parameter)
+        sc.registered_commands[cname](player, parameter)
 
 end -- sc["l"

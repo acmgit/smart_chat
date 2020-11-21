@@ -15,7 +15,7 @@ sc.register_help({
                         }
                        )
 
-sc[cname] = function(player, parameter)
+sc.registered_commands[cname] = function(player, parameter)
 
     local power = sc.is_channelmod(player) + sc.is_channeladmin(player)
 
@@ -33,57 +33,57 @@ sc[cname] = function(player, parameter)
 
     end -- if(parameter[2] == nil
 
-    local guest = parameter[2]
+    local troublemaker = parameter[2]
 
-    if(minetest.get_player_by_name(guest) == nil) then
-       sc.print(player, sc.red .. S("Error: Player ") .. sc.orange .. guest .. sc.red .. S(" not found."))
+    if(minetest.get_player_by_name(troublemaker) == nil) then
+       sc.print(player, sc.red .. S("Error: Player ") .. sc.orange .. troublemaker .. sc.red .. S(" not found."))
        return
 
     end -- if(minetest.get_player_by_name
 
-    if(sc.player[guest] == nil) then
+    if(sc.player[troublemaker] == nil) then
         sc.print(player, sc.red .. S("Error: You can't kick a player from the public chat."))
         return
 
-    end -- if(sc.player[guest]
+    end -- if(sc.player[troublemaker]
 
-    local guestpower = sc.is_channelmod(guest) + sc.is_channeladmin(guest)
+    local troublemakerpower = sc.is_channelmod(troublemaker) + sc.is_channeladmin(troublemaker)
 
-    if(power > guestpower) then
-        local channel = sc.player[guest]
-        sc.channel_report(channel,  sc.red .. "*** " .. sc.yellow .. guest ..
+    if(power > troublemakerpower) then
+        local channel = sc.player[troublemaker]
+        sc.channel_report(channel,  sc.red .. "*** " .. sc.yellow .. troublemaker ..
                                     sc.red .. S(" was kicked by ") .. sc.green .. player ..
                                     sc.red .. S(" from the channel ") .. sc.orange .. channel ..
                                     sc.red .. ". ***"
                         )
 
         sc.print(player,
-                    sc.green .. S("*** You kicked ") .. sc.yellow .. guest ..
+                    sc.green .. S("*** You kicked ") .. sc.yellow .. troublemaker ..
                     sc.green .. S(" from channel: ") .. sc.orange .. channel ..
                     sc.green .. " . ****"
                 )
 
-        sc.print(guest,
+        sc.print(troublemaker,
                     sc.red .. S("*** You were kicked by ") .. sc.yellow .. player ..
                     sc.red .. S(" from the channel.") .. " ****"
                 )
 
-        minetest.log("chat", " *** " .. player .. " kicked " .. guest .. " from channel: " .. channel .. ". ***")
+        minetest.log("chat", " *** " .. player .. " kicked " .. troublemaker .. " from channel: " .. channel .. ". ***")
 
-        sc["l"](guest)
+        sc.registered_commands["l"](troublemaker)
 
-    elseif(power < 20) and (guestpower < 20) then
+    elseif(power < 20) and (troublemakerpower < 20) then
         sc.print(player, sc.red .. S("Error: You can not kick a channelmod from the channel."))
 
     else
         sc.print(player, sc.red .. S("Error: You can't kick a channeladmin from the channel."))
 
-    end -- if(power > guestpower)
+    end -- if(power > troublemakerpower)
 
 end -- sc["kick"
 
-sc[short] = function(player, parameter)
+sc.registered_commands[short] = function(player, parameter)
 
-        sc[cname](player, parameter)
+        sc.registered_commands[cname](player, parameter)
 
 end -- sc["j"

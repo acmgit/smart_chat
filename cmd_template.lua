@@ -15,7 +15,7 @@ sc.register_help({
                         }
                        )
 
-sc[cname] = function(player, parameter)
+sc.registered_commands[cname] = function(player, parameter)
 
 --[[
      *******************************************************
@@ -32,8 +32,8 @@ sc[cname] = function(player, parameter)
 
 end -- sc[template
 
-sc[short] = function(player, parameter)
+sc.registered_commands[short] = function(player, parameter)
 
-        sc[cname](player, parameter)
+        sc.registered_commands[cname](player, parameter)
 
-end -- sc[template_shortcut
+end -- sc.registered_commands[template_shortcut

@@ -15,7 +15,7 @@ sc.register_help({
                         }
                        )
 
-sc[cname] = function(player, parameter)
+sc.registered_commands[cname] = function(player, parameter)
 
     local pprivs = minetest.get_player_privs(player)
     if not pprivs.basic_privs then
@@ -51,8 +51,8 @@ sc[cname] = function(player, parameter)
 end -- sc["all"
 
 
-sc[short] = function(player, parameter)
+sc.registered_commands[short] = function(player, parameter)
 
-        sc[cname](player, parameter)
+        sc.registered_commands[cname](player, parameter)
 
 end -- sc["a"

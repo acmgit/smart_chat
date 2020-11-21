@@ -14,7 +14,7 @@ sc.register_help({
                             Shortcut = "/c " .. short                        }
                        )
 
-sc[cname] = function(player)
+sc.registered_commands[cname] = function(player)
 
     local list = {}
     local all_player = minetest.get_connected_players()
@@ -46,8 +46,8 @@ sc[cname] = function(player)
 
 end -- sc["list"
 
-sc[short] = function(player, parameter)
+sc.registered_commands[short] = function(player, parameter)
 
-        sc[cname](player, parameter)
+        sc.registered_commands[cname](player, parameter)
 
 end -- sc["l"

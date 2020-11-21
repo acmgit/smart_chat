@@ -15,7 +15,7 @@ sc.register_help({
                         }
                        )
 
-sc[cname] = function(player)
+sc.registered_commands[cname] = function(player)
     if(sc.player[player] ~= nil) then
         sc.report(player, S("Leaves the Channel."))
         sc.player[player] = nil
@@ -28,8 +28,8 @@ sc[cname] = function(player)
 
 end -- sc["leave"
 
-sc[short] = function(player, parameter)
+sc.registered_commands[short] = function(player, parameter)
 
-        sc[cname](player, parameter)
+        sc.registered_commands[cname](player, parameter)
 
 end -- sc["l"

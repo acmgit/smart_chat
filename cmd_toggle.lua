@@ -15,7 +15,7 @@ sc.register_help({
                         }
                        )
 
-sc[cname] = function(player)
+sc.registered_commands[cname] = function(player)
 
     local status = sc.public[player]
 
@@ -37,8 +37,8 @@ sc[cname] = function(player)
 
 end -- sc["toggle"
 
-sc[short] = function(player, parameter)
+sc.registered_commands[short] = function(player, parameter)
 
-        sc[cname](player, parameter)
+        sc.registered_commands[cname](player, parameter)
 
 end -- sc["t"
