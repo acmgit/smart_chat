@@ -195,10 +195,20 @@ function lib.chat(playername, text)
 
 end -- function chat
 
+function lib.is_channelowner(player)
+    local power = 0
+    if(sc.channelowner[player] ~= nil) then
+        power = sc.channelmod
+        
+    end
+    
+end
+
+    
 function lib.is_channelmod(player)
     local power = 0
     if(minetest.get_player_privs(player).channelmod) then
-        power = 10
+        power = sc.moderator
     end
 
     return power
@@ -208,7 +218,7 @@ end
 function lib.is_channeladmin(player)
     local power = 0
     if(minetest.get_player_privs(player).channeladmin) then
-        power = 20
+        power = sc.admin
 
     end
 

@@ -21,10 +21,22 @@ sc.registered_commands[cname] = function(player, parameter)
          sc.print(player, sc.red .. S("Error: No channel to join given."))
          return
      end
-
+    local channel = parameter[2]
+    
+    if(sc.locks[channel] ~= nil) then                   -- Channel is locked
+        if(sc.locks[channel][player] == nil) then       -- The player is not on the list
+            sc.print(player, sc.red .. S("Error: the Channel is locked."))
+            return
+            
+        end -- if(sc.locks
+            
+    end -- if(sc.locks
+    
+    if( sc.player[player]
     sc.report(player, S("Leaves the Channel."))
-    sc.player[player] = parameter[2]
+    sc.player[player] = channel
     sc.report(player, S("Enter the Channel."))
+
 
 end -- sc["join"
 

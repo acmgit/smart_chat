@@ -18,6 +18,10 @@ sc.last_command = nil
 sc.version = 1
 sc.revision = 0
 
+sc.admin = 20
+sc.moderator = 10
+sc.channelmod = 5
+
 sc.modname = minetest.get_current_modname()
 sc.modpath = minetest.get_modpath(sc.modname)
 
@@ -28,6 +32,8 @@ sc.registered_commands = {}
 
 sc.storage = minetest.get_mod_storage()
 sc.permchannel = {}
+sc.locks = {}
+sc.channelowner = {}
 
 -- Colors for Chat
 sc.green = minetest.get_color_escape_sequence('#00FF00')
@@ -72,6 +78,7 @@ dofile(path .. "/cmd_store_channel.lua")
 dofile(path .. "/cmd_free_channel.lua")
 dofile(path .. "/cmd_kick.lua")
 dofile(path .. "/cmd_move.lua")
+dofile(path .. "/cmd_lock.lua")
 
 --[[
    ****************************************************************

@@ -71,8 +71,10 @@ sc.registered_commands[cname] = function(player, parameter)
         minetest.log("chat", " *** " .. player .. " kicked " .. troublemaker .. " from channel: " .. channel .. ". ***")
 
         sc.registered_commands["l"](troublemaker)
-
-    elseif(power < 20) and (troublemakerpower < 20) then
+    elseif(power < sc.channelmod) and (troublemakerpower < sc.channelmod) then
+        sc.print(player, sc.red .. S("Error: you can't kick a channelowner from the channel."))
+        
+    elseif(power < sc.admin) and (troublemakerpower < sc.admin) then
         sc.print(player, sc.red .. S("Error: You can not kick a channelmod from the channel."))
 
     else

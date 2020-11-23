@@ -29,5 +29,5 @@ minetest.register_on_leaveplayer(function(player)
         local playername = player:get_player_name()
         sc.player[playername] = nil
         sc.public[playername] = nil
-
+                                
 end)
