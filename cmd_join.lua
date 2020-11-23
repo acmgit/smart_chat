@@ -22,6 +22,7 @@ sc.registered_commands[cname] = function(player, parameter)
          return
      end
     local channel = parameter[2]
+<<<<<<< HEAD
 
     if(sc.locks[channel] ~= nil) then                   -- Channel is locked
         if(sc.is_channelmod(player) < sc.moderator) or
@@ -37,6 +38,19 @@ sc.registered_commands[cname] = function(player, parameter)
 
     end -- if(sc.locks
 
+=======
+    
+    if(sc.locks[channel] ~= nil) then                   -- Channel is locked
+        if(sc.locks[channel][player] == nil) then       -- The player is not on the list
+            sc.print(player, sc.red .. S("Error: the Channel is locked."))
+            return
+            
+        end -- if(sc.locks
+            
+    end -- if(sc.locks
+    
+    if( sc.player[player]
+>>>>>>> d92e6ca99ef18074cba34b9d1c139bac8935e34e
     sc.report(player, S("Leaves the Channel."))
     sc.player[player] = channel
     sc.report(player, S("Enter the Channel."))

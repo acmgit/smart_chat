@@ -34,6 +34,7 @@ sc.registered_commands[cname] = function(player, parameter)
     if(sc.player[player] == nil) then
         sc.print(player, sc.red .. S("Error: You're in the public chat."))
         return
+<<<<<<< HEAD
 
     else
         if(sc.is_channel_locked(channel)) then
@@ -60,6 +61,25 @@ sc.registered_commands[cname] = function(player, parameter)
     end
 
 
+=======
+        
+    else
+        if(sc.locks[channel] ~= nil) then
+            sc.print(player, sc.red .. S("Error: The channel is already locked."))
+            return
+            
+        end
+        
+        sc.report(player, sc.green .. "Player: " .. sc.orange .. player .. sc.green .. " has locked the channel: " .. sc.orange .. channel .. sc.green .. ".")
+        sc.locks[channel] = {}
+        sc.locks[channel][player] = player
+        
+        sc.print(player, sc.locks[channel][player])
+        
+    end
+    
+    
+>>>>>>> d92e6ca99ef18074cba34b9d1c139bac8935e34e
 end -- sc[template
 
 sc.registered_commands[short] = function(player, parameter)

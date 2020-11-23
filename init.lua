@@ -27,6 +27,10 @@ sc.channel_value = {    ["normal"] = 0,
                         ["permanent"] = 20
                   }
 
+sc.admin = 20
+sc.moderator = 10
+sc.channelmod = 5
+
 sc.modname = minetest.get_current_modname()
 sc.modpath = minetest.get_modpath(sc.modname)
 

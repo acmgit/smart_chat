@@ -195,6 +195,7 @@ function lib.chat(playername, text)
 
 end -- function chat
 
+<<<<<<< HEAD
 function lib.is_channel_permanent(channel)
     local status = false
     if(channel ~= nil) then
@@ -265,6 +266,23 @@ function lib.is_channelmod(player)
     if(player ~= nil) then
         if(minetest.get_player_privs(player).channelmod) then
             power = lib.moderator
+=======
+function lib.is_channelowner(player)
+    local power = 0
+    if(sc.channelowner[player] ~= nil) then
+        power = sc.channelmod
+        
+    end
+    
+end
+
+    
+function lib.is_channelmod(player)
+    local power = 0
+    if(minetest.get_player_privs(player).channelmod) then
+        power = sc.moderator
+    end
+>>>>>>> d92e6ca99ef18074cba34b9d1c139bac8935e34e
 
         end -- if(minetest.get_player
         return power
@@ -276,7 +294,11 @@ end -- function lib.is_channelmod
 function lib.is_channeladmin(player)
     local power = 0
     if(minetest.get_player_privs(player).channeladmin) then
+<<<<<<< HEAD
         power = lib.admin
+=======
+        power = sc.admin
+>>>>>>> d92e6ca99ef18074cba34b9d1c139bac8935e34e
 
     end
 

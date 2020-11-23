@@ -73,7 +73,11 @@ sc.registered_commands[cname] = function(player, parameter)
         sc.registered_commands["l"](troublemaker)
     elseif(power < sc.channelmod) and (troublemakerpower < sc.channelmod) then
         sc.print(player, sc.red .. S("Error: you can't kick a channelowner from the channel."))
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> d92e6ca99ef18074cba34b9d1c139bac8935e34e
     elseif(power < sc.admin) and (troublemakerpower < sc.admin) then
         sc.print(player, sc.red .. S("Error: You can not kick a channelmod from the channel."))
 
