@@ -21,10 +21,26 @@ sc.registered_commands[cname] = function(player, parameter)
          sc.print(player, sc.red .. S("Error: No channel to join given."))
          return
      end
+    local channel = parameter[2]
+
+    if(sc.locks[channel] ~= nil) then                   -- Channel is locked
+        if(sc.is_channelmod(player) < sc.moderator) or
+          (sc.is_channeladmin(player) < sc.admin) then -- is player a moderator or admin?
+
+            if(sc.locks[channel][player] == nil) then       -- The player is not on the list
+                sc.print(player, sc.red .. S("Error: the Channel is locked."))
+                return
+
+            end -- if(sc.locks
+
+        end -- if(sc.is_channelmod()
+
+    end -- if(sc.locks
 
     sc.report(player, S("Leaves the Channel."))
-    sc.player[player] = parameter[2]
+    sc.player[player] = channel
     sc.report(player, S("Enter the Channel."))
+
 
 end -- sc["join"
 

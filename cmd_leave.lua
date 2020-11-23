@@ -17,10 +17,24 @@ sc.register_help({
 
 sc.registered_commands[cname] = function(player)
     if(sc.player[player] ~= nil) then
+
+        local channel = sc.player[player]
         sc.report(player, S("Leaves the Channel."))
         sc.player[player] = nil
         sc.public[player] = nil -- Turns the public Chat off (Echo)
         sc.report(player, S("Enter the public Chat."))
+
+        if(sc.is_channel_empty(channel) <= 1) then             -- Nobody other is in the channel
+            if(sc.is_channel_permanent(channel) == false) then     -- Channel isn't permanent
+                if(sc.is_channel_locked(channel)) then             -- Channel is locked
+                    sc.locks[channel] = nil                     -- Close the channel
+
+                end -- if(is_channel_locked
+
+            end -- if(is_channel_permanent
+
+        end -- if(is_channel_empty
+
     else
         sc.print(player, sc.red .. S("Error: You're already in the public chat."))
 

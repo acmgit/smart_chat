@@ -17,16 +17,16 @@ sc.register_help({
 
 sc.registered_commands[cname] = function(player)
         local channel = sc.player[player]
-        local privs = minetest.get_player_privs(player)
+        local power = sc.is_channelmoderator(player) + sc.is_channeladmin(player)
 
-        if(not privs.channelmod) then
+        if(power < sc.channelmod) then
             sc.print(player, sc.red .. S("Error: You don't have the privileg to change channels."))
             return
 
-        end -- if(not privs.channelmod
+        end -- if(power < sc.channelmod
 
         if(sc.player[player] ~= nil) then
-            if(sc.permchannel[channel] ~= nil) then
+            if(sc.is_channel_permanent(channel)) then
                 sc.permchannel[channel] = nil
                 sc.report(player, sc.orange .. player .. sc.green .. S(" removes the Channel [") .. sc.yellow .. channel
                           .. sc.green .. S("] from permanent."))

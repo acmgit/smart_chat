@@ -20,9 +20,9 @@ function lib.split(parameter)
 end -- function lib.split
 
 --[[
-   ****************************************************************
-   *******        Function check(command)                    ******
-   ****************************************************************
+    ****************************************************************
+    *******        Function check(command)                    ******
+    ****************************************************************
     Check if the command is valid
 --]]
 function lib.check(player, cmd)
@@ -195,20 +195,88 @@ function lib.chat(playername, text)
 
 end -- function chat
 
-function lib.is_channelmod(player)
-    local power = 0
-    if(minetest.get_player_privs(player).channelmod) then
-        power = 10
-    end
+function lib.is_channel_permanent(channel)
+    local status = false
+    if(channel ~= nil) then
+        if(lib.permchannel[channel] ~= nil) then -- Channel is permanent
+            status = true
+
+        end -- if(lib.permanent
+        return status
+
+    end -- if(channel ~= nil
+
+end -- function lib.is_channel_permanent
+
+function lib.get_channel_power(channel)
+    local power = lib.channel_value["normal"]
+    if(lib.is_channel_locked(channel)) then power = power + lib.channel_value["locked"] end
+
+    if(lib.is_channel_permanent(channel)) then power = power + lib.channel_value["permanent"] end
 
     return power
 
-end
+end -- lib.get_channelpower
+
+function lib.is_channel_locked(channel)
+    local status = false
+    if(channel ~= nil) then
+        if(lib.locks[channel] ~= nil) then
+            status = true
+
+        end -- if(lib.locks
+        return status
+
+    end -- if(channel ~= nil
+
+end -- function lib.is_channel_locked
+
+function lib.is_channel_empty(player, channel)
+    local all_player = minetest.get_connected_players()
+    local pchannel = lib.player[player] -- Get the Channel of the player
+    local count = 0
+    for _,players in pairs(all_player) do
+        if(pchannel ~= nil) and (pchannel == channel) then
+            count = count + 1
+
+        end -- if(pchannel
+
+    end -- for _,
+    return count
+
+end -- function lib.is_channel_empty
+
+function lib.is_channelowner(player)
+    local power = 0
+    if(player ~= nil) then
+        if(lib.channelowner[player] ~= nil) then
+            power = lib.channelmod
+
+        end -- if(lib.channelowner
+        return power
+
+    end -- if(player ~= nil
+
+end -- function lib.is_channelowner
+
+
+function lib.is_channelmod(player)
+    local power = 0
+    if(player ~= nil) then
+        if(minetest.get_player_privs(player).channelmod) then
+            power = lib.moderator
+
+        end -- if(minetest.get_player
+        return power
+
+    end -- if(player ~= nil
+
+end -- function lib.is_channelmod
 
 function lib.is_channeladmin(player)
     local power = 0
     if(minetest.get_player_privs(player).channeladmin) then
-        power = 20
+        power = lib.admin
 
     end
 

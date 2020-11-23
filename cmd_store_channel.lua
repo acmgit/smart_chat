@@ -26,7 +26,7 @@ sc.registered_commands[cname] = function(player)
         end -- if(not privs.channelmod
 
         if(sc.player[player] ~= nil) then
-            if((sc.permchannel ~= nil) and (sc.permchannel[channel] ~= nil) ) then     -- Channel exist
+            if (sc.is_channel_permanent(channel)) then     -- Channel exist
                 sc.print(player, sc.red .. S("Error: Permanent Channels exist."))
 
             else

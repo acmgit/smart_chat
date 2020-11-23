@@ -47,7 +47,7 @@ lib.registered_commands[cname] = function(player, parameter)
             lib.print(player, lib.green .. S("Parameter: ") .. lib.orange ..
                             lib.helpsystem[parameter[2]].Parameter)
             lib.print(player, lib.green .. S("Shortcut: ") .. lib.orange ..
-                            lib.helpsystem[parameter[2]].Parameter)
+                            lib.helpsystem[parameter[2]].Shortcut)
 
         else
             lib.print(player, lib.red .. S("No entry in help for command") .. " <" ..
