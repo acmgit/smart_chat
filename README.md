@@ -12,6 +12,7 @@ There is a self-growing Helpsystem integrated too.<br>
 
 ## Requirements:
 Minetest 5.x
+For IRC you need LUA-Socket installed in your system.
 <br>
 
 ## Depends

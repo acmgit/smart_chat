@@ -90,6 +90,7 @@ function lib.print(player, text)
 
 end -- function distancer.print(
 
+-- Is player in the public channel?
 function lib.check_global(cplayer)
     if(lib.player[cplayer] == nil) then
         return true
@@ -115,17 +116,25 @@ end -- lib.check_channel
 
 --[[
    ****************************************************************
-   *******              Function channel_report()                    ******
+   *******              Function channel_report()            ******
    ****************************************************************
+
+   Send a message to a channel.
+   channel = nil: Send a message to the public channel.
 ]]--
-function lib.channel_report(channel, message)
+
+function lib.channel_report(channel, message, color)
     local all_player = minetest.get_connected_players()
+    if(color ~= nil) then
+        color = lib.orange
+
+    end -- if(color
 
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
 
         if(lib.check_channel(pname, channel)) then
-            lib.print(pname, lib.orange .. message)
+            lib.print(pname, color .. message)
 
         end -- if(check_channel
 
@@ -156,6 +165,55 @@ end -- lib.report(
 
 --[[
    ****************************************************************
+   *******          Function receive_from_irc                ******
+   ****************************************************************
+
+Writes the Text from IRC to the Public Channel
+]]--
+
+function lib.receive_from_irc(line)
+    local playername, msg
+
+    print(line)
+    local pos1, pos2
+    pos1 = string.find(line,"!",2)
+    pos2 = string.find(line,":",3,true)
+
+    if((pos1 ~= nil) and (pos2 ~= nil)) then
+        playername = string.sub(line, 2, string.find(line,"!",2)-1)
+        msg = string.sub(line, string.find(line,":",3,true)+1)
+        line =  lib.white .. "<" .. playername .. "@IRC> " .. msg               -- <player@IRC> Message
+        local all_player = minetest.get_connected_players()
+
+        for _,player in pairs(all_player) do
+            local pname = player:get_player_name()
+            if(lib.check_global(pname) or lib.public[pname]) then               -- Player is in Public Channel
+                lib.print(pname, line)
+
+            end -- if(lib.check_global
+
+        end -- for _,player in
+
+    end -- if((pos1 ~= 1
+
+end -- function lib.receive()
+--[[
+   ****************************************************************
+   *******           Function send_2_irc()                   ******
+   ****************************************************************
+
+Sends a Text as playername to the IRC
+]]--
+
+function lib.send_2_irc(playername, text)
+    local line = "PRIVMSG " .. lib.irc_channel .. " :<" .. playername
+                .. "@" .. lib.servername .. "> " .. text .. lib.crlf
+    lib.client:send(line)
+    print(line)
+
+end -- function send_2_irc
+--[[
+   ****************************************************************
    *******            Function print_all()                   ******
    ****************************************************************
 ]]--
@@ -175,6 +233,11 @@ function lib.chat(playername, text)
             if(lib.public[pname] and pname ~= playername) then -- name is in public-mode and not the player self
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
             end
+
+            if(lib.client ~= nil) then
+                lib.send_2_irc(playername, text)
+
+            end -- if(sc.client
 
         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"

@@ -1,4 +1,5 @@
 local sc = smart_chat
+sc.crlf = "\r\n"
 
 minetest.register_on_chat_message(function(player, message)
 
@@ -31,3 +32,4 @@ minetest.register_on_leaveplayer(function(player)
         sc.public[playername] = nil
 
 end)
+

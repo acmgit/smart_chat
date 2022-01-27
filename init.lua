@@ -60,6 +60,7 @@ sc.S = S
 dofile(path .. "/lib.lua")
 dofile(path .. "/cmd_help.lua")
 dofile(path .. "/core.lua")
+dofile(path .. "/irc.lua")
 dofile(path .. "/cmd_join.lua")
 dofile(path .. "/cmd_leave.lua")
 dofile(path .. "/cmd_list.lua")

@@ -49,6 +49,13 @@ Splits your string into individual words. A space works as separator.<br>
 The function give you a table with the words back.
 <br>
 
+### void receive_from_irc()
+Receives a Line from the IRC and prints it, if it was from an user on the irc, on the chat in Minetest.
+<br>
+
+### void send_2_irc(string playername, string text)
+Sends text to the IRC.
+<br>
 
 ## Tables:
 
@@ -100,6 +107,10 @@ Stores the entries for the helpsystem of smart_chat.
 Stores the command, which you can use about /c ..
 <br>
 
+### handle smart_chat.client
+Handle for communication with the IRC.
+<br>
+
 ## Colors of smart_chat:
 <br>
 The smart_chat provides some colors for your messages and use it for reports or error-messages.
@@ -120,4 +131,14 @@ The colors are escape-sequences of minetest.
 #### smart_chat.white
 #### smart_chat.yellow
 <br>
+
+## Network of Smart_chat
+Smart_chat has now the ability to connect to an IRC-Server, log in with an given name and join to an given channel. 
+At a Ping from the IRC, Smart_chat anwers automatically with a Pong. You can see then the members of the IRC in
+your Minetest that they write: Name@IRC. On the other side, a player of your world will answer with: Name@Worldname.
+And you can switch on or off your Network, if you dont need this kind of network.
+The settings, you can find it at Settingtypes.txt.
+
+## Important for Admins
+You have to install the LUA-Socket in your System, for running the irc on your server.
 
