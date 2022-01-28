@@ -31,7 +31,7 @@ if (sc.irc_on) then
     sc.reconnect = 0                                                                            -- counter for Reconnect
 
     function sc.irc_connect()
-        if(~sc.irc_running) then
+        if(not sc.irc_running) then
             sc.irc_running = true
             minetest.log("action", "Try to connect to: " .. sc.host_ip .. ":" .. sc.host_port)
             local cl, err = assert(socket.connect(sc.host_ip, sc.host_port))                        -- connect to irc
