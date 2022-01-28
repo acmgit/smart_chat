@@ -102,6 +102,12 @@ function lib.check_global(cplayer)
 
 end
 
+--[[
+   ****************************************************************
+   *******              Function check_channel()             ******
+   ****************************************************************
+]]--
+
 function lib.check_channel(cplayer, channel)
 
     if(lib.player[cplayer] == channel) then
@@ -174,13 +180,12 @@ Writes the Text from IRC to the Public Channel
 function lib.receive_from_irc(line)
     local playername, msg
 
-    print(line)
     local pos1, pos2
     pos1 = string.find(line,"!",2)
     pos2 = string.find(line,":",3,true)
 
     if((pos1 ~= nil) and (pos2 ~= nil)) then
-        playername = string.sub(line, 2, string.find(line,"!",2)-1)
+        playername = lib.get_nick_from_irc(line)
         msg = string.sub(line, string.find(line,":",3,true)+1)
         line =  lib.white .. "<" .. playername .. "@IRC> " .. msg               -- <player@IRC> Message
         local all_player = minetest.get_connected_players()
@@ -212,6 +217,16 @@ function lib.send_2_irc(playername, text)
     print(line)
 
 end -- function send_2_irc
+
+function lib.get_nick_from_irc(line)
+    local nick
+
+    nick = string.sub(line,2,string.find(line,"!",2)-1)
+    return nick
+
+end -- get_nick_from_irc()
+
+
 --[[
    ****************************************************************
    *******            Function print_all()                   ******

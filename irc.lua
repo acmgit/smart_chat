@@ -1,4 +1,7 @@
 local sc = smart_chat
+local S = sc.S
+
+-- sc.irc_on = true
 
 if (sc.irc_on) then
 
@@ -12,8 +15,7 @@ if (sc.irc_on) then
     sc.servername = "MT_Zeitsprung"
     sc.irc_topic = "Minetestserver"
     sc.clienttimeout = 0.3
-
---]]
+]]--
 
     minetest.register_on_shutdown(function()
         -- Close the Connection to IRC-Server and close the network
@@ -45,7 +47,14 @@ if (sc.irc_on) then
                     sc.client:send("PONG" .. ping .. "\r\n")                                -- Answer with Pong
 
                 else
-                    sc.receive_from_irc(line)
+                    if(sc.check_join(line)) then                                             -- is it a Join-Report?
+                        sc.report("IRC", "*** " .. sc.get_nick_from_irc(line)
+                                                .. "@IRC" .. " " .. S("join the channel."))
+
+                    else
+                        sc.receive_from_irc(line)                                           -- a line of a user
+
+                    end -- if(sc.check_join
 
                 end -- if(string.sub
 
@@ -54,8 +63,21 @@ if (sc.irc_on) then
 
             end -- if(line ~= nil
 
+            timer = 0
         end -- if(timer >= 0.5
 
     end) -- minetest.register_globalstep
 
 end -- if(sc.irc_on ==
+
+function sc.check_join(line)
+    local start, stop = string.find(line, "JOIN", 3)
+    if(stop ~= nil) then
+        return true
+
+    else
+        return false
+
+    end -- if(stop ~= nil
+
+end -- sc.check_join()

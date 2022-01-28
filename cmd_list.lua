@@ -22,7 +22,7 @@ sc.registered_commands[cname] = function(player, parameter)
 
 
     if(parameter[2] == "" or parameter[2] == nil) then
-        sc.print(player, sc.green .. "Player in Channel:")
+        sc.print(player, sc.green .. S("Player in Channel") .. ":")
         for _,players in pairs(all_player) do
             local pname = players:get_player_name()
 

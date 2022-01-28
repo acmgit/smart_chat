@@ -147,6 +147,10 @@ Can manage Chatchannels.=
 Can manage the entire Chat.=
 Gives Simple_Chat a command with or without Parameter.=
 
+### irc.lua ###
+
+join the channel.=
+
 ### lib.lua ###
 
  given.=

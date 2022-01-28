@@ -147,6 +147,10 @@ Can manage Chatchannels.=Kann Chatkanäle verwalten.
 Can manage the entire Chat.=Kann den gesamten Chat veralten.
 Gives Simple_Chat a command with or without Parameter.=Gibt Simple_Chat ein Kommando mit oder ohne Parameter.
 
+### irc.lua ###
+
+join the channel.=betritt den Kanal.
+
 ### lib.lua ###
 
  given.= angegeben.
