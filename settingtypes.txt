@@ -18,6 +18,8 @@ smart_chat.cmd_leave (Enable leave) bool true
 smart_chat.cmd_list (Enable list) bool true
 #Command move
 smart_chat.cmd_move (Enable move) bool true
+#Command status
+smart_chat.cmd_status (Enable Status for Chat) bool true
 #Command store_channel
 smart_chat.cmd_store_channel (Enable store_channel) bool true
 #Command toggle
@@ -32,6 +34,6 @@ smart_chat.host_port (Port of the IRC) int 6667
 smart_chat.irc_channel (Channel on the IRC) string ##MT_Local
 smart_chat.irc_channel_topic (Topic of the IRC-Channel) string MT_Server
 smart_chat.irc_client_timeout (Set's the timeout of the IRC-Client) float 0.03
-smart_chat.automatic_reconnect (Reconnect on lose the connection) bool true
+smart_chat.irc_automatic_reconnect (Reconnect on lose the connection) bool true
+smart_chat.irc_automatic_reconnect_max (Max. trys to connect) int 5
 smart_chat.servername (Name of the World) string Local
-smart_chat.automatic_reconnect_max (Max. trys to connect) int 5

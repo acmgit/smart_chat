@@ -113,6 +113,18 @@ Error: You don't have the privileg chanelmod or channeladmin to move players fro
 
 Moves a player to <channel> or to self.=Verschiebt einen Spieler in <Kanal> oder zu dir selbst.
 
+### cmd_status.lua ###
+
+Automatic reconnect=Automatischer Verbindungsaufbau
+IRC-Channel=IRC-Kanal
+IRC-Chat=IRC-Chat
+IRC-Server=IRC-Server
+Topic=Thema
+Tries=Versuche
+Worldname/Servername=Weltname/Servername
+Writes Information about the Chat.=Gibt Informationen über den Chat aus.
+max.=max.
+
 ### cmd_store_channel.lua ###
 
  marks the Channel [= markiert den Kanal [

@@ -9,8 +9,8 @@ sc.irc_channel = minetest.settings:get("smart_chat.irc_channel") or "MT_Local"
 sc.irc_channel_topic = minetest.settings:get("smart_chat.irc_channel_topic") or "MT_Server_Local"
 sc.servername = minetest.settings:get("smart_chat.servername") or "Local"
 sc.client_timeout = minetest.settings:get("smart_chat.get_client_timeout") or 0.03
-sc.irc_automatic_reconnect = minetest.settings:get("smart_chat.automatic_reconnect") or true
-sc.irc_automatic_reconnect_max = tonumber(minetest.settings:get("smart_chat.automatic_reconnect_max")) or 5
+sc.irc_automatic_reconnect = minetest.settings:get("smart_chat.irc_automatic_reconnect") or true
+sc.irc_automatic_reconnect_max = tonumber(minetest.settings:get("smart_chat.irc_automatic_reconnect_max")) or 5
 
 sc.irc_running = false                                                                          -- IRC is off
 
@@ -28,7 +28,7 @@ if (sc.irc_on) then
 ]]--
     --sc.client_timeout = 0.03
     local socket = require("socket")
-    sc.reconnect = 0                                                                            -- counter for Reconnect
+    sc.irc_reconnect = 0                                                                            -- counter Reconnect
 
     function sc.irc_connect()
         if(not sc.irc_running) then
@@ -112,7 +112,7 @@ if (sc.irc_on) then
 
                     sc.report("IRC", "*** Disconnected")                                        -- reconnect? yes ....
                     if ((sc.automatic_reconnect) and (sc.reconnect <= sc.automatic_reconnect_max)) then
-                        sc.reconnect = sc.reconnect + 1
+                        sc.irc_reconnect = sc.irc_reconnect + 1
                         sc.irc_connect()
                         sc.running = true
 
