@@ -8,7 +8,7 @@ sc.host_port = tonumber(minetest.settings:get("smart_chat.host_port"))
 sc.irc_channel = minetest.settings:get("smart_chat.irc_channel")
 sc.irc_channel_topic = minetest.settings:get("smart_chat.irc_channel_topic")
 sc.automatic_reconnect = minetest.settings:get("smart_chat.automatic_reconnect") or true
-sc.servername = minetest.settings:get("smart_chat.servername", "")
+sc.servername = minetest.settings:get("smart_chat.servername")
 
 if (sc.irc_on) then
 

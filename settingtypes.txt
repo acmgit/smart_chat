@@ -39,7 +39,7 @@ smart_chat.cmd_where (Enable where) bool true
 
 #IRC-Settings
 smart_chat.irc_on (Enable IRC) bool false
-smart_chat.host_ip (IP of the IRC) string irc.libera.chat
+smart_chat.host_ip (IP of the IRC) string localhost
 smart_chat.host_port (Port of the IRC) int 6667
 smart_chat.irc_channel (Channel on the IRC) string ##MT_Local
 smart_chat.irc_channel_topic (Topic of the IRC-Channel) string MT_Server
