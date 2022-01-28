@@ -2,6 +2,13 @@ local sc = smart_chat
 local S = sc.S
 
 -- sc.irc_on = true
+sc.irc_on = minetest.settings:get("smart_chat.irc_on") or false
+sc.host_ip = minetest.settings:get("smart_chat.host_ip")
+sc.host_port = tonumber(minetest.settings:get("smart_chat.host_port"))
+sc.irc_channel = minetest.settings:get("smart_chat.irc_channel")
+sc.irc_channel_topic = minetest.settings:get("smart_chat.irc_channel_topic")
+sc.automatic_reconnect = minetest.settings:get("smart_chat.automatic_reconnect") or true
+sc.servername = minetest.settings:get("smart_chat.servername", "")
 
 if (sc.irc_on) then
 
@@ -13,13 +20,44 @@ if (sc.irc_on) then
     sc.host_port = 6667
     sc.irc_channel = "##Zeitsprung"
     sc.servername = "MT_Zeitsprung"
-    sc.irc_topic = "Minetestserver"
+    sc.irc_channel_topic = "Minetestserver"
     sc.clienttimeout = 0.3
 ]]--
+    sc.client_timeout = 0.03
+    local socket = require("socket")
+
+    function sc.connect()
+
+        minetest.log("action", "Try to connect to: " .. sc.host_ip .. ":" .. sc.host_port)
+        local cl, err = assert(socket.connect(sc.host_ip, sc.host_port))                        -- connect to irc
+        minetest.log("action", "Start connection: ", err)
+        sc.client = cl
+
+        err = sc.client:settimeout(sc.client_timeout)                                       -- and set timeout
+        minetest.log("action", "Settimeout: ", err)
+
+        local line = "NICK " .. sc.servername .. " " .. sc.crlf
+        err = sc.client:send(line)
+        minetest.log("action", line, err)
+
+        line = "USER " .. sc.servername .. " 0 0 " .. sc.servername .. sc.crlf
+        err = sc.client:send(line)
+        minetest.log("action",line, err)
+
+        line = "JOIN " .. sc.irc_channel .. sc.crlf
+        err = sc.client:send(line)
+        minetest.log("action",line, err)
+
+        line = "TOPIC " .. sc.irc_channel .. " " .. sc.irc_channel_topic .. sc.crlf
+        err = sc.client:send(line)
+        minetest.log("action", line, err)
+
+    end -- sc.connect
 
     minetest.register_on_shutdown(function()
         -- Close the Connection to IRC-Server and close the network
         if (sc.client ~= nil) then
+            minetest.log("action", "Shutdown IRC.")
             sc.client:send("QUIT" .. sc.crlf)
             sc.client:close()
             sc.client = nil
@@ -28,13 +66,7 @@ if (sc.irc_on) then
 
     end) -- minetest.register_on_shutdown
 
-    sc.client = assert(socket.connect(sc.host_ip, sc.host_port))                            -- connect to irc
-    sc.client:settimeout(sc.clienttimeout)                                                  -- and set your own timeout
-
-    sc.client:send("NICK " .. sc.servername .. " " .. sc.crlf)
-    sc.client:send("USER ".. sc.servername .. " 0 0 " .. sc.servername .. " " .. sc.crlf)
-    sc.client:send("JOIN " .. sc.irc_channel .. sc.crlf)
-    sc.client:send("TOPIC :".. sc.irc_topic .. sc.crlf)
+    sc.connect()                                                                            -- connect to IRC
 
     local timer = 0
     minetest.register_globalstep(function(dtime)
@@ -60,6 +92,10 @@ if (sc.irc_on) then
 
             elseif ((err ~= nil) and (err ~= "timeout")) then
                 minetest.log("action","IRC: " .. err)
+                if(sc.automatic_reconnect) then
+                    sc.connect()
+
+                end -- if(sc.automatic_reconnect
 
             end -- if(line ~= nil
 
@@ -69,6 +105,7 @@ if (sc.irc_on) then
     end) -- minetest.register_globalstep
 
 end -- if(sc.irc_on ==
+
 
 function sc.check_join(line)
     local start, stop = string.find(line, "JOIN", 3)
