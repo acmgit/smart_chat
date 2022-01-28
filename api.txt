@@ -54,6 +54,9 @@ Receives a Line from the IRC and prints it, if it was from an user on the irc, o
 void send_2_irc(string playername, string text)
 Sends text to the IRC.
 
+void connect()
+Connects to the IRC.
+
 Tables:
 
 Help-Entry:

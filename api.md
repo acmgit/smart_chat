@@ -57,6 +57,10 @@ Receives a Line from the IRC and prints it, if it was from an user on the irc, o
 Sends text to the IRC.
 <br>
 
+### void connect()
+Connects to the IRC.
+<br>
+
 ## Tables:
 
 ### Help-Entry
