@@ -25,7 +25,7 @@ minetest.register_on_joinplayer(function(player)
         sc.public[playername] = nil
 
         if(sc.irc_running) then
-            local line = "*** " .. playername .. "@" .. sc.servername .. " " .. "join the world."
+            local line = "*** " .. playername .. "@" .. sc.servername .. " " .. "join the world." .. sc.crlf
             sc.client:send(line)
 
         end -- if(sc.irc_running
