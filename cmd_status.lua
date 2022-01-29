@@ -21,6 +21,16 @@ end
 sc.registered_commands[cname] = function(player, parameter)
 
     local line
+
+    local hip = sc.hostip or ""
+    local hpo = sc.host_port or 0
+    local ct = sc.client_timeout or 0
+    local ic = sc.irc_channel or ""
+    local it = sc.irc_channel_topic or ""
+    local rc = sc.reconnect or 0
+    local rc_max = sc.irc_automatic_reconnect_max or 0
+    local sn = sc.servername or S("No name given") .. "."
+
     line = "*** Smart_Chat V " .. sc.yellow .. sc.version .. "." .. sc.revision .. sc.green .." ***"
     say(player, line)
 
@@ -28,17 +38,19 @@ sc.registered_commands[cname] = function(player, parameter)
     if (sc.irc_running) then
         line = line .. sc.yellow .. "on"
         say(player, line)
-        line = S("IRC-Server") .. ": " .. sc.yellow .. sc.host_ip .. ":" .. sc.host_port
+        line = S("IRC-Server") .. ": " .. sc.yellow .. hip .. ":" .. hpo
         say(player, line)
-        line = S("IRC-Channel") .. ": " .. sc.yellow .. sc.irc_channel .. " "
-                                .. sc.green .. S("Topic") .. ": " .. sc.yellow .. sc.irc_channel_topic
+        line = S("Client-Timeout") .. ": " .. sc.yellow .. ct .. sc.green .. " " .. S("Seconds")
+        say(player, line)
+        line = S("IRC-Channel") .. ": " .. sc.yellow .. ic .. " "
+                                .. sc.green .. S("Topic") .. ": " .. sc.yellow .. it
         say(player,line)
-        line = S("Worldname/Servername") .. ": " .. sc.yellow .. sc.servername
+        line = S("Worldname/Servername") .. ": " .. sc.yellow .. sn
         say(player,line)
         line = S("Automatic reconnect") .. ": "
         if(sc.irc_automatic_reconnect) then
-            line = line .. sc.yellow .. "on " .. sc.green .. S("Tries") .. ": " .. sc.yellow .. sc.irc_reconnect
-                        .. sc.green .. " " .. S("max.") .. " " .. sc.yellow .. sc.irc_automatic_reconnect_max
+            line = line .. sc.yellow .. "on " .. sc.green .. S("Tries") .. ": " .. sc.yellow .. rc
+                        .. sc.green .. " " .. S("max.") .. " " .. sc.yellow .. rc_max
             say(player,line)
         else
             line = line .. sc.yellow .. "off"

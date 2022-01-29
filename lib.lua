@@ -178,6 +178,8 @@ Writes the Text from IRC to the Public Channel
 ]]--
 
 function lib.receive_from_irc(line)
+    if(not lib.irc_running) then return end
+
     local playername, msg
 
     local pos1, pos2
@@ -211,6 +213,8 @@ Sends a Text as playername to the IRC
 ]]--
 
 function lib.send_2_irc(playername, text)
+    if(not lib.irc_running) then return end
+
     local line = "PRIVMSG " .. lib.irc_channel .. " :<" .. playername
                 .. "@" .. lib.servername .. "> " .. text .. lib.crlf
     lib.client:send(line)

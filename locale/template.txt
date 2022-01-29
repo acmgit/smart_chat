@@ -116,9 +116,12 @@ Moves a player to <channel> or to self.=
 ### cmd_status.lua ###
 
 Automatic reconnect=
+Client-Timeout=
 IRC-Channel=
 IRC-Chat=
 IRC-Server=
+No name given=
+Seconds=
 Topic=
 Tries=
 Worldname/Servername=

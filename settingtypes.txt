@@ -33,7 +33,7 @@ smart_chat.host_ip (IP of the IRC) string localhost
 smart_chat.host_port (Port of the IRC) int 6667
 smart_chat.irc_channel (Channel on the IRC) string ##MT_Local
 smart_chat.irc_channel_topic (Topic of the IRC-Channel) string MT_Server
-smart_chat.irc_client_timeout (Set's the timeout of the IRC-Client) float 0.03
-smart_chat.irc_automatic_reconnect (Reconnect on lose the connection) bool true
-smart_chat.irc_automatic_reconnect_max (Max. trys to connect) int 5
+smart_chat.client_timeout (Set's the timeout of the IRC-Client) float 0.03
+smart_chat.irc_automatic_reconnect (Reconnect on lose the connection) bool false
+smart_chat.irc_automatic_reconnect_max (Max. tries to connect) int 5
 smart_chat.servername (Name of the World) string Local
