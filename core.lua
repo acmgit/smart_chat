@@ -13,7 +13,7 @@ minetest.register_on_chat_message(function(player, message)
 
             return false -- Systemmessage, no processing for us.
 
-        end
+        end -- if(player ~=
 
 end) -- register_on_chatmessage()
 
@@ -24,6 +24,12 @@ minetest.register_on_joinplayer(function(player)
         sc.player[playername] = nil -- the public Chat
         sc.public[playername] = nil
 
+        if(sc.irc_running) then
+            local line = "*** " .. playername .. "@" .. sc.servername .. " " .. "join the world."
+            sc.client:send(line)
+
+        end -- if(sc.irc_running
+
 end) -- register_on_joinplayer()
 
 minetest.register_on_leaveplayer(function(player)
@@ -31,5 +37,5 @@ minetest.register_on_leaveplayer(function(player)
         sc.player[playername] = nil
         sc.public[playername] = nil
 
-end)
+end) -- minetest.register_on_leaveplayer
 
