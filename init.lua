@@ -16,7 +16,7 @@ sc.public = {}
 sc.last_command = nil
 
 sc.version = 1
-sc.revision = 2
+sc.revision = 3
 
 sc.modname = minetest.get_current_modname()
 sc.modpath = minetest.get_modpath(sc.modname)
@@ -74,6 +74,7 @@ dofile(path .. "/cmd_free_channel.lua")
 dofile(path .. "/cmd_kick.lua")
 dofile(path .. "/cmd_move.lua")
 dofile(path .. "/cmd_status.lua")
+dofile(path .. "/cmd_talk2public.lua")
 
 --[[
    ****************************************************************

@@ -79,7 +79,7 @@ end
 
 --[[
    ****************************************************************
-   *******     Function display_chat_message(message)        ******
+   *******         Function print(player, message)           ******
    ****************************************************************
 ]]--
 
@@ -204,6 +204,21 @@ function lib.receive_from_irc(line)
     end -- if((pos1 ~= 1
 
 end -- function lib.receive()
+
+--[[
+   ****************************************************************
+   *******           Function send_2_public()                  ******
+   ****************************************************************
+
+Sends a Text as playername to the IRC
+]]--
+function lib.send_2_public(playername, text)
+
+    lib.print(playername, text)
+    lib.send_2_irc(playername, text)
+
+end -- lib.send_2_public
+
 --[[
    ****************************************************************
    *******           Function send_2_irc()                   ******
@@ -215,10 +230,11 @@ Sends a Text as playername to the IRC
 function lib.send_2_irc(playername, text)
     if(not lib.irc_running) then return end
 
-    local line = "PRIVMSG " .. lib.irc_channel .. " :<" .. playername
-                .. "@" .. lib.servername .. "> " .. text .. lib.crlf
-    lib.client:send(line)
+    local line = string.gsub(text, "\27%([^()]*%)", "")
     print(line)
+    line = "PRIVMSG " .. lib.irc_channel .. " :<" .. playername
+                .. "@" .. lib.servername .. "> " .. line .. lib.crlf
+    lib.client:send(line)
 
 end -- function send_2_irc
 
