@@ -228,13 +228,32 @@ Sends a Text as playername to the IRC
 ]]--
 
 function lib.send_2_irc(playername, text)
-    if(not lib.irc_running) then return end
 
-    local line = string.gsub(text, "\27%([^()]*%)", "")
-    print(line)
-    line = "PRIVMSG " .. lib.irc_channel .. " :<" .. playername
-                .. "@" .. lib.servername .. "> " .. line .. lib.crlf
-    lib.client:send(line)
+    if(lib.irc_message ~= text) then
+        if(not lib.irc_running) then return end
+
+        local line = string.gsub(text, "\27%([^()]*%)", "")
+        --print(line)
+        line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername
+                            .. "@" .. lib.servername .. "> " .. line .. lib.crlf
+        lib.client:send(line)
+        lib.irc_message_count = 0   -- This prevents for IRC-Echos of multiple player
+        lib.irc_message = text      -- and remembers the last message
+
+    else
+        lib.irc_message_count = lib.irc_message_count + 1        -- IRC-Message was the same as the lasts
+        if(lib.irc_message.count == 1) then                      -- clear the counter after 2 second from the
+            minetest.after(2,   function()                       -- last message automatical
+                                    lib.irc_message_count = 0
+
+                                end) -- function
+
+        else                                                     -- if(lib.irc_message > 1
+            return                                               -- do nothing
+
+        end -- if(lib.irc_message_count
+
+    end -- if(lib.irc_message ~=
 
 end -- function send_2_irc
 

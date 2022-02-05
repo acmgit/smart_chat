@@ -13,6 +13,8 @@ sc.irc_automatic_reconnect = minetest.settings:get_bool("smart_chat.irc_automati
 sc.irc_automatic_reconnect_max = tonumber(minetest.settings:get("smart_chat.irc_automatic_reconnect_max")) or 5
 
 sc.irc_running = false                                                                          -- IRC is off
+sc.irc_message_count = 0
+sc.irc_message = ""
 
 if (sc.irc_on) then
 --[[
