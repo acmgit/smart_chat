@@ -22,7 +22,7 @@ sc.registered_commands[cname] = function(player, parameter)
 
     local line
 
-    local hip = sc.hostip or ""
+    local hip = sc.host_ip or ""
     local hpo = sc.host_port or 0
     local ct = sc.client_timeout or 0
     local ic = sc.irc_channel or ""
