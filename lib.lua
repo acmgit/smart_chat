@@ -232,7 +232,9 @@ function lib.send_2_irc(playername, text)
     if(lib.irc_message ~= text) then
         if(not lib.irc_running) then return end
 
+        --local line = minetest.strip_colors(text)
         local line = string.gsub(text, "\27%([^()]*%)", "")
+
         --print(line)
         line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername
                             .. "@" .. lib.servername .. "> " .. line .. lib.crlf
