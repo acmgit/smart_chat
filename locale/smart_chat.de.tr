@@ -164,11 +164,6 @@ Show's the room, where <name> is.=Zeigt den Raum, wo sich <Name> aufhält.
 ] is in Channel {=] ist im Kanal {
 ] is in the public Chat.=] ist im öffentlichem Chat.
 
-### core.lua ###
-
-joins the World=betritt die Welt.
-leaves the World=verlässt die Welt.
-
 ### init.lua ###
 
 Can manage Chatchannels.=Kann Chatkanäle verwalten.

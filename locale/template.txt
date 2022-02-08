@@ -164,11 +164,6 @@ Show's the room, where <name> is.=
 ] is in Channel {=
 ] is in the public Chat.=
 
-### core.lua ###
-
-joins the World=
-leaves the World=
-
 ### init.lua ###
 
 Can manage Chatchannels.=
