@@ -22,10 +22,11 @@ end) -- register_on_chatmessage()
 
 minetest.register_on_joinplayer(function(player)
         local playername = player:get_player_name()
+--[[
         local message = "joins the World."
         playername = playername or "unknown"
         sc.send_2_irc(playername, message)
-        
+]]--
         sc.player[playername] = nil -- the public Chat
         sc.public[playername] = nil
 
