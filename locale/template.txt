@@ -3,8 +3,12 @@
 
 ### cmd_all.lua ###
 
-Error - require 'basic_privs' privilege.=
 Error: No Message given.=
+
+### cmd_all.lua ###
+### cmd_talk2public.lua ###
+
+Error - require 'basic_privs' privilege.=
 Send's a message on all.=
 
 ### cmd_channels.lua ###
@@ -136,6 +140,10 @@ Error: You can't set the public Chat as permanent.=
 Marks a channel permanent.=
 ] as permanent.=
 
+### cmd_talk2public.lua ###
+
+You're already in the public channel.=
+
 ### cmd_template.lua ###
 
 Template Command with Parameter <=
@@ -155,6 +163,11 @@ Player [=
 Show's the room, where <name> is.=
 ] is in Channel {=
 ] is in the public Chat.=
+
+### core.lua ###
+
+joins the World=
+leaves the World=
 
 ### init.lua ###
 
