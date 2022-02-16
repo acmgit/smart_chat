@@ -18,10 +18,10 @@ Lists all channels on the Server.=
 
 ### cmd_free_channel.lua ###
 
- removes the Channel [=
+ Unmarks the Channel [=
 Error: Permanent Channels not found.=
-Error: You can't free the public Chat from permanent.=
-Set a channel from permanent free.=
+Error: You can't unmarks the public Chat from permanent.=
+Unmarks a channel as permanent.=
 ] from permanent.=
 
 ### cmd_free_channel.lua ###
@@ -102,7 +102,7 @@ Leaves a channel=
 
 ### cmd_list.lua ###
 
-Lists all player in the channel.=
+List all player in the channel.=
 Player in Channel=
 
 ### cmd_move.lua ###
@@ -152,7 +152,7 @@ Template Command with Parameter <=
 
 The permanent public chat is now off.=
 The permanent public chat is now on.=
-Turn's the permanent public Chat on or off.=
+Turns the permanent public Chat on or off.=
 You are already in the public Chat.=
 
 ### cmd_where.lua ###
@@ -160,7 +160,7 @@ You are already in the public Chat.=
 Error: No name given.=
 Error: Player is not online.=
 Player [=
-Show's the room, where <name> is.=
+Shows which channel <name> is on.=
 ] is in Channel {=
 ] is in the public Chat.=
 
@@ -168,6 +168,7 @@ Show's the room, where <name> is.=
 
 joins the World=
 leaves the World=
+unknown=
 
 ### init.lua ###
 

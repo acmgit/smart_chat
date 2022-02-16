@@ -9,7 +9,7 @@ if(not activate) then return end
 sc.register_help({
                             Name = cname,
                             Usage = "/c " .. cname .. " <name>",
-                            Description = S("Lists all player in the channel."),
+                            Description = S("List all player in the channel."),
                             Parameter = "<>",
                             Shortcut = "/c " .. short .. " <name>",
                         }

@@ -9,7 +9,7 @@ if(not activate) then return end
 sc.register_help({
                             Name = cname,
                             Usage = "/c " .. cname,
-                            Description = S("Set a channel from permanent free."),
+                            Description = S("Unmarks a channel as permanent."),
                             Parameter = "",
                             Shortcut = "/c " .. short,
                         }
@@ -28,7 +28,7 @@ sc.registered_commands[cname] = function(player)
         if(sc.player[player] ~= nil) then
             if(sc.permchannel[channel] ~= nil) then
                 sc.permchannel[channel] = nil
-                sc.report(player, sc.orange .. player .. sc.green .. S(" removes the Channel [") .. sc.yellow .. channel
+                sc.report(player, sc.orange .. player .. sc.green .. S(" Unmarks the Channel [") .. sc.yellow .. channel
                           .. sc.green .. S("] from permanent."))
                 sc.storage:from_table({fields=sc.permchannel})
 
@@ -38,7 +38,7 @@ sc.registered_commands[cname] = function(player)
             end -- if(sc.permchannel[channel]
 
         else
-            sc.print(player, sc.red .. S("Error: You can't free the public Chat from permanent."))
+            sc.print(player, sc.red .. S("Error: You can't unmarks the public Chat from permanent."))
 
         end -- if(sc.player
 

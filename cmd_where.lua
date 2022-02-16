@@ -9,7 +9,7 @@ if(not activate) then return end
 sc.register_help({
                             Name = cname,
                             Usage = "/c " .. cname .. " <name>",
-                            Description = S("Show's the room, where <name> is."),
+                            Description = S("Shows which channel <name> is on."),
                             Parameter = "<>",
                             Shortcut = "/c " .. short .. " <name>",
                         }

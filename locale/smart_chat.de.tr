@@ -8,7 +8,7 @@ Error: No Message given.=Fehler: Keine Nachricht angebeben.
 ### cmd_all.lua ###
 ### cmd_talk2public.lua ###
 
-Error - require 'basic_privs' privilege.=Fehler - 'basic_privs' benötigt.
+Error - require 'basic_privs' privilege.=Fehler - 'basic_privs' Privileg benötigt.
 Send's a message on all.=Sendet eine Nachricht an alle.
 
 ### cmd_channels.lua ###
@@ -18,10 +18,10 @@ Lists all channels on the Server.=Listet alle Kanäle auf dem Server.
 
 ### cmd_free_channel.lua ###
 
- removes the Channel [= gibt den Kanal [
+ Unmarks the Channel [=Gibt den Kanal [
 Error: Permanent Channels not found.=Fehler: Permanenter Kanal nicht gefunden.
-Error: You can't free the public Chat from permanent.=Fehler: Du kannst den öffentlichen Chat nicht von permanent freigeben.
-Set a channel from permanent free.=Gibt einen permanenten Kanal wieder frei.
+Error: You can't unmarks the public Chat from permanent.=Fehler: Der öffentliche Kanal bleibt permanent.
+Unmarks a channel as permanent.=Du kannst den öffentlichen Chat nicht von permanent freigeben.
 ] from permanent.=] von permanent wieder frei.
 
 ### cmd_free_channel.lua ###
@@ -102,7 +102,7 @@ Leaves a channel=Verlässt einen Kanal
 
 ### cmd_list.lua ###
 
-Lists all player in the channel.=Zeigt alle Spieler in dem Kanal.
+List all player in the channel.=Zeigt alle Spieler in dem Kanal.
 Player in Channel=Spieler im Kanal
 
 ### cmd_move.lua ###
@@ -152,7 +152,7 @@ Template Command with Parameter <=Musterkommando mit Parameter <
 
 The permanent public chat is now off.=Der permanente öffentliche Chat ist nun aus.
 The permanent public chat is now on.=Der permanente öffentliche Chat ist nun ein.
-Turn's the permanent public Chat on or off.=Schaltet den permanent öffentlichen Chat ein oder aus.
+Turns the permanent public Chat on or off.=Schaltet den permanent öffentlichen Chat ein oder aus.
 You are already in the public Chat.=Du bist schon im öffentlichem Chat.
 
 ### cmd_where.lua ###
@@ -160,7 +160,7 @@ You are already in the public Chat.=Du bist schon im öffentlichem Chat.
 Error: No name given.=Fehler: Keinen Namen angegeben.
 Error: Player is not online.=Fehler: Spieler ist nicht online.
 Player [=Spieler [
-Show's the room, where <name> is.=Zeigt den Raum, wo sich <Name> aufhält.
+Shows which channel <name> is on.=Zeigt den Kanal, wo sich <Name> aufhält.
 ] is in Channel {=] ist im Kanal {
 ] is in the public Chat.=] ist im öffentlichem Chat.
 
@@ -168,6 +168,7 @@ Show's the room, where <name> is.=Zeigt den Raum, wo sich <Name> aufhält.
 
 joins the World=betritt die Welt.
 leaves the World=verlässt die Welt.
+unknown=
 
 ### init.lua ###
 

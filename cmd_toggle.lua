@@ -9,7 +9,7 @@ if(not activate) then return end
 sc.register_help({
                             Name = cname,
                             Usage = "/c " .. cname,
-                            Description = S("Turn's the permanent public Chat on or off."),
+                            Description = S("Turns the permanent public Chat on or off."),
                             Parameter = "<>",
                             Shortcut = "/c " .. short,
                         }
