@@ -16,7 +16,7 @@ sc.public = {}
 sc.last_command = nil
 
 sc.version = 1
-sc.revision = 3
+sc.revision = 4
 
 sc.modname = minetest.get_current_modname()
 sc.modpath = minetest.get_modpath(sc.modname)
