@@ -58,7 +58,9 @@ else
 
 end
 
-if (sc.irc_on) then    
+if (sc.irc_on) then
+
+-- Let it be.
     local env, request_env = _G, minetest.request_insecure_environment
     env = request_env()
     
