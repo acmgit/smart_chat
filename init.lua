@@ -62,7 +62,7 @@ if (sc.irc) then
         env = request_env()
 
     else -- if(request_env
-        minetest.log("action", "[MOD] " .. sc.modname .. ": Could not initalise insequre_environment."
+        minetest.log("action", "[MOD] " .. sc.modname .. ": Could not initalise insequre_environment.")
         sc.irc = false
         return
         
