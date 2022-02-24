@@ -181,29 +181,43 @@ function lib.receive_from_irc(line)
     if(not lib.irc_running) then return end
 
     local playername, msg
+    local upper = string.uppper(line)
+    if (upper.find("PRIVMSG")) then
+        local lstart, lend = string.find(string.upper(line),  "PRIVMSG")
+        if(lend ~= nil) then
+            lstart = string.find(line, ":", lend)
+            if(lstart) then
+                line = string.sub(line, lstart + 1)
 
-    local pos1, pos2
-    pos1 = string.find(line,"!",2)
-    pos2 = string.find(line,":",3,true)
+            end -- if(lstart
 
-    if((pos1 ~= nil) and (pos2 ~= nil)) then
-        playername = lib.get_nick_from_irc(line)
-        msg = string.sub(line, string.find(line,":",3,true)+1)
-        line =  lib.white .. "<" .. playername .. "@IRC> " .. msg               -- <player@IRC> Message
-        local all_player = minetest.get_connected_players()
+        end -- if(lend ~= nil
 
-        for _,player in pairs(all_player) do
-            local pname = player:get_player_name()
-            if(lib.check_global(pname) or lib.public[pname]) then               -- Player is in Public Channel
-                lib.print(pname, line)
+    else
+        local pos1, pos2
+        pos1 = string.find(line,"!",2)
+        pos2 = string.find(line,":",3,true)
 
-            end -- if(lib.check_global
+        if((pos1 ~= nil) and (pos2 ~= nil)) then
+            playername = lib.get_nick_from_irc(line)
+            msg = string.sub(line, string.find(line,":",3,true)+1)
+            line =  lib.white .. "<" .. playername .. "@IRC> " .. msg               -- <player@IRC> Message
 
-        end -- for _,player in
+        end -- if(pos1 ~= nil
 
-    end -- if((pos1 ~= 1
+    end -- if((upper.find("PRIVMSG
 
-end -- function lib.receive()
+    local all_player = minetest.get_connected_players()
+    for _,player in pairs(all_player) do
+        local pname = player:get_player_name()
+        if(lib.check_global(pname) or lib.public[pname]) then               -- Player is in Public Channel
+            lib.print(pname, line)
+
+        end -- if(lib.check_global
+
+    end -- for _,player in
+
+end -- if((pos1 ~= 1
 
 --[[
    ****************************************************************

@@ -63,28 +63,28 @@ if (sc.irc_on) then
 -- Let it be.
     local env, request_env = _G, minetest.request_insecure_environment
     env = request_env()
-    
+
     if (not request_env) then
         minetest.log("action", "[MOD] " .. sc.modname .. ": Could not initalise insequre_environment.")
         sc.irc_on = false
-        
+
     end -- if(request_env
-    
+
     if (not env) then
         minetest.log("action", "[MOD] " .. sc.modname .. ": Please add the mod to secure.trusted_mods to run.")
         sc.irc_on = false
-        
+
     end -- if (not env
-    
+
     local old = require
     require = env.require
     sc.socket = require("socket")
     require = old
     minetest.log("action", "[MOD] " .. sc.modname .. " Socket-Library loaded.")
-    
+
 else
     print("IRC turned off.")
-    
+
 end -- if (sc.irc
 
 sc.S = S
