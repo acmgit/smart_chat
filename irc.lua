@@ -11,7 +11,8 @@ sc.servername = minetest.settings:get("smart_chat.servername") or "Local"
 sc.client_timeout = tonumber(minetest.settings:get("smart_chat.client_timeout")) or 0.03
 sc.irc_automatic_reconnect = minetest.settings:get_bool("smart_chat.irc_automatic_reconnect") or false
 sc.irc_automatic_reconnect_max = tonumber(minetest.settings:get("smart_chat.irc_automatic_reconnect_max")) or 5
-sc.irc_password = minetest.settings:get("smart_chat.password") or ""
+sc.irc_channel_password = minetest.settings:get("smart_chat.channel_password") or ""
+sc.irc_user_password = minetest.settings:get("smart_chat_user_password") or ""
 
 sc.irc_running = false                                                                          -- IRC is off
 sc.irc_message_count = 0
@@ -54,10 +55,16 @@ if (sc.irc_on) then
             line = "USER " .. sc.servername .. " 0 0 " .. sc.servername .. sc.crlf
             err = sc.client:send(line)
             minetest.log("action",line, err)
-
+            
+            if(sc.irc_user_password ~= "") then
+                line = "PASS " .. sc.user_password .. sc.crlf
+                minetest.log("action", line, err)
+                
+            end -- if(sc.irc_user_password =~ ""
+            
             minetest.log("action", "Join Channel: " .. sc.irc_channel)
-            if(sc.irc_password ~= "") then
-                line = "JOIN " .. sc.irc_channel .. " " .. sc.irc_password .. sc.crlf
+            if(sc.irc_channel_password ~= "") then
+                line = "JOIN " .. sc.irc_channel .. " " .. sc.irc_channel_password .. sc.crlf
 
             else
                 line = "JOIN " .. sc.irc_channel .. sc.crlf
