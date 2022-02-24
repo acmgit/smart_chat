@@ -32,6 +32,8 @@ if (sc.irc_on) then
 ]]--
     --sc.client_timeout = 0.03
     --local socket = require("socket")
+    local socket = sc.socket
+    
     sc.reconnect = 0                                                                            -- counter Reconnect
 
     function sc.irc_connect()

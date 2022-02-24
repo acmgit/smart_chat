@@ -67,7 +67,7 @@ if (sc.irc) then
 
     end -- if (not env
 
-    env.require("socket")
+    sc.socket = env.require("socket")
     minetest.log("action", "[MOD] " .. sc.modname .. " Socket-Library loaded.")
 
 end -- if (sc.irc
