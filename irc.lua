@@ -55,13 +55,13 @@ if (sc.irc_on) then
             line = "USER " .. sc.servername .. " 0 0 " .. sc.servername .. sc.crlf
             err = sc.client:send(line)
             minetest.log("action",line, err)
-            
+
             if(sc.irc_user_password ~= "") then
                 line = "PASS " .. sc.user_password .. sc.crlf
                 minetest.log("action", line, err)
-                
+
             end -- if(sc.irc_user_password =~ ""
-            
+
             minetest.log("action", "Join Channel: " .. sc.irc_channel)
             if(sc.irc_channel_password ~= "") then
                 line = "JOIN " .. sc.irc_channel .. " " .. sc.irc_channel_password .. sc.crlf
