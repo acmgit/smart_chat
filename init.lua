@@ -55,6 +55,23 @@ else
 
 end
 
+if (sc.irc) then
+    local env, request_env = _G, minetest.request_insecure_environment
+    if (request_env) then
+        env = request_env()
+
+    end -- if(request_env
+
+    if (not env) then
+        minetest.log("action", "[MOD] " .. sc.modname .. ": Please add the mod to secure.trusted_mods to run.")
+
+    end -- if (not env
+
+    env.require("socket")
+    minetest.log("action", "[MOD] " .. sc.modname .. " Socket-Library loaded.")
+
+end -- if (sc.irc
+
 sc.S = S
 
 dofile(path .. "/lib.lua")
