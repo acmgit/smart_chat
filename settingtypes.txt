@@ -39,4 +39,5 @@ smart_chat.client_timeout (Set's the timeout of the IRC-Client) float 0.03
 smart_chat.irc_automatic_reconnect (Reconnect on lose the connection) bool false
 smart_chat.irc_automatic_reconnect_max (Max. tries to connect) int 5
 smart_chat.servername (Name of the World) string Local
-smart_chat.password (Password for the Channel) string ""
+smart_chat.channel_password (Password for the Channel) string ""
+smart_chat.user_password (Password for registered Users) string ""
