@@ -181,7 +181,7 @@ function lib.receive_from_irc(line)
     if(not lib.irc_running) then return end
 
     local playername, msg
-    local upper = string.uppper(line)
+    local upper = string.upper(line)
     if (upper.find("PRIVMSG")) then
         local lstart, lend = string.find(string.upper(line),  "PRIVMSG")
         if(lend ~= nil) then
