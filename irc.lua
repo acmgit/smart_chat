@@ -3,8 +3,6 @@ local S = sc.S
 
 -- sc.irc_on = true
 sc.irc_on = minetest.settings:get_bool("smart_chat.irc_on") or false
-sc.host_ip = minetest.settings:get("smart_chat.host_ip") or "localhost"
-sc.host_port = tonumber(minetest.settings:get("smart_chat.host_port")) or 6667
 sc.irc_channel = minetest.settings:get("smart_chat.irc_channel") or "MT_Local"
 sc.irc_channel_topic = minetest.settings:get("smart_chat.irc_channel_topic") or "MT_Server_Local"
 sc.servername = minetest.settings:get("smart_chat.servername") or "Local"
@@ -13,6 +11,8 @@ sc.irc_automatic_reconnect = minetest.settings:get_bool("smart_chat.irc_automati
 sc.irc_automatic_reconnect_max = tonumber(minetest.settings:get("smart_chat.irc_automatic_reconnect_max")) or 5
 sc.irc_channel_password = minetest.settings:get("smart_chat.channel_password") or ""
 sc.irc_user_password = minetest.settings:get("smart_chat_user_password") or ""
+sc.host_ip = minetest.settings:get("smart_chat.host_ip") or "localhost"
+sc.host_port = tonumber(minetest.settings:get("smart_chat.host_port")) or 6667
 
 sc.irc_running = false                                                                          -- IRC is off
 sc.irc_message_count = 0

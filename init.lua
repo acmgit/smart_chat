@@ -45,6 +45,8 @@ sc.light_blue = minetest.get_color_escape_sequence('#8888FF')
 sc.light_green = minetest.get_color_escape_sequence('#88FF88')
 sc.light_red = minetest.get_color_escape_sequence('#FF8888')
 
+sc.irc_on = minetest.settings:get_bool("smart_chat.irc_on") or false
+
 sc.S = nil
 local S
 
@@ -56,27 +58,31 @@ else
 
 end
 
-if (sc.irc) then
+if (sc.irc_on) then    
     local env, request_env = _G, minetest.request_insecure_environment
-    if (request_env) then
-        env = request_env()
-
-    else -- if(request_env
+    env = request_env()
+    
+    if (not request_env) then
         minetest.log("action", "[MOD] " .. sc.modname .. ": Could not initalise insequre_environment.")
-        sc.irc = false
-        return
+        sc.irc_on = false
         
     end -- if(request_env
     
-
     if (not env) then
         minetest.log("action", "[MOD] " .. sc.modname .. ": Please add the mod to secure.trusted_mods to run.")
-
+        sc.irc_on = false
+        
     end -- if (not env
-
-    sc.socket = env.require("socket")
+    
+    local old = require
+    require = env.require
+    sc.socket = require("socket")
+    require = old
     minetest.log("action", "[MOD] " .. sc.modname .. " Socket-Library loaded.")
-
+    
+else
+    print("IRC turned off.")
+    
 end -- if (sc.irc
 
 sc.S = S
