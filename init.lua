@@ -28,6 +28,7 @@ sc.registered_commands = {}
 
 sc.storage = minetest.get_mod_storage()
 sc.permchannel = {}
+sc.socket = {}
 
 -- Colors for Chat
 sc.green = minetest.get_color_escape_sequence('#00FF00')
@@ -60,7 +61,13 @@ if (sc.irc) then
     if (request_env) then
         env = request_env()
 
+    else -- if(request_env
+        minetest.log("action", "[MOD] " .. sc.modname .. ": Could not initalise insequre_environment."
+        sc.irc = false
+        return
+        
     end -- if(request_env
+    
 
     if (not env) then
         minetest.log("action", "[MOD] " .. sc.modname .. ": Please add the mod to secure.trusted_mods to run.")
