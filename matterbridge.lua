@@ -13,7 +13,10 @@ local sc = smart_chat
 if(sc.matterbridge == true) then
 
     if(minetest.global_exist(yl_matterbridge)) then
-
+    
+        function yl_matterbridge.chat_message(username, message_text)j
+        end
+        
         function yl_matterbridge.publish_to_chat(user_name, message_text)
             local line = "<".. user_name .. "@bridge> " .. message_text
             sc.sent_2_public_channel(line)
