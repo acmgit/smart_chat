@@ -181,43 +181,29 @@ function lib.receive_from_irc(line)
     if(not lib.irc_running) then return end
 
     local playername, msg
-    local upper = string.upper(line)
-    if (string.find(upper, "PRIVMSG")) then
-        local lstart, lend = string.find(string.upper(line),  "PRIVMSG")
-        if(lend ~= nil) then
-            lstart = string.find(line, ":", lend)
-            if(lstart) then
-                line = string.sub(line, lstart + 1)
 
-            end -- if(lstart
+    local pos1, pos2
+    pos1 = string.find(line,"!",2)
+    pos2 = string.find(line,":",3,true)
 
-        end -- if(lend ~= nil
+    if((pos1 ~= nil) and (pos2 ~= nil)) then
+        playername = lib.get_nick_from_irc(line)
+        msg = string.sub(line, string.find(line,":",3,true)+1)
+        line =  lib.white .. "<" .. playername .. "@IRC> " .. msg               -- <player@IRC> Message
+        local all_player = minetest.get_connected_players()
 
-    else
-        local pos1, pos2
-        pos1 = string.find(line,"!",2)
-        pos2 = string.find(line,":",3,true)
+        for _,player in pairs(all_player) do
+            local pname = player:get_player_name()
+            if(lib.check_global(pname) or lib.public[pname]) then               -- Player is in Public Channel
+                lib.print(pname, line)
 
-        if((pos1 ~= nil) and (pos2 ~= nil)) then
-            playername = lib.get_nick_from_irc(line)
-            msg = string.sub(line, string.find(line,":",3,true)+1)
-            line =  lib.white .. "<" .. playername .. "@IRC> " .. msg               -- <player@IRC> Message
+            end -- if(lib.check_global
 
-        end -- if(pos1 ~= nil
+        end -- for _,player in
 
-    end -- if((upper.find("PRIVMSG
+    end -- if((pos1 ~= 1
 
-    local all_player = minetest.get_connected_players()
-    for _,player in pairs(all_player) do
-        local pname = player:get_player_name()
-        if(lib.check_global(pname) or lib.public[pname]) then               -- Player is in Public Channel
-            lib.print(pname, line)
-
-        end -- if(lib.check_global
-
-    end -- for _,player in
-
-end -- if((pos1 ~= 1
+end -- function lib.receive()
 
 --[[
    ****************************************************************
