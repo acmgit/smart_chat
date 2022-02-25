@@ -93,6 +93,7 @@ dofile(path .. "/lib.lua")
 dofile(path .. "/core.lua")
 dofile(path .. "/cmd_help.lua")
 dofile(path .. "/irc.lua")
+dofile(path .. "/matterbridge.lua"
 dofile(path .. "/cmd_join.lua")
 dofile(path .. "/cmd_leave.lua")
 dofile(path .. "/cmd_list.lua")
