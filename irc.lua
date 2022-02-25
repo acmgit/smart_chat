@@ -1,5 +1,7 @@
 local sc = smart_chat
 local S = sc.S
+local socket = sc.socket
+sc.socket = nil
 
 -- sc.irc_on = true
 sc.irc_on = minetest.settings:get_bool("smart_chat.irc_on") or false
@@ -32,7 +34,6 @@ if (sc.irc_on) then
 ]]--
     --sc.client_timeout = 0.03
     --local socket = require("socket")
-    local socket = sc.socket
 
     sc.reconnect = 0                                                                            -- counter Reconnect
 
