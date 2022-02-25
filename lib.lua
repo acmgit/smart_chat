@@ -272,20 +272,20 @@ function lib.send_2_public_channel(user, message)
     local all_player = minetest.get_connected_players()
     for _,player in pairs(all_player) do
         local pname = player:get_player_name()                                             -- get Playername
-        if( lib.check_global(pname) then                                                   -- is Player in Public Channel
+        if( lib.check_global(pname) )then                                                  -- Player in Public Channel?
             if(user ~= pname) then                                                         -- don't send yourself
                 minetest.chat_send_player(pname, lib.white .. message)
-                if(minetest.global_exist(yl_matterbridge) then
+                if( minetest.global_exist(yl_matterbridge) ) then                          -- Matterbridge available?
                     lib.send_2_bridge(pname, message)
-                    
+
                 end -- lib.send_2_bridge
-                
+
             end -- if(user
-            
+
         end -- if(lib.check_global
-        
+
     end -- for _, player
-    
+
 end -- lib.send_2_public_channel
 
 --[[
