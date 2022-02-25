@@ -46,6 +46,8 @@ sc.light_green = minetest.get_color_escape_sequence('#88FF88')
 sc.light_red = minetest.get_color_escape_sequence('#FF8888')
 
 sc.irc_on = minetest.settings:get_bool("smart_chat.irc_on") or false
+sc.matterbridge = minetest.settings:get_bool("smart_chat.matterbridge") or false
+sc.matterbridge_irc = minetest.settings:get_bool("smart_chat.matterbridge_irc") or false
 
 sc.S = nil
 local S
@@ -57,6 +59,8 @@ else
     S = function ( s ) return s end
 
 end
+
+if(matterbridge_irc) then sc.irc_on = false end
 
 if (sc.irc_on) then
 

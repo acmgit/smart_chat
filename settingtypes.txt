@@ -41,3 +41,6 @@ smart_chat.irc_automatic_reconnect_max (Max. tries to connect) int 5
 smart_chat.servername (Name of the World) string Local
 smart_chat.channel_password (Password for the Channel) string ""
 smart_chat.user_password (Password for registered Users) string ""
+
+smart_chat.matterbridge (Enable support for Matterbridge) bool false
+smart_chat.matterbridge_irc (Enable IRC on Matterbridge) bool false
