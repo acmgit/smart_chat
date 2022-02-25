@@ -269,6 +269,8 @@ end -- get_nick_from_irc()
 
 
 function lib.send_2_public_channel(user, message)
+    if(not check_global(user)) then return end
+    
     local all_player = minetest.get_connected_players()
     for _,player in pairs(all_player) do
         local pname = player:get_player_name()                                             -- get Playername
