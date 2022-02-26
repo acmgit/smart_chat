@@ -52,9 +52,9 @@ sc.registered_commands[cname] = function(player, parameter)
         message = command:sub(pos + 1)
     end
 
-    local channel = sc.player[player]
 
     if(sc.player[player] ~= nil) then                                                      -- Player is in a channel.
+        local channel = sc.player[player]
         local line = sc.yellow .. "[" .. sc.yellow .. player .. "@" .. channel
                                .. sc.yellow .. "] " .. sc.green .. message
 
@@ -62,9 +62,7 @@ sc.registered_commands[cname] = function(player, parameter)
 
         line = "[" .. player .. "@" .. channel .. "] " .. message
         if(sc.irc_on) then
-            line = "PRIVMSG "   .. sc.irc_channel .. " :<" .. player
-                                .. "@" .. sc.servername .. "> " .. line .. sc.crlf
-            all_send_to_irc(player, line)
+            all_send_to_irc(player, "PRIVMSG " .. line)
 
         end -- if(sc.irc_on)
 
@@ -78,9 +76,9 @@ sc.registered_commands[cname] = function(player, parameter)
                                .. sc.yellow .. "] " .. sc.green .. message
         minetest.chat_send_all(line)
 
-        line = "[" .. player .. "@" .. channel .. "] " .. message
+        line = "[" .. player .. "@" .. sc.servername .. "] " .. message
         if(sc.irc_on) then
-            all_send_to_irc(player, line)
+            all_send_to_irc(player, "PRIVMSG " .. line)
 
         end -- if(sc.irc_on)
 
