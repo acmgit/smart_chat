@@ -88,7 +88,7 @@ if (sc.irc_on) then
 
 else
     minetest.log("action", "[MOD] " .. sc.modname .. " IRC is turned off.")
-    
+
 end -- if (sc.irc
 
 sc.S = S

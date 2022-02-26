@@ -13,7 +13,7 @@ local sc = smart_chat
 if(sc.matterbridge == true) then
 
     if(minetest.global_exist(yl_matterbridge)) then
-        
+
         --[[
             ****************************************************************
             *******      Function yl_matterbridge.chat_message        ******
@@ -40,7 +40,7 @@ if(sc.matterbridge == true) then
 
             for _,player in pairs(all_player) do
                 local pname = player:get_player_name()
-                if(lib.check_global(pname) or lib.public[pname]) then                      -- Player is in Public Channel
+                if(lib.check_global(pname) or lib.public[pname]) then                      -- Player is in Pub-Channel
                     lib.chat(pname, line)
 
                 end -- if(lib.check_global

@@ -81,6 +81,7 @@ end
    ****************************************************************
    *******         Function print(player, message)           ******
    ****************************************************************
+   Send message to the player
 ]]--
 
 function lib.print(player, text)
@@ -158,9 +159,10 @@ end -- lib.report(
    ****************************************************************
    *******              Function report()                    ******
    ****************************************************************
-   
+
    Player is doing something in the Channel like leave the channel.
 ]]--
+
 function lib.report(player, message)
     local all_player = minetest.get_connected_players()
     local channel = lib.player[player]
@@ -220,6 +222,7 @@ end -- function lib.receive()
 
 Sends a Text as playername to the IRC
 ]]--
+
 function lib.send_2_public(playername, text)
 
     lib.print(playername, text)
@@ -238,7 +241,7 @@ Sends a Text as playername to the IRC
 function lib.send_2_irc(playername, text)
 
     if(not lib.irc_on) then return end                                                     -- IRC isn't on
-    
+
     if(lib.irc_message ~= text) then
         if(not lib.irc_running) then return end
 
@@ -291,6 +294,7 @@ end -- get_nick_from_irc()
    ****************************************************************
    Send's a messager to public or channel
 ]]--
+
 function lib.chat(playername, text)
     local all_player = minetest.get_connected_players()
     local channel = lib.player[playername] -- Get the Channel of the player
@@ -308,13 +312,16 @@ function lib.chat(playername, text)
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
             end
 
-            if(lib.client ~= nil) then
+            if(lib.irc_on ~= nil) then
                 lib.send_2_irc(playername, text)
 
             end -- if(sc.client
-            
+
             if(lib.matterbridge) then
-                lib.
+               lib.send_2_bridge(playername, text)
+
+            end -- if(lib.matterbridge)
+
         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                           .. channel .. lib.yellow .. "> " .. text)
