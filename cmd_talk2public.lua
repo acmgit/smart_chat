@@ -19,7 +19,7 @@ local all_send_to_irc = function (player, message)
     --local line = "PRIVMSG " .. sc.irc_channel .. " :<" .. player
     --                  .. "@" .. sc.servername .. "> " .. message .. sc.crlf
 
-    sc.client:send(message)
+    sc.client:send(player, message)
     sc.irc_message_count = 1   -- This prevents for IRC-Echos of multiple player
     sc.irc_message = message      -- and remembers the last message
 
