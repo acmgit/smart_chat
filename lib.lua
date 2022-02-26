@@ -90,6 +90,12 @@ function lib.print(player, text)
 
 end -- function distancer.print(
 
+--[[
+   ****************************************************************
+   *******         Function check_global(cplayer)            ******
+   ****************************************************************
+Is the cplayer in the public channel?
+]]--
 -- Is player in the public channel?
 function lib.check_global(cplayer)
     if(lib.player[cplayer] == nil) then
@@ -152,6 +158,7 @@ end -- lib.report(
    ****************************************************************
    *******              Function report()                    ******
    ****************************************************************
+Writes a message to a channel
 ]]--
 function lib.report(player, message)
     local all_player = minetest.get_connected_players()
@@ -207,7 +214,7 @@ end -- function lib.receive()
 
 --[[
    ****************************************************************
-   *******           Function send_2_public()                  ******
+   *******           Function send_2_public()                ******
    ****************************************************************
 
 Sends a Text as playername to the IRC
@@ -259,6 +266,13 @@ function lib.send_2_irc(playername, text)
 
 end -- function send_2_irc
 
+--[[
+   ****************************************************************
+   *******           Function get_nick_from_irc              ******
+   ****************************************************************
+
+Extracts the Nickname from a IRC-Message
+]]--
 function lib.get_nick_from_irc(line)
     local nick
 
@@ -267,7 +281,13 @@ function lib.get_nick_from_irc(line)
 
 end -- get_nick_from_irc()
 
+--[[
+   ****************************************************************
+   *******      Function send_2_public_channel               ******
+   ****************************************************************
 
+Sends a Text in the public channel and if present to matterbridge
+]]--
 function lib.send_2_public_channel(user, message)
     if(not check_global(user)) then return end
 
