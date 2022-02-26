@@ -202,7 +202,7 @@ function lib.receive_from_irc(line)
         local a, e = string.find(msg, "ACTION")                                            -- was /ME-Command from irc
         if(a >= 1) then
             msg = string.sub(msg, e + 1)
-            line = lib.white .. playername .. "@IRC " .. msg
+            line = lib.orange .. playername .. "@IRC " .. msg
 
         else
             line =  lib.white .. "<" .. playername .. "@IRC> " .. msg                      -- <player@IRC> Message
