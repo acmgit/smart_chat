@@ -229,7 +229,6 @@ end -- function lib.receive()
    ****************************************************************
 
 Sends a Text to playername and the IRC
-]]--
 
 function lib.send_2_public(playername, text)
 
@@ -237,6 +236,7 @@ function lib.send_2_public(playername, text)
     lib.send_2_irc(playername, text)
 
 end -- lib.send_2_public
+]]--
 
 --[[
    ****************************************************************
@@ -249,6 +249,7 @@ Sends a Text as playername to the IRC
 function lib.send_2_irc(playername, text)
 
     if(not lib.irc_on) then return end                                                     -- IRC isn't on
+    if(lib.player[playername] ~= nil) then return end                                      -- Player is in channel
 
     if(lib.irc_message ~= text) then
         if(not lib.irc_running) then return end
