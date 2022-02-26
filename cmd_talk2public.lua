@@ -50,7 +50,7 @@ sc.registered_commands[cname] = function(player, parameter)
 
         sc.send_2_irc(line)                                                                -- send the message to irc
         if(matterbridge) then
-            send_2_bridge(player, message)
+            sc.send_2_bridge(player, message)
 
         end -- if(matterbridge)
 
