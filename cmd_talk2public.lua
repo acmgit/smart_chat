@@ -41,14 +41,14 @@ sc.registered_commands[cname] = function(player, parameter)
 
         for _,player in pairs(all_players) do
             local pname = player:get_player_name()
-             if ((sc.player[pname] == nil) and (sc.public[name])) then                     -- player is in public or has public on
+             if ((sc.player[pname] == nil) and (sc.public[name])) then                     -- player in or public is on
                 lib.print(pname, line)
 
             end -- if((sc.player
 
         end -- for (_,player
 
-        sc.send_2_irc(line)                                                                       -- send the message to irc
+        sc.send_2_irc(line)                                                                -- send the message to irc
         if(matterbridge) then
             send_2_bridge(player, message)
 
