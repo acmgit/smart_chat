@@ -16,12 +16,11 @@ sc.register_help({
                        )
 
 local all_send_to_irc = function (message)
-    --local line = "PRIVMSG " .. sc.irc_channel .. " :<" .. player
-    --                  .. "@" .. sc.servername .. "> " .. message .. sc.crlf
+    local line = "PRIVMSG " .. sc.irc_channel .. message .. sc.crlf
 
-    sc.client:send(message)
+    sc.client:send(line)
     sc.irc_message_count = 1   -- This prevents for IRC-Echos of multiple player
-    sc.irc_message = message      -- and remembers the last message
+    sc.irc_message = line      -- and remembers the last message
 
 end -- function
 
@@ -65,9 +64,9 @@ sc.registered_commands[cname] = function(player, parameter)
         end -- for (_,player
 
         sc.chat(player, sc.green .. message)                                               -- send to own channel
-        line = "[" .. player .. "@" .. sc.servername .. "]" .. message
+        line = " [" .. player .. "@" .. sc.servername .. "]" .. message
         if(sc.irc_on) then
-            all_send_to_irc("PRIVMSG " .. sc.irc_channel .. line)
+            all_send_to_irc(line)
 
         end
 

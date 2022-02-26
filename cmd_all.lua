@@ -16,12 +16,11 @@ sc.register_help({
                        )
 
 local all_send_to_irc = function (message)
-    --local line = "PRIVMSG " .. sc.irc_channel .. " :<" .. player
-    --                  .. "@" .. sc.servername .. "> " .. message .. sc.crlf
+    local line = "PRIVMSG " .. sc.irc_channel .. " " .. message .. sc.crlf
 
-    sc.client:send(message)
+    sc.client:send(line)
     sc.irc_message_count = 1   -- This prevents for IRC-Echos of multiple player
-    sc.irc_message = message      -- and remembers the last message
+    sc.irc_message = line      -- and remembers the last message
 
 end -- function
 
@@ -37,20 +36,23 @@ sc.registered_commands[cname] = function(player, parameter)
     if not pprivs.basic_privs then
 		minetest.chat_send_player(player,sc.red .. S("Error - require 'basic_privs' privilege."))
 		return
-	end
+
+	end -- if not pprivs
 
 
     if(parameter[2] == nil or parameter[2] == "") then
         sc.print(player, sc.red .. S("Error: No Message given."))
         return
-    end
+
+    end -- if(parameter
 
     local message = ""
     local command = sc.last_command -- Get the last complete command
     local pos = command:find(" ") -- Where is the Command
     if pos then -- is there a Parameter
         message = command:sub(pos + 1)
-    end
+
+    end -- if pos
 
 
     if(sc.player[player] ~= nil) then                                                      -- Player is in a channel.
@@ -62,7 +64,7 @@ sc.registered_commands[cname] = function(player, parameter)
 
         line = " [" .. player .. "@" .. sc.servername .. "] " .. message
         if(sc.irc_on) then
-            all_send_to_irc("PRIVMSG " .. sc.irc_channel .. line)
+            all_send_to_irc(line)
 
         end -- if(sc.irc_on)
 
@@ -78,7 +80,7 @@ sc.registered_commands[cname] = function(player, parameter)
 
         line = " [" .. player .. "@" .. sc.servername .. "] " .. message
         if(sc.irc_on) then
-            all_send_to_irc("PRIVMSG " .. sc.irc_channel .. line)
+            all_send_to_irc(line)
 
         end -- if(sc.irc_on)
 
