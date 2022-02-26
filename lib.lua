@@ -90,12 +90,6 @@ function lib.print(player, text)
 
 end -- function distancer.print(
 
---[[
-   ****************************************************************
-   *******         Function check_global(cplayer)            ******
-   ****************************************************************
-Is the cplayer in the public channel?
-]]--
 -- Is player in the public channel?
 function lib.check_global(cplayer)
     if(lib.player[cplayer] == nil) then
@@ -158,7 +152,6 @@ end -- lib.report(
    ****************************************************************
    *******              Function report()                    ******
    ****************************************************************
-Writes a message to a channel
 ]]--
 function lib.report(player, message)
     local all_player = minetest.get_connected_players()
@@ -214,7 +207,7 @@ end -- function lib.receive()
 
 --[[
    ****************************************************************
-   *******           Function send_2_public()                ******
+   *******           Function send_2_public()                  ******
    ****************************************************************
 
 Sends a Text as playername to the IRC
@@ -266,13 +259,6 @@ function lib.send_2_irc(playername, text)
 
 end -- function send_2_irc
 
---[[
-   ****************************************************************
-   *******           Function get_nick_from_irc              ******
-   ****************************************************************
-
-Extracts the Nickname from a IRC-Message
-]]--
 function lib.get_nick_from_irc(line)
     local nick
 
@@ -281,34 +267,6 @@ function lib.get_nick_from_irc(line)
 
 end -- get_nick_from_irc()
 
---[[
-   ****************************************************************
-   *******      Function send_2_public_channel               ******
-   ****************************************************************
-
-Sends a Text in the public channel and if present to matterbridge
-]]--
-function lib.send_2_public_channel(user, message)
-    if(not check_global(user)) then return end
-
-    local all_player = minetest.get_connected_players()
-    for _,player in pairs(all_player) do
-        local pname = player:get_player_name()                                             -- get Playername
-        if( lib.check_global(pname) )then                                                  -- Player in Public Channel?
-            if(user ~= pname) then                                                         -- don't send yourself
-                minetest.chat_send_player(pname, lib.white .. message)
-                if( minetest.global_exist(yl_matterbridge) ) then                          -- Matterbridge available?
-                    lib.send_2_bridge(pname, message)
-
-                end -- lib.send_2_bridge
-
-            end -- if(user
-
-        end -- if(lib.check_global
-
-    end -- for _, player
-
-end -- lib.send_2_public_channel
 
 --[[
    ****************************************************************

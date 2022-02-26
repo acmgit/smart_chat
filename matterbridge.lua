@@ -19,10 +19,18 @@ if(sc.matterbridge == true) then
 
         function yl_matterbridge.receive_from_bridge(user_name, message_text, account)
             local line = "<"..account_name.."|" .. user_name .. "> " .. message_text
-            sc.send_2_public_channel(line)
+            local all_player = minetest.get_connected_players()
 
-        end -- func(user_name
+            for _,player in pairs(all_player) do
+                local pname = player:get_player_name()
+                if(lib.check_global(pname) or lib.public[pname]) then               -- Player is in Public Channel
+                    lib.print(pname, line)
 
+                end -- if(lib.check_global
+
+            end -- func(user_name
+        end -- function yl_matterbridge
+        
         function sc.send_2_bridge(user_name, message_text)
             local line = "<" .. user_name .. "@" .. sc.servername .. "> " .. message_text
             if(sc.check_global(user_name)) then
