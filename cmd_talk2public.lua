@@ -16,7 +16,7 @@ sc.register_help({
                        )
 
 local all_send_to_irc = function (message)
-    local line = "PRIVMSG " .. sc.irc_channel .. ":" .. message .. sc.crlf
+    local line = "PRIVMSG " .. sc.irc_channel .. " :" .. message .. sc.crlf
 
     sc.client:send(line)
     sc.irc_message_count = 1   -- This prevents for IRC-Echos of multiple player
