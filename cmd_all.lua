@@ -43,6 +43,7 @@ sc.registered_commands[cname] = function(player, parameter)
                                .. sc.yellow .. "] " .. sc.green .. message
 
         minetest.chat_send_all(line)
+
         line = "[" .. player .. "@" .. channel .. "] " .. message
         sc.send_2_irc(player, line)
         if(sc.matterbridge) then
@@ -54,8 +55,17 @@ sc.registered_commands[cname] = function(player, parameter)
         local line = sc.yellow .. "[" .. sc.yellow .. player
                                .. sc.yellow .. "] " .. sc.green .. message
         minetest.chat_send_all(line)
+
         line = "[" .. player .. "@" .. channel .. "] " .. message
-        sc.send_2_irc(player, line)
+        if(sc.irc_on) then
+            line = "PRIVMSG "   .. sc.irc_channel .. " :<" .. player
+                                .. "@" .. sc.servername .. "> " .. line .. sc.crlf
+            sc.client:send(line)
+            sc.irc_message_count = 1   -- This prevents for IRC-Echos of multiple player
+            sc.irc_message = line      -- and remembers the last message
+
+        end
+
         if(sc.matterbridge) then
             sc.send_2_bridge(player, line)
 
