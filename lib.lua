@@ -295,6 +295,11 @@ function lib.chat(playername, text)
 
             end -- if(sc.client
 
+            if(lib.matterbridge) then
+                lib.send_2_bridge(playername, text)
+
+            end -- if(sc.matterbridge
+
         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                           .. channel .. lib.yellow .. "> " .. text)

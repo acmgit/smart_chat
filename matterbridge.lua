@@ -30,12 +30,12 @@ if(sc.matterbridge == true) then
 
             end -- func(user_name
         end -- function yl_matterbridge
-        
+
         function sc.send_2_bridge(user_name, message_text)
             local line = "<" .. user_name .. "@" .. sc.servername .. "> " .. message_text
             if(sc.check_global(user_name)) then
                 yl_matterbridge.send_to_bridge(username, line)
-                
+
             end -- if(sc.check_global
 
         end
