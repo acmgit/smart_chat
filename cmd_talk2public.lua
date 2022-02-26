@@ -67,15 +67,12 @@ sc.registered_commands[cname] = function(player, parameter)
         sc.chat(player, sc.green .. message)                                               -- send to own channel
 
         if(sc.irc_on) then
-            line = "PRIVMSG "   .. sc.irc_channel .. " :<" .. player
-                                .. "@" .. sc.servername .. "> " .. message .. sc.crlf
-            all_send_to_irc(player, line)
+            all_send_to_irc(player, message)
 
         end
 
         if(sc.matterbridge) then
-            line = "<" .. player .. "@" .. sc.servername .. "> " .. message
-            all_send_to_bridge(player, line)
+            all_send_to_bridge(player, message)
 
         end -- if(matterbridge)
 
