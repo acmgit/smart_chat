@@ -200,7 +200,7 @@ function lib.receive_from_irc(line)
         playername = lib.get_nick_from_irc(line)
         msg = string.sub(line, string.find(line,":",3,true)+1)
         local a, e = string.find(msg, "ACTION")                                            -- was /ME-Command from irc
-        if(a >= 1) then
+        if( (a) and (a >= 1) ) then
             msg = string.sub(msg, e + 1)
             line = lib.orange .. playername .. "@IRC " .. msg
 
