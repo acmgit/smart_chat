@@ -17,9 +17,9 @@ if(sc.matterbridge == true) then
         function yl_matterbridge.chat_message(username, message_text)
         end
 
-        function yl_matterbridge.publish_to_chat(user_name, message_text)
+        function yl_matterbridge.receive_from_bridge(user_name, message_text)
             local line = "<".. user_name .. "@bridge> " .. message_text
-            sc.sent_2_public_channel(line)
+            sc.send_2_public_channel(line)
 
         end -- func(user_name
 
