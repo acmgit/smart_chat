@@ -16,7 +16,7 @@ sc.register_help({
                        )
 
 local all_send_to_irc = function (message)
-    local line = "PRIVMSG " .. sc.irc_channel .. message .. sc.crlf
+    local line = "PRIVMSG " .. sc.irc_channel .. " " .. message .. sc.crlf
 
     sc.client:send(line)
     sc.irc_message_count = 1   -- This prevents for IRC-Echos of multiple player
@@ -64,14 +64,16 @@ sc.registered_commands[cname] = function(player, parameter)
         end -- for (_,player
 
         sc.chat(player, sc.green .. message)                                               -- send to own channel
-        line = " [" .. player .. "@" .. sc.servername .. "]" .. message
+        line = "[" .. player .. "@" .. sc.servername .. "]" .. message
         if(sc.irc_on) then
             all_send_to_irc(line)
+            minetest.log("action", line)
 
         end
 
         if(sc.matterbridge) then
             all_send_to_bridge(player, line)
+            minetest.log("action", "[Matterbridge] " .. line)
 
         end -- if(matterbridge)
 

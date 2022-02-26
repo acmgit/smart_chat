@@ -65,11 +65,13 @@ sc.registered_commands[cname] = function(player, parameter)
         line = " [" .. player .. "@" .. sc.servername .. "] " .. message
         if(sc.irc_on) then
             all_send_to_irc(line)
+            minetest.log("action", line)
 
         end -- if(sc.irc_on)
 
         if(sc.matterbridge) then
             all_send_to_bridge(player, line)
+            minetest.log("action", "[Matterbridge] " .. line)
 
         end -- if(sc.matterbridge
 
@@ -81,11 +83,13 @@ sc.registered_commands[cname] = function(player, parameter)
         line = " [" .. player .. "@" .. sc.servername .. "] " .. message
         if(sc.irc_on) then
             all_send_to_irc(line)
+            minetest.log("action", line)
 
         end -- if(sc.irc_on)
 
         if(sc.matterbridge) then
             all_send_to_bridge(player, line)
+            minetest.log("action", "[Matterbridge] " .. line)
 
         end -- if(matterbridge
 
