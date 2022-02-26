@@ -35,13 +35,13 @@ if(sc.matterbridge == true) then
         ]]--
 
         function yl_matterbridge.receive_from_bridge(user_name, message_text, account)
-            local line = "<"..account_name.."|" .. user_name .. "> " .. message_text
+            local line = "<"..account .."|" .. user_name .. "> " .. message_text
             local all_player = minetest.get_connected_players()
 
             for _,player in pairs(all_player) do
                 local pname = player:get_player_name()
-                if(lib.check_global(pname) or lib.public[pname]) then                      -- Player is in Pub-Channel
-                    lib.chat(pname, line)
+                if(sc.check_global(pname) or sc.public[pname]) then                      -- Player is in Pub-Channel
+                    sc.chat(pname, line)
 
                 end -- if(lib.check_global
 
@@ -59,7 +59,7 @@ if(sc.matterbridge == true) then
         function sc.send_2_bridge(user_name, message_text)
             local line = "<" .. user_name .. "@" .. sc.servername .. "> " .. message_text
             if(sc.check_global(user_name)) then                                            -- is User in public-channel?
-                yl_matterbridge.send_to_bridge(username, line)
+                yl_matterbridge.send_to_bridge(user_name, line)
 
             end -- if(sc.check_global
 

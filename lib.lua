@@ -199,12 +199,20 @@ function lib.receive_from_irc(line)
     if((pos1 ~= nil) and (pos2 ~= nil)) then
         playername = lib.get_nick_from_irc(line)
         msg = string.sub(line, string.find(line,":",3,true)+1)
-        line =  lib.white .. "<" .. playername .. "@IRC> " .. msg               -- <player@IRC> Message
-        local all_player = minetest.get_connected_players()
+        local a, e = string.find(msg, "ACTION")                                            -- was /ME-Command from irc
+        if(a >= 1) then
+            msg = string.sub(msg, e + 1)
+            line = lib.white .. playername .. "@IRC " .. msg
 
+        else
+            line =  lib.white .. "<" .. playername .. "@IRC> " .. msg                      -- <player@IRC> Message
+
+        end -- if(a >= 1
+
+        local all_player = minetest.get_connected_players()
         for _,player in pairs(all_player) do
             local pname = player:get_player_name()
-            if(lib.check_global(pname) or lib.public[pname]) then               -- Player is in Public Channel
+            if(lib.check_global(pname) or lib.public[pname]) then                          -- Player in Pub. Channel
                 lib.print(pname, line)
 
             end -- if(lib.check_global
