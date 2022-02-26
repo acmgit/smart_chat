@@ -15,6 +15,22 @@ sc.register_help({
                         }
                        )
 
+local all_send_to_irc = function (player, message)
+    local line = "PRIVMSG " .. sc.irc_channel .. " :<" .. player
+                      .. "@" .. sc.servername .. "> " .. message .. sc.crlf
+
+    sc.client:send(line)
+    sc.irc_message_count = 1   -- This prevents for IRC-Echos of multiple player
+    sc.irc_message = line      -- and remembers the last message
+
+end -- function
+
+local all_send_to_bridge = function (player, message)
+    local line = "<" .. player .. "@" .. sc.servername .. "> " .. message
+    yl_matterbridge.send_to_bridge(player, line)
+
+end -- function
+
 sc.registered_commands[cname] = function(player, parameter)
 
     local pprivs = minetest.get_player_privs(player)
@@ -39,8 +55,8 @@ sc.registered_commands[cname] = function(player, parameter)
         local line = sc.yellow .. "[" .. sc.yellow .. player .. "@" .. channel
                                .. sc.yellow .. "] " .. sc.green .. message
 
-        for _,player in pairs(all_players) do
-            local pname = player:get_player_name()
+        for _,players in pairs(all_players) do
+            local pname = players:get_player_name()
              if ((sc.player[pname] == nil) or (sc.public[pname])) then                     -- player in or public is on
                 sc.print(pname, line)
 
@@ -49,9 +65,17 @@ sc.registered_commands[cname] = function(player, parameter)
         end -- for (_,player
 
         sc.chat(player, sc.green .. message)                                               -- send to own channel
-        sc.send_2_irc(player, line)                                                        -- send the message to irc
+
+        if(sc.irc_on) then
+            line = "PRIVMSG "   .. sc.irc_channel .. " :<" .. player
+                                .. "@" .. sc.servername .. "> " .. message .. sc.crlf
+            all_send_to_irc(player, line)
+
+        end
+
         if(sc.matterbridge) then
-            sc.send_2_bridge(player, message)
+            line = "<" .. player .. "@" .. sc.servername .. "> " .. message
+            all_send_to_bridge(player, line)
 
         end -- if(matterbridge)
 

@@ -15,6 +15,22 @@ sc.register_help({
                         }
                        )
 
+local all_send_to_irc = function (player, message)
+    local line = "PRIVMSG " .. sc.irc_channel .. " :<" .. player
+                      .. "@" .. sc.servername .. "> " .. message .. sc.crlf
+
+    sc.client:send(line)
+    sc.irc_message_count = 1   -- This prevents for IRC-Echos of multiple player
+    sc.irc_message = line      -- and remembers the last message
+
+end -- function
+
+local all_send_to_bridge = function (player, message)
+    local line = "<" .. player .. "@" .. sc.servername .. "> " .. message
+    yl_matterbridge.send_to_bridge(player, line)
+
+end -- function
+
 sc.registered_commands[cname] = function(player, parameter)
 
     local pprivs = minetest.get_player_privs(player)
@@ -45,9 +61,15 @@ sc.registered_commands[cname] = function(player, parameter)
         minetest.chat_send_all(line)
 
         line = "[" .. player .. "@" .. channel .. "] " .. message
-        sc.send_2_irc(player, line)
+        if(sc.irc_on) then
+            line = "PRIVMSG "   .. sc.irc_channel .. " :<" .. player
+                                .. "@" .. sc.servername .. "> " .. line .. sc.crlf
+            all_send_to_irc(player, line)
+
+        end -- if(sc.irc_on)
+
         if(sc.matterbridge) then
-            yl_matterbridge.send_to_bridge(player, line)
+            all_send_to_bridge(player, line)
 
         end -- if(sc.matterbridge
 
@@ -58,16 +80,12 @@ sc.registered_commands[cname] = function(player, parameter)
 
         line = "[" .. player .. "@" .. channel .. "] " .. message
         if(sc.irc_on) then
-            line = "PRIVMSG "   .. sc.irc_channel .. " :<" .. player
-                                .. "@" .. sc.servername .. "> " .. line .. sc.crlf
-            sc.client:send(line)
-            sc.irc_message_count = 1   -- This prevents for IRC-Echos of multiple player
-            sc.irc_message = line      -- and remembers the last message
+            all_send_to_irc(player, line)
 
-        end
+        end -- if(sc.irc_on)
 
         if(sc.matterbridge) then
-            sc.send_2_bridge(player, line)
+            all_send_to_bridge(player, line)
 
         end -- if(matterbridge
 
