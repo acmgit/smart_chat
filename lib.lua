@@ -85,12 +85,17 @@ end
 
 function lib.print(player, text)
     local lprint = minetest.chat_send_player
-    --local playername = minetest.get_player_by_name(player)
     lprint(player, text)
 
-end -- function distancer.print(
+end -- function lib.print(
 
--- Is player in the public channel?
+--[[
+   ****************************************************************
+   *******         Function check_global(player)             ******
+   ****************************************************************
+   returns true if player is in public channel
+]]--
+
 function lib.check_global(cplayer)
     if(lib.player[cplayer] == nil) then
         return true
@@ -106,6 +111,7 @@ end
    ****************************************************************
    *******              Function check_channel()             ******
    ****************************************************************
+   Is the player in the channel?
 ]]--
 
 function lib.check_channel(cplayer, channel)
@@ -125,7 +131,7 @@ end -- lib.check_channel
    *******              Function channel_report()            ******
    ****************************************************************
 
-   Send a message to a channel.
+   Something happens in the Channel like leave the channel.
    channel = nil: Send a message to the public channel.
 ]]--
 
@@ -152,6 +158,8 @@ end -- lib.report(
    ****************************************************************
    *******              Function report()                    ******
    ****************************************************************
+   
+   Player is doing something in the Channel like leave the channel.
 ]]--
 function lib.report(player, message)
     local all_player = minetest.get_connected_players()
@@ -207,7 +215,7 @@ end -- function lib.receive()
 
 --[[
    ****************************************************************
-   *******           Function send_2_public()                  ******
+   *******           Function send_2_public()                ******
    ****************************************************************
 
 Sends a Text as playername to the IRC
@@ -229,10 +237,11 @@ Sends a Text as playername to the IRC
 
 function lib.send_2_irc(playername, text)
 
+    if(not lib.irc_on) then return end                                                     -- IRC isn't on
+    
     if(lib.irc_message ~= text) then
         if(not lib.irc_running) then return end
 
-        --local line = minetest.strip_colors(text)
         local line = string.gsub(text, "\27%([^()]*%)", "")
 
         --print(line)
@@ -259,6 +268,14 @@ function lib.send_2_irc(playername, text)
 
 end -- function send_2_irc
 
+--[[
+   ****************************************************************
+   *******           Function get_nick_from_irc              ******
+   ****************************************************************
+
+Extract the nickname from a received line from irc
+]]--
+
 function lib.get_nick_from_irc(line)
     local nick
 
@@ -270,8 +287,9 @@ end -- get_nick_from_irc()
 
 --[[
    ****************************************************************
-   *******            Function print_all()                   ******
+   *******            Function chat()                        ******
    ****************************************************************
+   Send's a messager to public or channel
 ]]--
 function lib.chat(playername, text)
     local all_player = minetest.get_connected_players()
@@ -294,12 +312,9 @@ function lib.chat(playername, text)
                 lib.send_2_irc(playername, text)
 
             end -- if(sc.client
-
+            
             if(lib.matterbridge) then
-                lib.send_2_bridge(playername, text)
-
-            end -- if(sc.matterbridge
-
+                lib.
         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                           .. channel .. lib.yellow .. "> " .. text)
@@ -319,6 +334,14 @@ function lib.chat(playername, text)
 
 end -- function chat
 
+--[[
+   ****************************************************************
+   *******           Function is_channelmod()                ******
+   ****************************************************************
+
+if player is channelmod, power is 10, else 0
+]]--
+
 function lib.is_channelmod(player)
     local power = 0
     if(minetest.get_player_privs(player).channelmod) then
@@ -328,6 +351,14 @@ function lib.is_channelmod(player)
     return power
 
 end
+
+--[[
+   ****************************************************************
+   *******           Function is_channeladmin()              ******
+   ****************************************************************
+
+if player is channelmod, power is 20, else 0
+]]--
 
 function lib.is_channeladmin(player)
     local power = 0

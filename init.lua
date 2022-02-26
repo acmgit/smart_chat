@@ -11,8 +11,8 @@
 smart_chat = {}
 
 local sc = smart_chat
-sc.player = {}
-sc.public = {}
+sc.player = {}                                                                             -- Channel of Player
+sc.public = {}                                                                             -- Player has toggle on
 sc.last_command = nil
 
 sc.version = 1
@@ -87,8 +87,8 @@ if (sc.irc_on) then
     minetest.log("action", "[MOD] " .. sc.modname .. " Socket-Library loaded.")
 
 else
-    print("IRC turned off.")
-
+    minetest.log("action", "[MOD] " .. sc.modname .. " IRC is turned off.")
+    
 end -- if (sc.irc
 
 sc.S = S
@@ -106,8 +106,8 @@ dofile(path .. "/cmd_all.lua")
 dofile(path .. "/cmd_invite.lua")
 dofile(path .. "/cmd_toggle.lua")
 dofile(path .. "/cmd_where.lua")
-dofile(path .. "/cmd_store_channel.lua")
-dofile(path .. "/cmd_free_channel.lua")
+dofile(path .. "/cmd_mark_channel.lua")
+dofile(path .. "/cmd_unmark_channel.lua")
 dofile(path .. "/cmd_kick.lua")
 dofile(path .. "/cmd_move.lua")
 dofile(path .. "/cmd_status.lua")
