@@ -41,7 +41,7 @@ sc.registered_commands[cname] = function(player, parameter)
 
         for _,player in pairs(all_players) do
             local pname = player:get_player_name()
-             if ((sc.player[pname] == nil) or (sc.public[name])) then                     -- player in or public is on
+             if ((sc.player[pname] == nil) or (sc.public[pname])) then                     -- player in or public is on
                 sc.print(pname, line)
 
             end -- if((sc.player
