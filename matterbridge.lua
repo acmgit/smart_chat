@@ -58,7 +58,7 @@ if(sc.matterbridge == true) then
 
         function sc.send_2_bridge(user_name, message_text)
 
-            if(sc.player[user_name] ~= nil) then return end                                -- is User in public-channel?
+            if(not sc.check_global(user_name) then return end                                -- is User in public-channel?
 
             local line = "<" .. user_name .. "@" .. sc.servername .. "> " .. message_text
             yl_matterbridge.send_to_bridge(user_name, line)
