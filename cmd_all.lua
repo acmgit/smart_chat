@@ -38,15 +38,30 @@ sc.registered_commands[cname] = function(player, parameter)
 
     local channel = sc.player[player]
 
-    if(sc.player[player] ~= nil) then
-        minetest.chat_send_all(sc.yellow .. "[" .. sc.yellow .. player .. "@" .. channel
-                               .. sc.yellow .. "] " .. sc.green .. message)
+    if(sc.player[player] ~= nil) then                                                      -- Player is in a channel.
+        local line = sc.yellow .. "[" .. sc.yellow .. player .. "@" .. channel
+                               .. sc.yellow .. "] " .. sc.green .. message
+
+        minetest.chat_send_all(line)
+        line = "[" .. player .. "@" .. channel .. "] " .. message
+        sc.send_2_irc(player, line)
+        if(sc.matterbridge) then
+            yl_matterbridge.send_to_bridge(player, line)
+
+        end -- if(sc.matterbridge
 
     else
-        minetest.chat_send_all(sc.yellow .. "[" .. sc.yellow .. player
-                               .. sc.yellow .. "] " .. sc.green .. message)
+        local line = sc.yellow .. "[" .. sc.yellow .. player
+                               .. sc.yellow .. "] " .. sc.green .. message
+        minetest.chat_send_all(line)
+        line = "[" .. player .. "@" .. channel .. "] " .. message
+        sc.send_2_irc(player, line)
+        if(sc.matterbridge) then
+            sc.send_2_bridge(player, line)
 
-    end
+        end -- if(matterbridge
+
+    end -- if(sc.player[
 
 end -- sc["all"
 

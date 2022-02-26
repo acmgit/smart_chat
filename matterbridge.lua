@@ -40,7 +40,7 @@ if(sc.matterbridge == true) then
 
             for _,player in pairs(all_player) do
                 local pname = player:get_player_name()
-                if(sc.check_global(pname) or sc.public[pname]) then                      -- Player is in Pub-Channel
+                if(sc.check_global(pname) or sc.public[pname]) then                        -- Player is in Pub-Channel
                     sc.chat(pname, line)
 
                 end -- if(lib.check_global
@@ -57,13 +57,13 @@ if(sc.matterbridge == true) then
         ]]--
 
         function sc.send_2_bridge(user_name, message_text)
+
+            if(sc.player[user_name] ~= nil) then return end                                -- is User in public-channel?
+
             local line = "<" .. user_name .. "@" .. sc.servername .. "> " .. message_text
-            if(sc.check_global(user_name)) then                                            -- is User in public-channel?
-                yl_matterbridge.send_to_bridge(user_name, line)
+            yl_matterbridge.send_to_bridge(user_name, line)
 
-            end -- if(sc.check_global
-
-        end
+        end -- function sc.send_2_bridge
 
     end -- if(minetest.global_exist
 

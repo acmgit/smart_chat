@@ -47,7 +47,7 @@ sc.registered_commands[cname] = function(player, parameter)
             end -- if((sc.player
 
         end -- for (_,player
-        
+
         sc.chat(player, sc.green .. message)                                               -- send to own channel
         sc.send_2_irc(player, line)                                                        -- send the message to irc
         if(sc.matterbridge) then
