@@ -60,7 +60,7 @@ else
 
 end
 
-if(matterbridge_irc) then sc.irc_on = false end
+if(sc.matterbridge_irc) then sc.irc_on = false end
 
 if (sc.irc_on) then
 

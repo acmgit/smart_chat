@@ -48,7 +48,7 @@ sc.registered_commands[cname] = function(player, parameter)
 
         end -- for (_,player
 
-        sc.send_2_irc(line)                                                                -- send the message to irc
+        sc.send_2_irc(player, line)                                                                -- send the message to irc
         if(matterbridge) then
             sc.send_2_bridge(player, message)
 
