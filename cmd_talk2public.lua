@@ -9,7 +9,7 @@ if(not activate) then return end
 sc.register_help({
                             Name = cname,
                             Usage = "/c " .. cname .. " <message>",
-                            Description = S("Send's a message on all."),
+                            Description = S("Send's a message to the public channel."),
                             Parameter = "<message>",
                             Shortcut = "/c " .. short .. " <message>",
                         }
