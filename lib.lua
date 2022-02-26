@@ -220,7 +220,7 @@ end -- function lib.receive()
    *******           Function send_2_public()                ******
    ****************************************************************
 
-Sends a Text as playername to the IRC
+Sends a Text to playername and the IRC
 ]]--
 
 function lib.send_2_public(playername, text)

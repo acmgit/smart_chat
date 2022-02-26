@@ -35,8 +35,24 @@ sc.registered_commands[cname] = function(player, parameter)
     local channel = sc.player[player]
 
     if(sc.player[player] ~= nil) then
-        sc.send_2_public(player,   sc.yellow .. "[" .. sc.yellow .. player .. "@" .. channel
-                                .. sc.yellow .. "] " .. sc.green .. message)
+        local all_players = minetest.get_connected_players()
+        local line = sc.yellow .. "[" .. sc.yellow .. player .. "@" .. channel
+                               .. sc.yellow .. "] " .. sc.green .. message
+
+        for _,player in pairs(all_players) do
+            local pname = player:get_player_name()
+             if ((sc.player[pname] == nil) and (sc.public[name])) then                     -- player is in public or has public on
+                lib.print(pname, line)
+
+            end -- if((sc.player
+
+        end -- for (_,player
+
+        send_2_irc(line)                                                                       -- send the message to irc
+        if(matterbridge) then
+            send_2_bridge(player, message)
+
+        end -- if(matterbridge)
 
     else
         minetest.chat_send_player(player,sc.red .. S("You're already in the public channel."))
