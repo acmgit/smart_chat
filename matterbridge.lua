@@ -33,8 +33,19 @@ if(sc.matterbridge == true) then
 
             Overwrites the function handle the message about smart_chat
         ]]--
+        sc.bridge_txt = ""
+        sc.bridge_count = 0
 
         function yl_matterbridge.receive_from_bridge(user_name, message_text, account)
+            if( (sc.bridge_count > 0) and (sc.bridge_text == message_text)) then
+                sc.bridge_count = sc.brige_count + 1
+                minetest.after(2,   function()
+                                        sc.bridge_count = 0
+
+                                    end) -- function
+                return
+            end
+
             local line = "<"..account .."|" .. user_name .. "> " .. message_text
             local all_player = minetest.get_connected_players()
 
