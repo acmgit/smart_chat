@@ -31,7 +31,7 @@ function lib.check(player, cmd)
             if(lib.registered_commands[cmd[1]] ~= nil) then
                 -- Command is valid, execute it with parameter
                 lib.registered_commands[cmd[1]](player, cmd)
-                minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: " .. player .. " executes " .. cmd)
+                minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: " .. player .. " executes " .. cmd[1])
 
             else -- A command is given, but
             -- Command not found, report it.
