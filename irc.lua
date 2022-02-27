@@ -49,21 +49,22 @@ if (sc.irc_on) then
             minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: Set client_timeout to: "
                                             .. sc.client_timeout)
             err = sc.client:settimeout(sc.client_timeout)                                           -- and set timeout
-            minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: Settimeout: " ..  err)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: Settimeout: " ..  (err or "ok"))
 
             minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: Set Nick: " .. sc.servername)
             local line = "NICK " .. sc.servername .. " " .. sc.crlf
             err = sc.client:send(line)
-            minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: " .. line .. " Error: " .. err)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: " .. line .. " Error: " .. (err or "ok"))
 
             minetest.log("action", "Set User: " .. sc.servername .. " 0 0 " .. sc.servername)
             line = "USER " .. sc.servername .. " 0 0 " .. sc.servername .. sc.crlf
             err = sc.client:send(line)
-            minetest.log("action","[MOD] " .. sc.modname .. " : Module Irc: " .. line .. " Error: " .. err)
+            minetest.log("action","[MOD] " .. sc.modname .. " : Module Irc: " .. line .. " Error: " .. (err or "ok"))
 
             if(sc.irc_user_password ~= "") then
                 line = "PASS " .. sc.user_password .. sc.crlf
-                minetest.log("action","[MOD] " .. sc.modname .. " : Module Irc: " ..  line .. "Error: " .. err)
+                minetest.log("action","[MOD] " .. sc.modname .. " : Module Irc: " ..  line
+                                               .. "Error: " .. (err or "ok"))
 
             end -- if(sc.irc_user_password =~ ""
 
@@ -77,13 +78,13 @@ if (sc.irc_on) then
             end -- if(not sc.irc_password
 
             err = sc.client:send(line)
-            minetest.log("action","[MOD] " .. sc.modname .. " : Moldule Irc: " .. line .. "Error: " .. err)
+            minetest.log("action","[MOD] " .. sc.modname .. " : Moldule Irc: " .. line .. "Error: " .. (err or "ok"))
 
             minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: Set Channeltopic: "
                                             .. sc.irc_channel_topic)
             line = "TOPIC " .. sc.irc_channel .. " :" .. sc.irc_channel_topic .. sc.crlf
             err = sc.client:send(line)
-            minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: " .. line .. "Error:" .. err)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: " .. line .. "Error:" .. (err or "ok"))
 
         else
             sc.report("SYS", "IRC is already connected.")
