@@ -37,7 +37,6 @@ if(sc.matterbridge == true) then
         sc.bridge_count = 0
 
         function yl_matterbridge.receive_from_bridge(user_name, message_text, account)
-            sc.bridge_text = message_text
             if( (sc.bridge_count > 0) and (sc.bridge_text == message_text)) then
                 sc.bridge_count = sc.brige_count + 1
                 minetest.after(2,   function()
@@ -46,7 +45,8 @@ if(sc.matterbridge == true) then
                                     end) -- function
                 return
             end
-
+            
+            sc.bridge_text = message_text
             local line = "<"..account .."|" .. user_name .. "> " .. message_text
             local all_player = minetest.get_connected_players()
 
