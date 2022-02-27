@@ -12,7 +12,7 @@ local sc = smart_chat
 
 if(sc.matterbridge == true) then
 
-    if(minetest.global_exists(yl_matterbridge)) then
+    if(yl_matterbridge ~=  nil) then
 
         --[[
             ****************************************************************
