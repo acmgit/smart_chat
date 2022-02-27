@@ -60,7 +60,16 @@ else
 
 end
 
-if(sc.matterbridge_irc) then sc.irc_on = false end
+if(minetest.get_modpath("yl_matterbridge") == nil) then
+    minetest.log("action", "[MOD] " .. sc.modname .. " : Init: yl_matterbridge not available.")
+    sc.matterbridge = false
+    sc.matterbridge_irc = false
+
+else
+    if(sc.matterbridge_irc) then sc.irc_on = false end
+
+end
+
 
 if (sc.irc_on) then
 
@@ -69,13 +78,13 @@ if (sc.irc_on) then
     env = request_env()
 
     if (not request_env) then
-        minetest.log("action", "[MOD] " .. sc.modname .. ": Could not initalise insequre_environment.")
+        minetest.log("action", "[MOD] " .. sc.modname .. " : Init: Could not initalise insequre_environment.")
         sc.irc_on = false
 
     end -- if(request_env
 
     if (not env) then
-        minetest.log("action", "[MOD] " .. sc.modname .. ": Please add the mod to secure.trusted_mods to run.")
+        minetest.log("action", "[MOD] " .. sc.modname .. " : Init: Please add the mod to secure.trusted_mods to run.")
         sc.irc_on = false
 
     end -- if (not env
@@ -84,10 +93,10 @@ if (sc.irc_on) then
     require = env.require
     sc.socket = require("socket")
     require = old
-    minetest.log("action", "[MOD] " .. sc.modname .. " Socket-Library loaded.")
+    minetest.log("action", "[MOD] " .. sc.modname .. " : Init: Socket-Library loaded.")
 
 else
-    minetest.log("action", "[MOD] " .. sc.modname .. " IRC is turned off.")
+    minetest.log("action", "[MOD] " .. sc.modname .. " : Init: IRC is turned off.")
 
 end -- if (sc.irc
 
@@ -95,9 +104,9 @@ sc.S = S
 
 dofile(path .. "/lib.lua")
 dofile(path .. "/core.lua")
-dofile(path .. "/cmd_help.lua")
-dofile(path .. "/irc.lua")
 dofile(path .. "/matterbridge.lua")
+dofile(path .. "/irc.lua")
+dofile(path .. "/cmd_help.lua")
 dofile(path .. "/cmd_join.lua")
 dofile(path .. "/cmd_leave.lua")
 dofile(path .. "/cmd_list.lua")
@@ -143,3 +152,5 @@ minetest.register_chatcommand("c",{
             end -- function
 
 }) -- minetest.register_chatcommand
+
+minetest.log("action", "[MOD]" .. sc.modname .. " v " .. sc.version .. "." .. sc.revision .. " loaded.")

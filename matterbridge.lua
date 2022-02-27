@@ -11,73 +11,73 @@
 local sc = smart_chat
 
 if(sc.matterbridge == true) then
+    if(sc.matterbridge_irc) then
+        minetest.log("action","[MOD] " .. sc.modname .. " : Module matterbridge: yl_matterbridge_irc is on.")
 
-    if(yl_matterbridge ~=  nil) then
+    else
+        minetest.log("action","[MOD] " .. sc.modname .. " : Module matterbridge: yl_matterbridge_irc is off.")
 
-        --[[
-            ****************************************************************
-            *******      Function yl_matterbridge.chat_message        ******
-            ****************************************************************
+    end -- if(sc.matterbridge_irc
 
-            turns the on_register_chat_messages() from matterbridge off
-            because smart_chat has register his own event
-        ]]--
+    --[[
+        ****************************************************************
+        *******      Function yl_matterbridge.chat_message        ******
+        ****************************************************************
 
-        function yl_matterbridge.chat_message(username, message_text)
-        end
+        turns the on_register_chat_messages() from matterbridge off
+        because smart_chat has register his own event
+    ]]--
 
-        --[[
-            ****************************************************************
-            *******    Function yl_matterbridge.receive_from_bridge   ******
-            ****************************************************************
+    function yl_matterbridge.chat_message(username, message_text)
+        yl_matterbridge.receive_from_bridge(user_name, message_text)
+        
+    end
 
-            Overwrites the function handle the message about smart_chat
-        ]]--
-        sc.bridge_txt = ""
-        sc.bridge_count = 0
+    --[[
+        ****************************************************************
+        *******    Function yl_matterbridge.receive_from_bridge   ******
+        ****************************************************************
 
-        function yl_matterbridge.receive_from_bridge(user_name, message_text, account)
-            if( (sc.bridge_count > 0) and (sc.bridge_text == message_text)) then
-                sc.bridge_count = sc.brige_count + 1
-                minetest.after(5,   function()
-                                        sc.bridge_count = 0
+        Overwrites the function handle the message about smart_chat
+    ]]--
 
-                                    end) -- function
-                return
-            end
-            
-            sc.bridge_text = message_text
-            local line = "<"..account .."|" .. user_name .. "> " .. message_text
-            local all_player = minetest.get_connected_players()
+    function yl_matterbridge.receive_from_bridge(user_name, message_text, account)
 
-            for _,player in pairs(all_player) do
-                local pname = player:get_player_name()
-                if(sc.check_global(pname) or sc.public[pname]) then                        -- Player is in Pub-Channel
-                    sc.chat(pname, line)
+        local line = "<"..account .."|" .. user_name .. "> " .. message_text
+        minetest.log("action", "[MOD] " .. sc.modname .. " : Module matterbridge: From Bridge: " .. line)
+        local all_player = minetest.get_connected_players()
 
-                end -- if(lib.check_global
+        for _,player in pairs(all_player) do
+            local pname = player:get_player_name()
+            if(sc.check_global(pname) or sc.public[pname] and (user_name ~= pname)) then   -- Player is in Pub-Channel
+                sc.print(pname, line)
 
-            end -- func(user_name
-        end -- function yl_matterbridge
+            end -- if(lib.check_global
 
-        --[[
-            ****************************************************************
-            *******      Function yl_matterbridge.send_2_bridge       ******
-            ****************************************************************
+        end -- func(user_name
 
-            Function to send a message to the matterbridge
-        ]]--
+    end -- function yl_matterbridge
 
-        function sc.send_2_bridge(user_name, message_text)
+    --[[
+        ****************************************************************
+        *******      Function yl_matterbridge.send_2_bridge       ******
+        ****************************************************************
 
-            if(not sc.check_global(user_name)) then return end                             -- is User in public-channel?
+        Function to send a message to the matterbridge
+    ]]--
 
-            local line = "<" .. user_name .. "@" .. sc.servername .. "> " .. message_text
-            yl_matterbridge.send_to_bridge(user_name, line)
+    function sc.send_2_bridge(user_name, message_text)
 
-        end -- function sc.send_2_bridge
+        if(sc.player[user_name] ~= nil) then return end                                -- is User in public-channel?
 
-    end -- if(minetest.global_exist
+        --local line = "<" .. user_name .. "@" .. sc.servername .. "> " .. message_text
+        minetest.log("action", "[MOD] " .. sc.modname .. " Module matterbridge: To Bridge : " .. message_text)
+        yl_matterbridge.send_to_bridge(user_name, message_text)
 
-end -- if( sc.matterbridge
+    end -- function sc.send_2_bridge
+
+    minetest.log("action", "[MOD] " .. sc.modname .. " Module matterbridge: : yl_matterbridge loaded.")
+
+end -- if(ylmatterbridge exist
+
 

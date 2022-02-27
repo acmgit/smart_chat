@@ -43,5 +43,5 @@ smart_chat.channel_password (Password for the Channel) string ""
 smart_chat.user_password (Password for registered Users) string ""
 
 #yl_Matterbridge
-smart_chat.matterbridge (Turns yl_matterbridge on or of) bool false
-smart_chat.matterbridge_irc (yl_matterbridge has irc on?) bool false
+sc.matterbridge (Turns yl_matterbridge on or of) bool false
+sc.matterbridge_irc (yl_matterbridge has irc on?) bool false

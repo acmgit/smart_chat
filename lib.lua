@@ -87,6 +87,7 @@ end
 function lib.print(player, text)
     local lprint = minetest.chat_send_player
     lprint(player, text)
+    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : Print <" .. player .. "> " .. text)
 
 end -- function lib.print(
 
@@ -123,7 +124,7 @@ function lib.check_channel(cplayer, channel)
     else
       return false
 
-    end -- if(sc.player[
+    end -- if(lib.player[
 
 end -- lib.check_channel
 
@@ -142,6 +143,7 @@ function lib.channel_report(channel, message, color)
         color = lib.orange
 
     end -- if(color
+    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : Channel: " .. channel .. " Report: " .. message)
 
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
@@ -166,7 +168,7 @@ end -- lib.report(
 function lib.report(player, message)
     local all_player = minetest.get_connected_players()
     local channel = lib.player[player]
-
+    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : Report: " .. message)
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
 
@@ -190,8 +192,9 @@ Writes the Text from IRC to the Public Channel
 function lib.receive_from_irc(line)
     if(not lib.irc_running) then return end
 
-    local playername, msg
+    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : From IRC :" .. line)
 
+    local playername, msg
     local pos1, pos2
     pos1 = string.find(line,"!",2)
     pos2 = string.find(line,":",3,true)
@@ -200,7 +203,8 @@ function lib.receive_from_irc(line)
         playername = lib.get_nick_from_irc(line)
         msg = string.sub(line, string.find(line,":",3,true)+1)
         local a, e = string.find(msg, "ACTION")                                            -- was /ME-Command from irc
-        if( (a) and (a >= 1) ) then
+
+        if( (a) and (a >= 1) ) then                                                        -- Found ACTION in line
             msg = string.sub(msg, e + 1)
             line = lib.orange .. playername .. "@IRC " .. msg
 
@@ -225,25 +229,10 @@ end -- function lib.receive()
 
 --[[
    ****************************************************************
-   *******           Function send_2_public()                ******
+   *******             Function send_to_irc                  ******
    ****************************************************************
 
-Sends a Text to playername and the IRC
-
-function lib.send_2_public(playername, text)
-
-    lib.print(playername, text)
-    lib.send_2_irc(playername, text)
-
-end -- lib.send_2_public
-]]--
-
---[[
-   ****************************************************************
-   *******           Function send_2_irc()                   ******
-   ****************************************************************
-
-Sends a Text as playername to the IRC
+   Sends a Text as playername to the IRC
 ]]--
 
 function lib.send_2_irc(playername, text)
@@ -255,6 +244,7 @@ function lib.send_2_irc(playername, text)
         if(not lib.irc_running) then return end
 
         local line = string.gsub(text, "\27%([^()]*%)", "")
+        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : To IRC : " .. line)
 
         --print(line)
         line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername
@@ -308,6 +298,15 @@ function lib.chat(playername, text)
     local all_player = minetest.get_connected_players()
     local channel = lib.player[playername] -- Get the Channel of the player
 
+    if(channel ~= nil) then
+        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : chat:<" .. playername .. "@" .. channel
+                                        .. "> " .. text)
+
+    else
+        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : chat:<" .. playername .. "> " .. text)
+
+    end
+
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
 
@@ -319,34 +318,28 @@ function lib.chat(playername, text)
 
             if(lib.public[pname] and pname ~= playername) then -- name is in public-mode and not the player self
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
+
             end
 
             if(lib.irc_on ~= nil) then
                 lib.send_2_irc(playername, text)
 
-            end -- if(sc.client
+            end -- if(lib.client
 
             if(lib.matterbridge) then
                lib.send_2_bridge(playername, text)
 
             end -- if(lib.matterbridge)
 
-        elseif(lib.check_channel(pname, channel)) then
+        elseif(lib.check_channel(pname, channel)) then                                     -- chan.(receive)=chan.(send)
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                           .. channel .. lib.yellow .. "> " .. text)
+                minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : CHAT: # <" .. playername
+                                                .. "@" .. channel .. "> " .. text)
 
         end -- if(channel == nil
 
     end -- for _,players
-
-    -- Logging of the Chat
-    if(channel == nil) then
-        minetest.log("action", "CHAT: # <" .. playername .. "> " .. text)
-    else
-        minetest.log("action", "CHAT: # <" .. playername .. "@" .. channel .. "> " .. text)
-    end
-
-    return true
 
 end -- function chat
 

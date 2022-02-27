@@ -40,32 +40,35 @@ if (sc.irc_on) then
     function sc.irc_connect()
         if(not sc.irc_running) then
             sc.irc_running = true
-            minetest.log("action", "Try to connect to: " .. sc.host_ip .. ":" .. sc.host_port)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: Try to connect to: "
+                                            .. sc.host_ip .. ":" .. sc.host_port)
             local cl, err = assert(socket.connect(sc.host_ip, sc.host_port))                        -- connect to irc
-            minetest.log("action", "Start connection: ", err)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: Start connection: ", err)
             sc.client = cl
 
-            minetest.log("action", "Set client_timeout to: " .. sc.client_timeout)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: Set client_timeout to: "
+                                            .. sc.client_timeout)
             err = sc.client:settimeout(sc.client_timeout)                                           -- and set timeout
-            minetest.log("action", "Settimeout: ", err)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: Settimeout: ", err)
 
-            minetest.log("action", "Set Nick: " .. sc.servername)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: Set Nick: " .. sc.servername)
             local line = "NICK " .. sc.servername .. " " .. sc.crlf
             err = sc.client:send(line)
-            minetest.log("action", line, err)
+            minetest.log("action","[MOD] " .. sc.modname .. " : IRC-Module: " .. line .. "Error: " .. err)
 
-            minetest.log("action", "Set User: " .. sc.servername .. " 0 0 " .. sc.servername)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: Set User: " .. sc.servername
+                                            .. " 0 0 " .. sc.servername)
             line = "USER " .. sc.servername .. " 0 0 " .. sc.servername .. sc.crlf
             err = sc.client:send(line)
             minetest.log("action",line, err)
 
             if(sc.irc_user_password ~= "") then
                 line = "PASS " .. sc.user_password .. sc.crlf
-                minetest.log("action", line, err)
+                minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: " .. line .. "Error: " .. err)
 
             end -- if(sc.irc_user_password =~ ""
 
-            minetest.log("action", "Join Channel: " .. sc.irc_channel)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: Join Channel: " .. sc.irc_channel)
             if(sc.irc_channel_password ~= "") then
                 line = "JOIN " .. sc.irc_channel .. " " .. sc.irc_channel_password .. sc.crlf
 
@@ -75,23 +78,27 @@ if (sc.irc_on) then
             end -- if(not sc.irc_password
 
             err = sc.client:send(line)
-            minetest.log("action",line, err)
+            minetest.log("action","[MOD] " .. sc.modname .. " : IRC-Module: " ..line, err)
 
-            minetest.log("action", "Set Channeltopic: " .. sc.irc_channel_topic)
             line = "TOPIC " .. sc.irc_channel .. " :" .. sc.irc_channel_topic .. sc.crlf
             err = sc.client:send(line)
-            minetest.log("action", line, err)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: Set Channeltopic: "
+                                            .. sc.irc_channel_topic)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: " .. line .. "Error: " .. err)
+
         else
             sc.report("SYS", "IRC is already connected.")
+            minetest.log("action", "[MOD] " .. sc.modname .. " : IRC-Module: already connected.")
 
         end -- if(−sc.irc_running
+
 
     end -- sc.connect
 
     minetest.register_on_shutdown(function()
         -- Close the Connection to IRC-Server and close the network
         if (sc.client ~= nil) then
-            minetest.log("action", "Shutdown IRC.")
+            minetest.log("action","[MOD] " .. sc.modname .. " : IRC-Module: Shutdown IRC.")
             sc.client:send("QUIT" .. sc.crlf)
             sc.client:close()
             sc.client = nil
@@ -126,7 +133,7 @@ if (sc.irc_on) then
 
             elseif ((err ~= nil) and (err ~= "timeout")) then
                 if(err == "closed") then                                                        -- Connection closed?
-                    minetest.log("action","IRC: " .. err)
+                    minetest.log("action","[MOD] " .. sc.modname .. " : IRC-Module: " .. err)
                     sc.client:close()                                                           -- Close the Connection
                     sc.irc_running = false
 
