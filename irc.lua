@@ -161,7 +161,7 @@ end -- if(sc.irc_on ==
 
 
 function sc.check_join(line)
-    local start, stop = string.find(line, "JOIN", 3)
+    local _, stop = string.find(line, "JOIN", 3)
     if(stop ~= nil) then
         return true
 
