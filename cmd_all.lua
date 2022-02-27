@@ -65,13 +65,13 @@ sc.registered_commands[cname] = function(player, parameter)
         line = "[" .. player .. "@" .. sc.servername .. "] " .. message
         if(sc.irc_on) then
             all_send_to_irc(line)
-            minetest.log("action","[MOD] " .. sc.modname .. " : Module cmd_all : [IRC] " .. line)
+            minetest.log("action","[MOD] " .. sc.modname .. " :Module cmd_all: [IRC] " .. line)
 
         end -- if(sc.irc_on)
 
         if(sc.matterbridge) then
             all_send_to_bridge(player, line)
-            minetest.log("action","[MOD] " .. sc.modname .. " : Module cmd_all : [matterbridge]" .. line)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : Module cmd_all: [Matterbridge] " .. line)
 
         end -- if(sc.matterbridge
 
@@ -83,13 +83,13 @@ sc.registered_commands[cname] = function(player, parameter)
         line = "[" .. player .. "@" .. sc.servername .. "] " .. message
         if(sc.irc_on) then
             all_send_to_irc(line)
-            minetest.log("action","[MOD] " .. sc.modname .. " : Module cmd_all : [IRC] " .. line)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : Module cmd_all: [IRC] " .. line)
 
         end -- if(sc.irc_on)
 
         if(sc.matterbridge) then
             all_send_to_bridge(player, line)
-            minetest.log("action", "[MOD] " .. sc.modname .. " : Module cmd_all : [matterbridge] " .. line)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : Module cmd_all [Matterbridge] " .. line)
 
         end -- if(matterbridge
 

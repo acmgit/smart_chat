@@ -67,14 +67,13 @@ sc.registered_commands[cname] = function(player, parameter)
         line = "[" .. player .. "@" .. sc.servername .. "]" .. message
         if(sc.irc_on) then
             all_send_to_irc(line)
-            minetest.log("action","[MOD] " .. sc.modname .. " : Module talk2public: <" .. player
-                                           .. "@" .. sc.servername .. "> " .. line)
+            minetest.log("action", "[MOD] .. " .. sc.modname .. " : Module cmd_talk2public : " .. line)
 
         end
 
         if(sc.matterbridge) then
             all_send_to_bridge(player, line)
-            minetest.log("action", "[MOD] " .. sc.modname .. " : Module talk2public: [Matterbridge] " .. line)
+            minetest.log("action", "[MOD] .. " .. sc.modname .. " : Module cmd_talk2public : [Matterbridge] " .. line)
 
         end -- if(matterbridge)
 

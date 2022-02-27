@@ -3,10 +3,6 @@ local S = sc.S
 
 sc.crlf = "\r\n"
 
--- Function forwarding
-sc.send_2_irc = function() return end
-sc.send_2_matterbridge = function() return end
-
 minetest.register_on_chat_message(function(player, message)
 
         if(player ~= "" or player ~= nil) then
@@ -26,35 +22,22 @@ end) -- register_on_chatmessage()
 
 minetest.register_on_joinplayer(function(player)
         local playername = player:get_player_name()
-        local message = "*** joins the World."
-        local line = "*** <" .. playername .. "@" .. sc.servername .. "> " .. message
+        local message = "joins the World."
         playername = playername or S("unknown")
 
-        sc.send_2_irc(playername, line)
+        sc.send_2_irc(playername, "*** " ..message)
         sc.player[playername] = nil -- the public Chat
         sc.public[playername] = nil
-        if(sc.matterbridge) then
-            sc.send_2_matterbridge(playername, message)
-
-        end -- if(sc.matterbridge
-
-        minetest.log("action", "[MOD] " .. sc.modname .. " : Module core: <" .. playername
-                                        .. "@" .. sc.servername .. "> *** joins the World)")
-
+        minetest.log("action", "[MOD] " .. sc.modname .. " : Module core: *** " .. message)
 end) -- register_on_joinplayer()
 
 minetest.register_on_leaveplayer(function(player)
         local playername = player:get_player_name() or S("unknown")
-        local line = "*** <" .. playername .. "@" .. sc.modname .. "> leaves the World."
+        local line = "leaves the World."
 
         sc.player[playername] = nil
         sc.public[playername] = nil
-        sc.send_2_irc(playername, line)
-        if(sc.matterbridge) then
-            sc.send_2_matterbridge(playername, "*** leaves the World.")
-
-        end -- if(sc.matterbridge
-
-        minetest.log("action", "[MOD] " .. sc.modname .. " : Module core: <" .. playername
-                                        .. "@" .. sc.servername .. "> *** leaves the World)")
+        sc.send_2_irc(playername, "*** " .. line .. ".")
+        minetest.log("action", "[MOD] " .. sc.modname .. " : Module core: *** " .. line)
 end) -- minetest.register_on_leaveplayer
+

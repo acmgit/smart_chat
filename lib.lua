@@ -31,6 +31,7 @@ function lib.check(player, cmd)
             if(lib.registered_commands[cmd[1]] ~= nil) then
                 -- Command is valid, execute it with parameter
                 lib.registered_commands[cmd[1]](player, cmd)
+                minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: " .. player .. " executes " .. cmd)
 
             else -- A command is given, but
             -- Command not found, report it.
@@ -87,7 +88,7 @@ end
 function lib.print(player, text)
     local lprint = minetest.chat_send_player
     lprint(player, text)
-    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : Print <" .. player .. "> " .. text)
+    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: " .. text .. " to " .. player)
 
 end -- function lib.print(
 
@@ -143,7 +144,6 @@ function lib.channel_report(channel, message, color)
         color = lib.orange
 
     end -- if(color
-    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : Channel: " .. channel .. " Report: " .. message)
 
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
@@ -154,6 +154,7 @@ function lib.channel_report(channel, message, color)
         end -- if(check_channel
 
     end -- for _,players
+    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: channel_report: " .. channel .. ": " .. message)
 
 end -- lib.report(
 
@@ -168,7 +169,7 @@ end -- lib.report(
 function lib.report(player, message)
     local all_player = minetest.get_connected_players()
     local channel = lib.player[player]
-    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : Report: " .. message)
+
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
 
@@ -178,6 +179,8 @@ function lib.report(player, message)
         end -- if(check_channel
 
     end -- for _,players
+
+    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: report" .. player .. " " .. message)
 
 end -- lib.report(
 
@@ -192,9 +195,8 @@ Writes the Text from IRC to the Public Channel
 function lib.receive_from_irc(line)
     if(not lib.irc_running) then return end
 
-    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : From IRC :" .. line)
-
     local playername, msg
+
     local pos1, pos2
     pos1 = string.find(line,"!",2)
     pos2 = string.find(line,":",3,true)
@@ -203,8 +205,7 @@ function lib.receive_from_irc(line)
         playername = lib.get_nick_from_irc(line)
         msg = string.sub(line, string.find(line,":",3,true)+1)
         local a, e = string.find(msg, "ACTION")                                            -- was /ME-Command from irc
-
-        if( (a) and (a >= 1) ) then                                                        -- Found ACTION in line
+        if( (a) and (a >= 1) ) then
             msg = string.sub(msg, e + 1)
             line = lib.orange .. playername .. "@IRC " .. msg
 
@@ -225,14 +226,16 @@ function lib.receive_from_irc(line)
 
     end -- if((pos1 ~= 1
 
+    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: receive_from_irc: <" .. playername .. "> " .. msg)
+
 end -- function lib.receive()
 
 --[[
    ****************************************************************
-   *******             Function send_to_irc                  ******
+   *******             Function send_2_irc                   ******
    ****************************************************************
 
-   Sends a Text as playername to the IRC
+Sends a Text as playername to the IRC
 ]]--
 
 function lib.send_2_irc(playername, text)
@@ -244,25 +247,29 @@ function lib.send_2_irc(playername, text)
         if(not lib.irc_running) then return end
 
         local line = string.gsub(text, "\27%([^()]*%)", "")
-        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : To IRC : " .. line)
-
-        --print(line)
         line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername
                             .. "@" .. lib.servername .. "> " .. line .. lib.crlf
         lib.client:send(line)
         lib.irc_message_count = 0   -- This prevents for IRC-Echos of multiple player
         lib.irc_message = text      -- and remembers the last message
+        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: send_2_irc: " .. line)
 
     else
-        lib.irc_message_count = lib.irc_message_count + 1        -- IRC-Message was the same as the lasts
-        if(lib.irc_message.count == 1) then                      -- clear the counter after 2 second from the
-            minetest.after(2,   function()                       -- last message automatical
+        local line = string.gsub(text, "\27%([^()]*%)", "")
+        line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername
+                            .. "@" .. lib.servername .. "> " .. line .. lib.crlf
+        lib.irc_message_count = lib.irc_message_count + 1                                  -- IRC-Message was the same
+        if( (lib.irc_message.count == 1) and
+            (lib.irc.message == line) ) then                                               -- clear counter after second
+            minetest.after(2,   function()                                                 -- last message automatical
                                     lib.irc_message_count = 0
 
                                 end) -- function
+            minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: Message counts: "
+                                            .. lib.irc_message_count)
 
-        else                                                     -- if(lib.irc_message > 1
-            return                                               -- do nothing
+        else -- if(lib.irc_message > 1
+            return                                                                         -- do nothing
 
         end -- if(lib.irc_message_count
 
@@ -298,15 +305,6 @@ function lib.chat(playername, text)
     local all_player = minetest.get_connected_players()
     local channel = lib.player[playername] -- Get the Channel of the player
 
-    if(channel ~= nil) then
-        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : chat:<" .. playername .. "@" .. channel
-                                        .. "> " .. text)
-
-    else
-        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : chat:<" .. playername .. "> " .. text)
-
-    end
-
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
 
@@ -318,7 +316,6 @@ function lib.chat(playername, text)
 
             if(lib.public[pname] and pname ~= playername) then -- name is in public-mode and not the player self
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
-
             end
 
             if(lib.irc_on ~= nil) then
@@ -331,11 +328,13 @@ function lib.chat(playername, text)
 
             end -- if(lib.matterbridge)
 
-        elseif(lib.check_channel(pname, channel)) then                                     -- chan.(receive)=chan.(send)
+            minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: chat: <" .. playername .. "> " .. text)
+
+        elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
-                                          .. channel .. lib.yellow .. "> " .. text)
-                minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib : CHAT: # <" .. playername
-                                                .. "@" .. channel .. "> " .. text)
+                                                            .. channel .. lib.yellow .. "> " .. text)
+                minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: chat: <"
+                                                .. playername .. "@" .. channel .. "> " .. text)
 
         end -- if(channel == nil
 
@@ -379,14 +378,3 @@ function lib.is_channeladmin(player)
     return power
 
 end
-
---[[
-   ****************************************************************
-   *******         Function show_version()                   ******
-   ****************************************************************
-]]--
-
-function lib.show_version()
-    print("[MOD]" .. lib.modname .. " v " .. lib.version .. "." .. lib.revision .. " loaded. \n")
-
-end -- lib.show_version
