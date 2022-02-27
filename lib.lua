@@ -227,7 +227,7 @@ function lib.receive_from_irc(line)
     end -- if((pos1 ~= 1
 
     minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: receive_from_irc: <"
-                                    .. playername .. "> " .. line)
+                                    .. (playername or "unkown") .. "> " .. line)
 
 end -- function lib.receive()
 
