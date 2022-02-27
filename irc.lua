@@ -43,7 +43,7 @@ if (sc.irc_on) then
             minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: Try to connect to: "
                                             .. sc.host_ip .. ":" .. sc.host_port)
             local cl, err = assert(socket.connect(sc.host_ip, sc.host_port))                        -- connect to irc
-            minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: Start connection: " .. err)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: Start connection: " .. (err or "ok"))
             sc.client = cl
 
             minetest.log("action", "[MOD] " .. sc.modname .. " : Module Irc: Set client_timeout to: "
