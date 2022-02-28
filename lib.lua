@@ -341,7 +341,9 @@ function lib.chat(playername, text)
         end -- if(channel == nil
 
     end -- for _,players
-
+    
+    return true
+    
 end -- function chat
 
 --[[
