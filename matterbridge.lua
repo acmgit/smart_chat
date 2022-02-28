@@ -10,6 +10,24 @@
 
 local sc = smart_chat
 
+local matterbridge
+local mattersbridge_irc
+
+if(sc.mattersbridge) then
+    mattersbridge = "on"
+else
+    mattersbridge = "off"
+end
+
+if(sc.mattersbridge_irc) then
+    mattersbridge_irc = "on"
+else
+    mattersbridge_irc = "off"
+end
+
+minetest.log("action","[MOD] " .. sc.modname .. ": Modul mattersbridge :yl_mattersbridge = " .. mattersbridge)
+minetest.log("action","[MOD] " .. sc.modname .. ": Modul mattersbridge :yl_mattersbridge_irc = " .. mattersbridge_irc)
+
 if( sc.matterbridge == true) then
 
     if ( minetest.get_modpath("yl_matterbridge")) then

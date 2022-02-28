@@ -20,6 +20,15 @@ sc.irc_running = false                                                          
 sc.irc_message_count = 0
 sc.irc_message = ""
 
+local irc_on
+if(sc.irc_on) then
+    irc_on = "on"
+else
+    irc_on = "off"
+end
+
+minetest.log("action","[MOD] " .. sc.modname .. ": Modul irc :IRC = " .. irc_on)
+
 if (sc.irc_on) then
 --[[
     -- Prepare the Connection to the IRC-Server
