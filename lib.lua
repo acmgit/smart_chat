@@ -315,12 +315,14 @@ function lib.chat(playername, text)
             minetest.after(5,   function()                                                 -- last message automatical
                         lib.irc_message_count = 0
 
-            end) -- function#
+            end) -- function
+
+        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: Msg twice: <" .. playername .. "> " .. text)
         return true
 
     else
         message_count = 0
-        message = ""
+        message = text
 
     end -- if (message ==
 
