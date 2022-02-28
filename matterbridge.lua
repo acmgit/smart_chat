@@ -40,7 +40,8 @@ if( sc.matterbridge) then
             turns the on_register_chat_messages() from matterbridge off
             because smart_chat has register his own event
         ]]--
-
+        
+        yl_matterbridge.chat_message = function() end
         yl_matterbridge.register_chat = function() end
 
         --[[
