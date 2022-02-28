@@ -10,8 +10,8 @@
 
 local sc = smart_chat
 
-local matterbridge
-local mattersbridge_irc
+local matterbridge = ""
+local mattersbridge_irc = ""
 
 if(sc.mattersbridge) then
     mattersbridge = "on"
@@ -28,7 +28,7 @@ end
 minetest.log("action","[MOD] " .. sc.modname .. ": Modul mattersbridge :yl_mattersbridge = " .. mattersbridge)
 minetest.log("action","[MOD] " .. sc.modname .. ": Modul mattersbridge :yl_mattersbridge_irc = " .. mattersbridge_irc)
 
-if( sc.matterbridge == true) then
+if( sc.matterbridge) then
 
     if ( minetest.get_modpath("yl_matterbridge")) then
 
@@ -41,8 +41,8 @@ if( sc.matterbridge == true) then
             because smart_chat has register his own event
         ]]--
 
-        function yl_matterbridge.chat_message(username, message_text)
-        end
+        yl_matterbridge.chat_message = function() end
+        yl_matterbridge.register_chat = function() end
 
         --[[
             ****************************************************************
@@ -59,7 +59,7 @@ if( sc.matterbridge == true) then
             for _,player in pairs(all_player) do
                 local pname = player:get_player_name()
                 if(sc.check_global(pname) or sc.public[pname]) then                        -- Player is in Pub-Channel
-                    sc.chat(pname, line)
+                    sc.print(pname, line)
 
                 end -- if(lib.check_global
 

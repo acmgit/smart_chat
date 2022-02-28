@@ -242,7 +242,7 @@ Sends a Text as playername to the IRC
 function lib.send_2_irc(playername, text)
 
     if(not lib.irc_on) then return end                                                     -- IRC isn't on
-    
+
     if(lib.player[playername] ~= nil) then return end                                      -- Player is in channel
 
     if(lib.irc_message ~= text) then
@@ -320,7 +320,7 @@ function lib.chat(playername, text)
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
             end
 
-            if(lib.irc_on ~= nil) then
+            if(lib.irc_on) then
                 lib.send_2_irc(playername, text)
 
             end -- if(lib.client
@@ -332,7 +332,7 @@ function lib.chat(playername, text)
 
             minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: chat: <" .. playername .. "> " .. text)
 
-        elseif(lib.check_channel(pname, channel)) then
+         elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                                             .. channel .. lib.yellow .. "> " .. text)
                 minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: chat: <"
@@ -341,9 +341,9 @@ function lib.chat(playername, text)
         end -- if(channel == nil
 
     end -- for _,players
-    
+
     return true
-    
+
 end -- function chat
 
 --[[
