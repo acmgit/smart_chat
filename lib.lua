@@ -315,7 +315,9 @@ function lib.chat(playername, text)
             minetest.after(5,   function()                                                 -- last message automatical
                         lib.irc_message_count = 0
 
-            end) -- function
+            end) -- function#
+        return true
+
     else
         message_count = 0
         message = ""
