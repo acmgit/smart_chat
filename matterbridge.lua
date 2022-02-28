@@ -41,7 +41,6 @@ if( sc.matterbridge) then
             because smart_chat has register his own event
         ]]--
 
-        yl_matterbridge.chat_message = function() end
         yl_matterbridge.register_chat = function() end
 
         --[[
