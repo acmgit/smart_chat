@@ -300,12 +300,27 @@ end -- get_nick_from_irc()
    ****************************************************************
    *******            Function chat()                        ******
    ****************************************************************
-   Send's a messager to public or channel
+   Send's a message to public or channel
 ]]--
+
+local message = ""
+local message_count = 0
 
 function lib.chat(playername, text)
     local all_player = minetest.get_connected_players()
     local channel = lib.player[playername] -- Get the Channel of the player
+
+    if( (message == text) and (message_count >= 1)) then
+        message_count = message_count + 1
+            minetest.after(5,   function()                                                 -- last message automatical
+                        lib.irc_message_count = 0
+
+            end) -- function
+    else
+        message_count = 0
+        message = ""
+
+    end -- if (message ==
 
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
