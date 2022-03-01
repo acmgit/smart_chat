@@ -210,7 +210,7 @@ function lib.receive_from_irc(line)
             line = lib.orange .. "* " .. playername .. "@IRC " .. msg
 
         else
-            line =  lib.white .. "<" .. playername .. "> " .. msg                      -- <player@IRC> Message
+            line =  lib.white .. "<" .. playername .. "@IRC> " .. msg                      -- <player@IRC> Message
 
         end -- if(a >= 1
 
