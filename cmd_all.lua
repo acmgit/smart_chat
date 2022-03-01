@@ -62,7 +62,7 @@ sc.registered_commands[cname] = function(player, parameter)
 
         minetest.chat_send_all(line)
 
-        line = "[" .. player .. "@" .. sc.servername .. "] " .. message
+        line = "[" .. player .. "] " .. message
         if(sc.irc_on) then
             all_send_to_irc(line)
             minetest.log("action","[MOD] " .. sc.modname .. " :Module cmd_all: [IRC] " .. line)
@@ -80,7 +80,7 @@ sc.registered_commands[cname] = function(player, parameter)
                                .. sc.yellow .. "] " .. sc.green .. message
         minetest.chat_send_all(line)
 
-        line = "[" .. player .. "@" .. sc.servername .. "] " .. message
+        line = "[" .. player .. "] " .. message
         if(sc.irc_on) then
             all_send_to_irc(line)
             minetest.log("action", "[MOD] " .. sc.modname .. " : Module cmd_all: [IRC] " .. line)

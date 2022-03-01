@@ -64,7 +64,7 @@ sc.registered_commands[cname] = function(player, parameter)
         end -- for (_,player
 
         sc.chat(player, sc.green .. message)                                               -- send to own channel
-        line = "[" .. player .. "@" .. sc.servername .. "]" .. message
+        line = "[" .. player .. "]" .. message
         if(sc.irc_on) then
             all_send_to_irc(line)
             minetest.log("action", "[MOD] .. " .. sc.modname .. " : Module cmd_talk2public : " .. line)

@@ -207,10 +207,10 @@ function lib.receive_from_irc(line)
         local a, e = string.find(msg, "ACTION")                                            -- was /ME-Command from irc
         if( (a) and (a >= 1) ) then
             msg = string.sub(msg, e + 1)
-            line = lib.orange .. playername .. "@IRC " .. msg
+            line = lib.orange .. "* " .. playername .. "@IRC " .. msg
 
         else
-            line =  lib.white .. "<" .. playername .. "@IRC> " .. msg                      -- <player@IRC> Message
+            line =  lib.white .. "<" .. playername .. "> " .. msg                      -- <player@IRC> Message
 
         end -- if(a >= 1
 
@@ -249,8 +249,7 @@ function lib.send_2_irc(playername, text)
         if(not lib.irc_running) then return end
 
         local line = string.gsub(text, "\27%([^()]*%)", "")
-        line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername
-                            .. "@" .. lib.servername .. "> " .. line .. lib.crlf
+        line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
         lib.client:send(line)
         lib.irc_message_count = 0   -- This prevents for IRC-Echos of multiple player
         lib.irc_message = text      -- and remembers the last message
@@ -258,8 +257,7 @@ function lib.send_2_irc(playername, text)
 
     else
         local line = string.gsub(text, "\27%([^()]*%)", "")
-        line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername
-                            .. "@" .. lib.servername .. "> " .. line .. lib.crlf
+        line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
         lib.irc_message_count = lib.irc_message_count + 1                                  -- IRC-Message was the same
         if( (lib.irc_message.count == 1) and
             (lib.irc.message == line) ) then                                               -- clear counter after second
