@@ -132,7 +132,8 @@ if (sc.irc_on) then
                                     .. "@IRC" .. " " .. S("join the channel."))
 
                     else
-                        sc.receive_from_irc(line)                                               -- a line of a user
+                        sc.irc_line = line
+                        sc.receive_from_irc()                                                   -- a line of a user
 
                     end -- if(sc.check_join
 

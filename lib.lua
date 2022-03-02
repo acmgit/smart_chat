@@ -192,9 +192,11 @@ end -- lib.report(
 Writes the Text from IRC to the Public Channel
 ]]--
 
-function lib.receive_from_irc(line)
+function lib.receive_from_irc()
     if(not lib.irc_running) then return end
-
+    
+    local line = lib.irc_lined
+    
     local playername, msg
 
     local pos1, pos2
@@ -242,7 +244,7 @@ Sends a Text as playername to the IRC
 function lib.send_2_irc(playername, text)
 
     if(not lib.irc_on) then return end                                                     -- IRC isn't on
-
+    
     if(lib.player[playername] ~= nil) then return end                                      -- Player is in channel
 
     if(lib.irc_message ~= text) then
