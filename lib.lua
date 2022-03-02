@@ -199,11 +199,11 @@ function lib.receive_from_irc()
     local playername, msg
     local pos1, pos2
 
-    playername = lib.get_nick_from_irc(line)
     pos1 = string.find(line,"!",2)
     pos2 = string.find(line,":",3,true)
 
     if((pos1 ~= nil) and (pos2 ~= nil)) then
+        playername = lib.get_nick_from_irc(line)
         line = string.sub(line,pos2 +1)
         _, pos2 = string.find(line,"PRIVMSG",1,true)
         msg = string.sub(line, string.find(line,":",pos2+1,true)+1)
@@ -230,7 +230,7 @@ function lib.receive_from_irc()
     end -- if((pos1 ~= 1
 
     minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: receive_from_irc: <"
-                                    .. (playername or "unkown") .. "> " .. line)
+                                    .. (playername or "...") .. "> " .. line)
 
 end -- function lib.receive()
 
@@ -291,7 +291,7 @@ Extract the nickname from a received line from irc
 function lib.get_nick_from_irc(line)
     local nick
 
-    nick = string.sub(line,2,string.find(line,"!",2)-1)
+    nick = string.sub(line,2,string.find(line,"!",2,true)-1)
     return nick
 
 end -- get_nick_from_irc()
