@@ -205,7 +205,7 @@ function lib.receive_from_irc()
     if((pos1 ~= nil) and (pos2 ~= nil)) then
         playername = string.sub(line, pos1+1,pos2-1)
         line = string.sub(line,pos2 +1)
-        _, pos2 = string.find(line,sc.irc_channel,1,true)
+        _, pos2 = string.find(line,lib.irc_channel,1,true)
         if(pos2 ~= nil) then
             line = string.sub(line, pos2+3)
             
