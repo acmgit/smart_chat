@@ -124,7 +124,7 @@ if (sc.irc_on) then
             local line, err = sc.client:receive("*l","++")                                 -- get line from the IRC
             if (line ~= nil) then
                 local a,e = string.find(line,"PING")
-                if( (a) and (e) then                                                        -- Line was a Ping
+                if( (a) and (e) )then                                                        -- Line was a Ping
                     ping = string.sub(line,e+1)
                     sc.client:send("PONG" .. ping .. "\r\n")                               -- Answer with Pong
                 else
