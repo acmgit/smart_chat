@@ -114,6 +114,7 @@ dofile(path .. "/cmd_kick.lua")
 dofile(path .. "/cmd_move.lua")
 dofile(path .. "/cmd_status.lua")
 dofile(path .. "/cmd_talk2public.lua")
+dofile(path .. "/cmd_reconnect.lua")
 
 --[[
    ****************************************************************
