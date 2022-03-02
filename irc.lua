@@ -115,34 +115,34 @@ if (sc.irc_on) then
 
     end) -- minetest.register_on_shutdown
 
-    sc.irc_connect()                                                                                -- connect to IRC
+    sc.irc_connect()                                                                       -- connect to IRC
 
     local timer = 0
     minetest.register_globalstep(function(dtime)
         timer = timer + dtime;
         if (timer >= 0.5) then
-            local line, err = sc.client:receive("*l","++")                                           -- get line from the IRC
+            local line, err = sc.client:receive("*l","++")                                 -- get line from the IRC
             if (line ~= nil) then
-                if(string.sub(line,1,4) == "PING") then                                         -- Line was a Ping
+                if(string.sub(line,1,4) == "PING") then                                    -- Line was a Ping
                     local ping = string.sub(line,5)
-                    sc.client:send("PONG" .. ping .. "\r\n")                                    -- Answer with Pong
+                    sc.client:send("PONG" .. ping .. "\r\n")                               -- Answer with Pong
                 else
-                    if(sc.check_join(line)) then                                                -- is it a Join-Report?
+                    if(sc.check_join(line)) then                                           -- is it a Join-Report?
                         sc.report(  "IRC", "*** " .. sc.get_nick_from_irc(line)
                                     .. "@IRC" .. " " .. S("join the channel."))
 
                     else
                         sc.irc_line = line
-                        sc.receive_from_irc()                                                   -- a line of a user
+                        sc.receive_from_irc()                                              -- a line of a user
 
                     end -- if(sc.check_join
 
                 end -- if(string.sub
 
             elseif ((err ~= nil) and (err ~= "timeout")) then
-                if(err == "closed") then                                                        -- Connection closed?
+                if(err == "closed") then                                                   -- Connection closed?
                     minetest.log("action","[MOD] " .. sc.modname .. " : Module Irc: " .. err)
-                    sc.client:close()                                                           -- Close the Connection
+                    sc.client:close()                                                      -- Close the Connection
                     sc.irc_running = false
 
                     if ((sc.irc_automatic_reconnect) and (sc.reconnect < sc.irc_automatic_reconnect_max)) then
