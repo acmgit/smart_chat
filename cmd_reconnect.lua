@@ -30,7 +30,7 @@ sc.registered_commands[cname] = function(player)
     end -- if(sc.irc_on
 
     if(sc.automatic_reconnect) then
-        if( (sc.reconnect > sc.reconnect_max) and (not sc.irc_on) ) then
+        if (sc.reconnect > sc.reconnect_max) then
             sc.reconnect = 0
             sc.print(player, sc.green .. S("Automatic reconnect restarted."))
 
