@@ -9,7 +9,7 @@ if(not activate) then return end
 sc.register_help({
                             Name = cname,
                             Usage = "/c " .. cname,
-                            Description = S("Restarts the counter for automatic reconnect."),
+                            Description = S("Starts the counter for automatic reconnect."),
                             Parameter = "<>",
                             Shortcut = "/c " .. short,
                         }
@@ -32,7 +32,7 @@ sc.registered_commands[cname] = function(player)
     if(sc.automatic_reconnect) then
         if (sc.reconnect > sc.reconnect_max) then
             sc.reconnect = 0
-            sc.print(player, sc.green .. S("Automatic reconnect restarted."))
+            sc.print(player, sc.green .. S("Automatic reconnect started."))
 
         end -- if(sc.reconnect
     else

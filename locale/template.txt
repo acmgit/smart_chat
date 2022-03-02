@@ -4,30 +4,17 @@
 ### cmd_all.lua ###
 
 Error: No Message given.=
+Send's a message on all.=
 
 ### cmd_all.lua ###
 ### cmd_talk2public.lua ###
 
 Error - require 'basic_privs' privilege.=
-Send's a message on all.=
 
 ### cmd_channels.lua ###
 
 Channels on Server:=
 Lists all channels on the Server.=
-
-### cmd_free_channel.lua ###
-
- Unmarks the Channel [=
-Error: Permanent Channels not found.=
-Error: You can't unmarks the public Chat from permanent.=
-Unmarks a channel as permanent.=
-] from permanent.=
-
-### cmd_free_channel.lua ###
-### cmd_store_channel.lua ###
-
-Error: You don't have the privileg to change channels.=
 
 ### cmd_help.lua ###
 
@@ -105,6 +92,19 @@ Leaves a channel=
 List all player in the channel.=
 Player in Channel=
 
+### cmd_mark_channel.lua ###
+
+ marks the Channel [=
+Error: Permanent Channels exist.=
+Error: You can't set the public Chat as permanent.=
+Marks a channel permanent.=
+] as permanent.=
+
+### cmd_mark_channel.lua ###
+### cmd_unmark_channel.lua ###
+
+Error: You don't have the privileg to change channels.=
+
 ### cmd_move.lua ###
 
  was moved from the channel. ***=
@@ -116,6 +116,14 @@ Error: Use the command /c j <channel> to move yourself into another channel.=
 Error: You don't have the privileg chanelmod or channeladmin to move players from channels.=
 
 Moves a player to <channel> or to self.=
+
+### cmd_reconnect.lua ###
+
+Automatic reconnect started.=
+Error: You are not a channelmod.=
+IRC is already connected.=
+New connect to irc started.=
+Starts the counter for automatic reconnect.=
 
 ### cmd_status.lua ###
 
@@ -132,16 +140,9 @@ Worldname/Servername=
 Writes Information about the Chat.=
 max.=
 
-### cmd_store_channel.lua ###
-
- marks the Channel [=
-Error: Permanent Channels exist.=
-Error: You can't set the public Chat as permanent.=
-Marks a channel permanent.=
-] as permanent.=
-
 ### cmd_talk2public.lua ###
 
+Send's a message to the public channel.=
 You're already in the public channel.=
 
 ### cmd_template.lua ###
@@ -155,6 +156,14 @@ The permanent public chat is now on.=
 Turns the permanent public Chat on or off.=
 You are already in the public Chat.=
 
+### cmd_unmark_channel.lua ###
+
+ Unmarks the Channel [=
+Error: Permanent Channels not found.=
+Error: You can't unmarks the public Chat from permanent.=
+Unmarks a channel as permanent.=
+] from permanent.=
+
 ### cmd_where.lua ###
 
 Error: No name given.=
@@ -166,8 +175,6 @@ Shows which channel <name> is on.=
 
 ### core.lua ###
 
-joins the World=
-leaves the World=
 unknown=
 
 ### init.lua ###
