@@ -197,14 +197,15 @@ function lib.receive_from_irc()
 
     local line = lib.irc_line
     local playername, msg
-
     local pos1, pos2
+    
+    playername = lib.get_nick_from_irc(line)
     pos1 = string.find(line,"!",2)
     pos2 = string.find(line,":",3,true)
 
     if((pos1 ~= nil) and (pos2 ~= nil)) then
-        playername = lib.get_nick_from_irc(line)
-        msg = string.sub(line, string.find(line,":",3,true)+1)
+        pos1, pos2 = string.find(line,"PRIVMSG",pos2+1,true)
+        msg = string.sub(line, string.find(line,":",pos2+1,true)+1)
         local a, e = string.find(msg, "ACTION")                                            -- was /ME-Command from irc
         if( (a) and (a >= 1) ) then
             msg = string.sub(msg, e + 1)
