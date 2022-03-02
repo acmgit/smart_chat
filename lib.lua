@@ -196,7 +196,7 @@ function lib.receive_from_irc()
     if(not lib.irc_running) then return end
 
     local line = lib.irc_line
-    local playername, msg
+    local playername
     local pos1, pos2
 
     pos1 = string.find(line,"!",2)
@@ -207,17 +207,17 @@ function lib.receive_from_irc()
         line = string.sub(line,pos2 +1)
         _, pos2 = string.find(line,sc.irc_channel,1,true)
         if(pos2 ~= nil) then
-            msg = string.sub(line, pos2+3)
+            line = string.sub(line, pos2+3)
             
         end -- if(pos2
         
-        local a, e = string.find(msg, "ACTION")                                            -- was /ME-Command from irc
+        local a, e = string.find(line, "ACTION")                                            -- was /ME-Command from irc
         if( (a) and (a >= 1) ) then
-            msg = string.sub(msg, e + 1)
-            line = lib.orange .. "* " .. playername .. "@IRC " .. msg
+            line = string.sub(line, e + 1)
+            line = lib.orange .. "* " .. playername .. "@IRC " .. line
 
         else
-            line =  lib.white .. "<" .. playername .. "@IRC> " .. msg                      -- <player@IRC> Message
+            line =  lib.white .. "<" .. playername .. "@IRC> " .. line                     -- <player@IRC> Message
 
         end -- if(a >= 1
 
