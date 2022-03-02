@@ -123,8 +123,9 @@ if (sc.irc_on) then
         if (timer >= 0.5) then
             local line, err = sc.client:receive("*l","++")                                 -- get line from the IRC
             if (line ~= nil) then
-                if(string.sub(line,3,7) == "PING") then                                    -- Line was a Ping
-                    local ping = string.sub(line,8)
+                local a,e = string.find(line,"PING")
+                if( (a) and (e) then                                                        -- Line was a Ping
+                    ping = string.sub(line,e+1)
                     sc.client:send("PONG" .. ping .. "\r\n")                               -- Answer with Pong
                 else
                     if(sc.check_join(line)) then                                           -- is it a Join-Report?
