@@ -203,7 +203,7 @@ function lib.receive_from_irc()
     pos2 = string.find(line,":",3,true)
 
     if((pos1 ~= nil) and (pos2 ~= nil)) then
-        playername = lib.get_nick_from_irc(line)
+        playername = string.sub(line, pos1+1,pos2-1)
         line = string.sub(line,pos2 +1)
         _, pos2 = string.find(line,"PRIVMSG",1,true)
         msg = string.sub(line, string.find(line,":",pos2+1,true)+1)
