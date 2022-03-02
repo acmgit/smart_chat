@@ -198,13 +198,14 @@ function lib.receive_from_irc()
     local line = lib.irc_line
     local playername, msg
     local pos1, pos2
-    
+
     playername = lib.get_nick_from_irc(line)
     pos1 = string.find(line,"!",2)
     pos2 = string.find(line,":",3,true)
 
     if((pos1 ~= nil) and (pos2 ~= nil)) then
-        pos1, pos2 = string.find(line,"PRIVMSG",pos2+1,true)
+        line = string.sub(line,pos2 +1)
+        _, pos2 = string.find(line,"PRIVMSG",1,true)
         msg = string.sub(line, string.find(line,":",pos2+1,true)+1)
         local a, e = string.find(msg, "ACTION")                                            -- was /ME-Command from irc
         if( (a) and (a >= 1) ) then
@@ -244,7 +245,7 @@ Sends a Text as playername to the IRC
 function lib.send_2_irc(playername, text)
 
     if(not lib.irc_on) then return end                                                     -- IRC isn't on
-    
+
     if(lib.player[playername] ~= nil) then return end                                      -- Player is in channel
 
     if(lib.irc_message ~= text) then
