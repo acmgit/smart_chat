@@ -121,7 +121,7 @@ if (sc.irc_on) then
     minetest.register_globalstep(function(dtime)
         timer = timer + dtime;
         if (timer >= 0.5) then
-            local line, err = sc.client:receive("*l")                                           -- get line from the IRC
+            local line, err = sc.client:receive("*l","++")                                           -- get line from the IRC
             if (line ~= nil) then
                 if(string.sub(line,1,4) == "PING") then                                         -- Line was a Ping
                     local ping = string.sub(line,5)
