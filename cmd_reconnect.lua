@@ -22,6 +22,13 @@ sc.registered_commands[cname] = function(player)
         return
 
     end -- if(not privs.channelmod
+
+    if(sc.irc_on) then
+        sc.print(player, sc.red .. S("IRC is already connected."))
+        return
+
+    end -- if(sc.irc_on
+
     if(sc.automatic_reconnect) then
         if( (sc.reconnect > sc.reconnect_max) and (not sc.irc_on) ) then
             sc.reconnect = 0
