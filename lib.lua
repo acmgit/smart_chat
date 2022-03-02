@@ -199,8 +199,8 @@ function lib.receive_from_irc()
     local playername
     local pos1, pos2
 
-    pos1 = string.find(line,"!",2)
-    pos2 = string.find(line,":",3,true)
+    pos1 = string.find(line,":",2,true)
+    pos2 = string.find(line,"!",3,true)
 
     if((pos1 ~= nil) and (pos2 ~= nil)) then
         playername = string.sub(line, pos1+1,pos2-1)
@@ -208,9 +208,9 @@ function lib.receive_from_irc()
         _, pos2 = string.find(line,lib.irc_channel,1,true)
         if(pos2 ~= nil) then
             line = string.sub(line, pos2+3)
-            
+
         end -- if(pos2
-        
+
         local a, e = string.find(line, "ACTION")                                            -- was /ME-Command from irc
         if( (a) and (a >= 1) ) then
             line = string.sub(line, e + 1)
