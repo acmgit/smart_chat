@@ -194,9 +194,8 @@ Writes the Text from IRC to the Public Channel
 
 function lib.receive_from_irc()
     if(not lib.irc_running) then return end
-    
-    local line = lib.irc_lined
-    
+
+    local line = lib.irc_line
     local playername, msg
 
     local pos1, pos2
