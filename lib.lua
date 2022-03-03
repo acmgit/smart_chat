@@ -252,7 +252,7 @@ function lib.send_2_irc(playername, text)
 
     if(lib.player[playername] ~= nil) then return end                                      -- Player is in channel
 
-    if(lib.irc_message ~= text) then
+    --if(lib.irc_message ~= text) then
         if(not lib.irc_running) then return end
 
         local line = string.gsub(text, "\27%([^()]*%)", "")
@@ -262,16 +262,16 @@ function lib.send_2_irc(playername, text)
         lib.irc_message = text      -- and remembers the last message
         minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: send_2_irc: " .. line)
 
-    else
-        local line = string.gsub(text, "\27%([^()]*%)", "")
-        line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
-        lib.irc_message_count = lib.irc_message_count + 1                                  -- IRC-Message was the same
-        if( (lib.irc_message.count == 1) and
-            (lib.irc.message == line) ) then                                               -- clear counter after second
-            minetest.after(2,   function()                                                 -- last message automatical
-                                    lib.irc_message_count = 0
+    --else
+    --    local line = string.gsub(text, "\27%([^()]*%)", "")
+    --    line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
+    --    lib.irc_message_count = lib.irc_message_count + 1                                  -- IRC-Message was the same
+    --    if( (lib.irc_message.count == 1) and
+     --       (lib.irc.message == line) ) then                                               -- clear counter after second
+     --       minetest.after(2,   function()                                                 -- last message automatical
+     --                               lib.irc_message_count = 0
 
-                                end) -- function
+     --                           end) -- function
             minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: Message counts: "
                                             .. lib.irc_message_count)
 
