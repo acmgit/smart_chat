@@ -272,15 +272,15 @@ function lib.send_2_irc(playername, text)
      --                               lib.irc_message_count = 0
 
      --                           end) -- function
-            minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: Message counts: "
-                                            .. lib.irc_message_count)
+            --minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: Message counts: "
+            --                                .. lib.irc_message_count)
 
-        else -- if(lib.irc_message > 1
-            return                                                                         -- do nothing
+        --else -- if(lib.irc_message > 1
+        --    return                                                                         -- do nothing
 
-        end -- if(lib.irc_message_count
+        --end -- if(lib.irc_message_count
 
-    end -- if(lib.irc_message ~=
+    --end -- if(lib.irc_message ~=
 
 end -- function send_2_irc
 
@@ -308,8 +308,8 @@ end -- get_nick_from_irc()
    Send's a message to public or channel
 ]]--
 
-local message = ""
-local message_count = 0
+--local message = ""
+--local message_count = 0
 
 function lib.chat(playername, text)
     local all_player = minetest.get_connected_players()

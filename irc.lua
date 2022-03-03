@@ -125,7 +125,7 @@ if (sc.irc_on) then
             if (line ~= nil) then
                 local a,e = string.find(line,"PING")
                 if( (a) and (e) )then                                                        -- Line was a Ping
-                    ping = string.sub(line,e+1)
+                    local ping = string.sub(line,e+1)
                     sc.client:send("PONG" .. ping .. "\r\n")                               -- Answer with Pong
                 else
                     if(sc.check_join(line)) then                                           -- is it a Join-Report?
