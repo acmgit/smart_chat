@@ -80,9 +80,9 @@ if( sc.matterbridge) then
 
             if(sc.player[user_name] ~= nil) then return end                                -- is User in public-channel?
 
-            local line = "<" .. user_name .. "@" .. sc.servername .. "> " .. message_text
-            yl_matterbridge.send_to_bridge(user_name, line)
-            minetest.log("action", "[MOD] " .. sc.modname .. " : Module matterbridge: send_2_bridge: " .. line)
+            --local line = "<" .. user_name .. "@" .. sc.servername .. "> " .. message_text
+            yl_matterbridge.send_to_bridge(user_name, message_text)
+            minetest.log("action", "[MOD] " .. sc.modname .. " : Module matterbridge: send_2_bridge: " .. message_text)
 
         end -- function sc.send_2_bridge
 
