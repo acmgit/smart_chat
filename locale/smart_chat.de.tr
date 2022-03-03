@@ -121,8 +121,8 @@ Moves a player to <channel> or to self.=Verschiebt einen Spieler in <Kanal> oder
 
 Automatic reconnect started.=Automatische Neuverbindung gestartet
 Error: You are not a channelmod.=Fehler: Du bist kein Kanalmoderator.
-IRC is already connected.=IRC ist schon verbunden.
 New connect to irc started.=Neue Verbindung zu IRC gestartet.
+Sorry, the own IRC is off.=Entschuldigung, aber der eigene IRC ist offline.
 Starts the counter for automatic reconnect.=Startet den Zähler für automatische Neuverbindungen.
 
 ### cmd_status.lua ###
@@ -198,5 +198,6 @@ Unknown Command. No helpsystem available.=Unbekanntes Kommando. Hilfssystem nich
 
 ##### not used anymore #####
 
+IRC is already connected.=IRC ist schon verbunden.
 joins the World=betritt die Welt.
 leaves the World=verlässt die Welt.

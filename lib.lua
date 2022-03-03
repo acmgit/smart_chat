@@ -339,7 +339,7 @@ function lib.chat(playername, text)
         end -- if(channel == nil
 
     end -- for _,players
-    
+
     if(channel == nil) then
         if(lib.irc_on) then
             lib.send_2_irc(playername, text)
@@ -350,9 +350,9 @@ function lib.chat(playername, text)
             lib.send_2_bridge(playername, text)
 
         end -- if(lib.matterbridge)
-        
+
     end -- if(channel == nil)
-    
+
     return true
 
 end -- function chat

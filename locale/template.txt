@@ -121,8 +121,8 @@ Moves a player to <channel> or to self.=
 
 Automatic reconnect started.=
 Error: You are not a channelmod.=
-IRC is already connected.=
 New connect to irc started.=
+Sorry, the own IRC is off.=
 Starts the counter for automatic reconnect.=
 
 ### cmd_status.lua ###
