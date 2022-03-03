@@ -30,19 +30,6 @@ end
 minetest.log("action","[MOD] " .. sc.modname .. ": Modul irc :IRC = " .. irc_on)
 
 if (sc.irc_on) then
---[[
-    -- Prepare the Connection to the IRC-Server
-    -- You can found now all in the settings.
-    local socket = require("socket")
-    sc.host_ip = "irc.eu.libera.chat"
-    sc.host_port = 6667
-    sc.irc_channel = "##Zeitsprung"
-    sc.servername = "MT_Zeitsprung"
-    sc.irc_channel_topic = "Minetestserver"
-    sc.clienttimeout = 0.3
-]]--
-    --sc.client_timeout = 0.03
-    --local socket = require("socket")
 
     sc.reconnect = 0                                                                            -- counter Reconnect
 

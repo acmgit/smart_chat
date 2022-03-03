@@ -249,38 +249,15 @@ Sends a Text as playername to the IRC
 function lib.send_2_irc(playername, text)
 
     if(not lib.irc_on) then return end                                                     -- IRC isn't on
-
     if(lib.player[playername] ~= nil) then return end                                      -- Player is in channel
+    if(not lib.irc_running) then return end
 
-    --if(lib.irc_message ~= text) then
-        if(not lib.irc_running) then return end
-
-        local line = string.gsub(text, "\27%([^()]*%)", "")
-        line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
-        lib.client:send(line)
-        lib.irc_message_count = 0   -- This prevents for IRC-Echos of multiple player
-        lib.irc_message = text      -- and remembers the last message
-        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: send_2_irc: " .. line)
-
-    --else
-    --    local line = string.gsub(text, "\27%([^()]*%)", "")
-    --    line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
-    --    lib.irc_message_count = lib.irc_message_count + 1                                  -- IRC-Message was the same
-    --    if( (lib.irc_message.count == 1) and
-     --       (lib.irc.message == line) ) then                                               -- clear counter after second
-     --       minetest.after(2,   function()                                                 -- last message automatical
-     --                               lib.irc_message_count = 0
-
-     --                           end) -- function
-            --minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: Message counts: "
-            --                                .. lib.irc_message_count)
-
-        --else -- if(lib.irc_message > 1
-        --    return                                                                         -- do nothing
-
-        --end -- if(lib.irc_message_count
-
-    --end -- if(lib.irc_message ~=
+    local line = string.gsub(text, "\27%([^()]*%)", "")
+    line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
+    lib.client:send(line)
+    lib.irc_message_count = 0   -- This prevents for IRC-Echos of multiple player
+    lib.irc_message = text      -- and remembers the last message
+    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: send_2_irc: " .. line)
 
 end -- function send_2_irc
 
@@ -307,9 +284,6 @@ end -- get_nick_from_irc()
    ****************************************************************
    Send's a message to public or channel
 ]]--
-
---local message = ""
---local message_count = 0
 
 function lib.chat(playername, text)
     local all_player = minetest.get_connected_players()
