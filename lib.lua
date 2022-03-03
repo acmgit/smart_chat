@@ -315,24 +315,6 @@ function lib.chat(playername, text)
     local all_player = minetest.get_connected_players()
     local channel = lib.player[playername] -- Get the Channel of the player
 
---[[
-    if( (message == text) and (message_count >= 1)) then
-        message_count = message_count + 1
-            minetest.after(5,   function()                                                 -- last message automatical
-                        lib.irc_message_count = 0
-
-            end) -- function
-
-        minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: Msg twice: <" .. playername .. "> " .. text)
-        return true
-
-    else
-        message_count = 0
-        message = text
-
-    end -- if (message ==
-]]--
-
     for _,players in pairs(all_player) do
         local pname = players:get_player_name()
 
@@ -346,16 +328,6 @@ function lib.chat(playername, text)
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
             end
 
-            if(lib.irc_on) then
-                lib.send_2_irc(playername, text)
-
-            end -- if(lib.client
-
-            if(lib.matterbridge) then
-               lib.send_2_bridge(playername, text)
-
-            end -- if(lib.matterbridge)
-
             minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: chat: <" .. playername .. "> " .. text)
 
          elseif(lib.check_channel(pname, channel)) then
@@ -367,7 +339,20 @@ function lib.chat(playername, text)
         end -- if(channel == nil
 
     end -- for _,players
+    
+    if(channel == nil) then
+        if(lib.irc_on) then
+            lib.send_2_irc(playername, text)
 
+        end -- if(lib.client
+
+        if(lib.matterbridge) then
+            lib.send_2_bridge(playername, text)
+
+        end -- if(lib.matterbridge)
+        
+    end -- if(channel == nil)
+    
     return true
 
 end -- function chat
