@@ -49,6 +49,8 @@ sc.irc_on = minetest.settings:get_bool("smart_chat.irc_on") or false
 sc.matterbridge = minetest.settings:get_bool("smart_chat.matterbridge") or false
 sc.matterbridge_irc = minetest.settings:get_bool("smart_chat.matterbridge_irc") or false
 
+sc.key = tonumber(minetest.settings:get("smart_chat.key")) or 27
+
 sc.irc_line = ""
 
 sc.S = nil

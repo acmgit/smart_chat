@@ -367,3 +367,24 @@ function lib.is_channeladmin(player)
     return power
 
 end
+
+--[[
+   ****************************************************************
+   *******              Function crypt(text)                 ******
+   ****************************************************************
+
+De or Encrypt a Text
+]]--
+
+function lib.crypt(text, key)
+
+    local result = ""
+
+    for i=1,string.len(text) do
+        result = result .. string.char(string.byte(text,i) ~ key)
+
+    end
+
+    return result
+
+end -- function crypt
