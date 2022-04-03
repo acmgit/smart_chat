@@ -11,9 +11,8 @@
 local sc = smart_chat
 
 if(not minetest.get_modpath("yl_matterbridge")) then
-  sc.matterbridge_irc = nil
-  return
-  
+  sc.matterbridge_irc = false
+
 end
 
 local matterbridge = ""
@@ -29,7 +28,7 @@ if(sc.mattersbridge_irc) then
     mattersbridge_irc = "on"
 else
     mattersbridge_irc = "off"
-    sc.matterbridge_irc = nil
+    sc.matterbridge_irc = false
   
 end
 
