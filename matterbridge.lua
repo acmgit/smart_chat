@@ -10,6 +10,12 @@
 
 local sc = smart_chat
 
+if(not minetest.get_modpath("yl_matterbridge")) then
+  sc.matterbridge_irc = nil
+  return
+  
+end
+
 local matterbridge = ""
 local mattersbridge_irc = ""
 
