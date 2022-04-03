@@ -23,6 +23,8 @@ if(sc.mattersbridge_irc) then
     mattersbridge_irc = "on"
 else
     mattersbridge_irc = "off"
+    sc.matterbridge_irc = nil
+  
 end
 
 minetest.log("action","[MOD] " .. sc.modname .. ": Modul mattersbridge :yl_mattersbridge = " .. mattersbridge)
@@ -30,7 +32,7 @@ minetest.log("action","[MOD] " .. sc.modname .. ": Modul mattersbridge :yl_matte
 
 if( sc.matterbridge) then
 
-    if ( minetest.get_modpath("yl_matterbridge")) then
+    if( minetest.get_modpath("yl_matterbridge")) then
 
         --[[
             ****************************************************************
