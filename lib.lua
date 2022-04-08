@@ -140,7 +140,7 @@ end -- lib.check_channel
 
 function lib.channel_report(channel, message, color)
     local all_player = minetest.get_connected_players()
-    if(color ~= nil) then
+    if(color == nil) then
         color = lib.orange
 
     end -- if(color
@@ -154,6 +154,7 @@ function lib.channel_report(channel, message, color)
         end -- if(check_channel
 
     end -- for _,players
+    channel = channel or ""
     minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: channel_report: " .. channel .. ": " .. message)
 
 end -- lib.report(
@@ -333,6 +334,17 @@ end -- function chat
 
 --[[
    ****************************************************************
+   *******        Function me(player, text)                  ******
+   ****************************************************************
+    Let do something the player
+--]]
+
+function lib.me(player, text)
+
+end
+
+--[[
+   ****************************************************************
    *******           Function is_channelmod()                ******
    ****************************************************************
 
@@ -381,7 +393,7 @@ function lib.crypt(text, key)
     local result = ""
 
     for i=1,string.len(text) do
-        result = result .. string.char(string.byte(text,i) ~ key)
+        --result = result .. string.char(string.byte(text,i) ~ key)
 
     end
 
