@@ -33,7 +33,7 @@ end -- function
 sc.registered_commands[cname] = function(player, parameter)
 
     local pprivs = minetest.get_player_privs(player)
-    if not pprivs.interact and sc.cmd_talk2public then
+    if not pprivs.interact and sc.cmd_tp_needs_interact then
 		minetest.chat_send_player(player,sc.red .. S("Error - require 'interact' privilege."))
 		return
 
