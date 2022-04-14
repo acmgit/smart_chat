@@ -48,4 +48,4 @@ smart_chat.matterbridge_irc (yl_matterbridge has irc on?) bool false
 
 #other settings
 smart_chat.key (Key to crypt) int 27
-cmd_tp_needs_interact (Command talk2pupblic-Channel) = bool false
+cmd_tp_needs_interact (Command talk2pupblic-Channel) = bool true
