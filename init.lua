@@ -53,6 +53,8 @@ sc.key = tonumber(minetest.settings:get("smart_chat.key")) or 27
 
 sc.irc_line = ""
 
+sc.cmd_tp_needs_interact = minetest.settings:get_bool("cmd_tp_needs_interact" or true)
+
 sc.S = nil
 local S
 
