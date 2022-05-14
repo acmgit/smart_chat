@@ -303,12 +303,12 @@ function lib.chat(playername, text)
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
             end
 
-            minetest.log("debug", "[MOD] " .. lib.modname .. " : Module lib: chat: <" .. playername .. "> " .. text)
+            minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: chat: <" .. playername .. "> " .. text)
 
          elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                                             .. channel .. lib.yellow .. "> " .. text)
-                minetest.log("debug", "[MOD] " .. lib.modname .. " : Module lib: chat: <"
+                minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: chat: <"
                                                 .. playername .. "@" .. channel .. "> " .. text)
 
         end -- if(channel == nil
