@@ -32,6 +32,12 @@ Checks the status of playername, if the player is a moderator, then you get 10 a
 Else you get 0 as power back.
 <br>
 
+#### integer smart_chat.is_channelmod(string playername)
+Only if the option smart_chat.join_with_priv is true.
+Checks the status of playername, if the player is a channeluser, then you get 5 as power back.<br>
+Else you get 0 as power back.
+<br>
+
 #### void smart_chat.print(string player, string message)
 Prints a message to the player. You can use the colorcodes too.
 <br>

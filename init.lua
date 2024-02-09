@@ -16,7 +16,7 @@ sc.public = {}                                                                  
 sc.last_command = nil
 
 sc.version = 1
-sc.revision = 5
+sc.revision = 6
 
 sc.modname = minetest.get_current_modname()
 sc.modpath = minetest.get_modpath(sc.modname)
@@ -50,6 +50,7 @@ sc.matterbridge = minetest.settings:get_bool("smart_chat.matterbridge") or false
 sc.matterbridge_irc = minetest.settings:get_bool("smart_chat.matterbridge_irc") or false
 
 sc.key = tonumber(minetest.settings:get("smart_chat.key")) or 27
+sc.join_with_priv = minetest.settings:get_bool("smart_chat.join_with_priv") or false
 
 sc.irc_line = ""
 
@@ -129,6 +130,11 @@ sc.permchannel = load.fields
 
 minetest.register_privilege("channelmod", S("Can manage Chatchannels."))
 minetest.register_privilege("channeladmin", S("Can manage the entire Chat."))
+if(sc.join_with_priv) then
+    minetest.register_privilege("channeluser", S("Player can join to Channels."))
+
+end
+
 
 minetest.register_chatcommand("c",{
     param = "<command> <parameter>",
@@ -149,4 +155,4 @@ minetest.register_chatcommand("c",{
 
 }) -- minetest.register_chatcommand
 
- minetest.log("action", "[MOD] " .. sc.modname .. " v " .. sc.version .. "." .. sc.revision .. " loaded.")
+minetest.log("action", "[MOD] " .. sc.modname .. " v " .. sc.version .. "." .. sc.revision .. " loaded.")

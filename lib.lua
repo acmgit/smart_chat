@@ -345,6 +345,24 @@ end
 
 --[[
    ****************************************************************
+   *******           Function is_channeluser()                ******
+   ****************************************************************
+
+if player is channeluser, power is 5, else 0
+]]--
+
+function lib.is_channeluser(player)
+    local power = 0
+    if(minetest.get_player_privs(player).channeluser) then
+        power = 5
+    end
+
+    return power
+
+end
+
+--[[
+   ****************************************************************
    *******           Function is_channelmod()                ******
    ****************************************************************
 

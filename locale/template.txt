@@ -53,6 +53,7 @@ Error: No playername given.=
 Enter the Channel.=
 Error: No channel to join given.=
 Join or change a channel to <channel>.=
+You have not the power to join channels.=
 
 ### cmd_join.lua ###
 ### cmd_leave.lua ###
@@ -91,6 +92,12 @@ Leaves a channel=
 
 List all player in the channel.=
 Player in Channel=
+
+### cmd_lock_channel.lua ###
+
+Has locked the Channel with the Password:=
+Locks a Channel with <Password>.=
+You can't lock the public Channel.=
 
 ### cmd_mark_channel.lua ###
 
@@ -182,6 +189,7 @@ unknown=
 Can manage Chatchannels.=
 Can manage the entire Chat.=
 Gives Simple_Chat a command with or without Parameter.=
+Player can join to Channels.=
 
 ### irc.lua ###
 
