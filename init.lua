@@ -48,13 +48,9 @@ sc.light_red = minetest.get_color_escape_sequence('#FF8888')
 sc.irc_on = minetest.settings:get_bool("smart_chat.irc_on") or false
 sc.matterbridge = minetest.settings:get_bool("smart_chat.matterbridge") or false
 sc.matterbridge_irc = minetest.settings:get_bool("smart_chat.matterbridge_irc") or false
-
-sc.key = tonumber(minetest.settings:get("smart_chat.key")) or 27
 sc.join_with_priv = minetest.settings:get_bool("smart_chat.join_with_priv") or false
 
 sc.irc_line = ""
-
-sc.cmd_tp_needs_interact = minetest.settings:get_bool("cmd_tp_needs_interact" or true)
 
 sc.S = nil
 local S

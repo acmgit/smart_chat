@@ -41,3 +41,12 @@ minetest.register_on_leaveplayer(function(player)
         minetest.log("action", "[MOD] " .. sc.modname .. " : Module core: *** " .. line)
 end) -- minetest.register_on_leaveplayer
 
+minetest.override_chatcommand("me", {
+
+privs = {},
+func = function(name, param)
+            sc.me(name, param)
+            return true
+        end
+
+})

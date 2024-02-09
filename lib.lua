@@ -215,7 +215,7 @@ function lib.receive_from_irc()
         local a, e = string.find(line, "ACTION")                                            -- was /ME-Command from irc
         if( (a) and (a >= 1) ) then
             line = string.sub(line, e + 1)
-            line = lib.orange .. "* " .. playername .. "@IRC " .. line
+            line = lib.orange .. "* " .. lib.yellow .. playername .. "@IRC " .. lib.green .. line
 
         else
             line =  lib.white .. "<" .. playername .. "@IRC> " .. line                     -- <player@IRC> Message
@@ -253,8 +253,19 @@ function lib.send_2_irc(playername, text)
     if(lib.player[playername] ~= nil) then return end                                      -- Player is in channel
     if(not lib.irc_running) then return end
 
-    local line = string.gsub(text, "\27%([^()]*%)", "")
-    line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
+    local line = string.gsub(text, "\27/%([^()]*%)", "")
+    local me = string.sub(line, 1, 6)
+    print("Check" .. me .. " > " .. line)
+    if((me) == ("ACTION")) then
+        line = "PRIVMSG " .. lib.irc_channel .. " :* " .. playername .. string.sub(line, 7, string.len(line)) .. lib.crlf
+        print("ME " .. line)
+
+    else
+        line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
+        print("CHAT " .. line)
+
+    end
+
     lib.client:send(line)
     lib.irc_message_count = 0   -- This prevents for IRC-Echos of multiple player
     lib.irc_message = text      -- and remembers the last message
@@ -339,9 +350,51 @@ end -- function chat
     Let do something the player
 --]]
 
-function lib.me(player, text)
+function lib.me(playername, text)
+    local me_text = lib.orange .. "* " .. lib.yellow .. playername .. " " .. lib.green .. text
+    local all_player = minetest.get_connected_players()
+    local channel = lib.player[playername] -- Get the Channel of the player
 
-end
+    for _,players in pairs(all_player) do
+        local pname = players:get_player_name()
+
+        if(channel == nil) then
+            if(lib.check_global(pname)) then
+                minetest.chat_send_player(pname, me_text)
+
+            end -- if(lib.check_global(
+
+            if(lib.public[pname] and pname ~= playername) then -- name is in public-mode and not the player self
+                minetest.chat_send_player(pname, me_text)
+            end
+
+            minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: me: " .. text)
+
+         elseif(lib.check_channel(pname, channel)) then
+                minetest.chat_send_player(pname, me_text)
+                minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: me: <"
+                                                .. playername .. "@" .. channel .. "> " .. text)
+
+        end -- if(channel == nil
+
+    end -- for _,players
+
+    if(channel == nil) then
+        if(lib.irc_on) then
+            lib.send_2_irc(playername, "ACTION " .. text)
+
+        end -- if(lib.client
+
+        if(lib.matterbridge) then
+            lib.send_2_bridge(playername, "ACTION " .. text)
+
+        end -- if(lib.matterbridge)
+
+    end -- if(channel == nil)
+
+    return true
+
+end -- function chat
 
 --[[
    ****************************************************************
@@ -398,23 +451,3 @@ function lib.is_channeladmin(player)
 
 end
 
---[[
-   ****************************************************************
-   *******              Function crypt(text)                 ******
-   ****************************************************************
-
-De or Encrypt a Text
-]]--
-
-function lib.crypt(text, key)
-
-    local result = ""
-
-    for i=1,string.len(text) do
-        --result = result .. string.char(string.byte(text,i) ~ key)
-
-    end
-
-    return result
-
-end -- function crypt
