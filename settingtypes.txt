@@ -10,6 +10,7 @@ smart_chat.cmd_help (Enable Help) bool true
 smart_chat.cmd_invite (Enable invite) bool true
 #Command join
 smart_chat.cmd_join (Enable join) bool true
+smart_chat.join_with_priv (Join with privileg) bool false
 #Command kick
 smart_chat.cmd_kick (Enable kick) bool true
 #Command leave

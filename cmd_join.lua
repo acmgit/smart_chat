@@ -17,6 +17,16 @@ sc.register_help({
 
 sc.registered_commands[cname] = function(player, parameter)
 
+    if(sc.join_with_priv) then
+        local power = sc.is_channeluser(player)
+        if(power < 5) then
+            sc.print(player,sc.orange .. S("You have not the power to join channels."))
+            return
+
+        end
+
+    end
+
      if(parameter[2] == nil or parameter[2] == "") then
          sc.print(player, sc.red .. S("Error: No channel to join given."))
          return

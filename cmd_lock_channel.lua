@@ -32,24 +32,24 @@ sc.registered_commands[cname] = function(player, password)
     if(not channel) then
         sc.print(sc.red .. S("You can't lock the public Channel."))
         return
-    
+
     end
-    
-    if(sc.permchannel[channel] ~= nil) then                                                       -- Channel is permanent
+
+    if(sc.permchannel[channel] ~= nil) then                                               -- Channel is permanent
         channel = sc.lockmark .. channel
         channel[1] = password
-        sc.report(player, sc.green .. S("Has locked the Channel with the Password:") .. " " .. sc.green 
+        sc.report(player, sc.green .. S("Has locked the Channel with the Password:") .. " " .. sc.green
                                                                                         .. password .. sc.green .. ".")
         sc.permchannel[channel] = channel
         sc.storage:from_table({fields=sc.permchannel})
-        
+
     else                                                                                   -- Channel is not permanent
-    
+
         channel = sc.lockmark .. channel
         channel[1] = password
-        sc.report(player, sc.green .. S("Has locked the Channel with the Password:") .. " " .. sc.green 
+        sc.report(player, sc.green .. S("Has locked the Channel with the Password:") .. " " .. sc.green
                                                                                         .. password .. sc.green .. ".")
-                                                                                        
+
     end -- if(sc.permchannel
 
 

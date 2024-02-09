@@ -53,6 +53,7 @@ Error: No playername given.=Fehler: Kein Spielernamen angegeben.
 Enter the Channel.=Betritt den Kanal.
 Error: No channel to join given.=Fehler: Kein Kanal zum Betreten angegeben.
 Join or change a channel to <channel>.=Betritt oder wechselt den Kanal zu <Kanal>.
+You have not the power to join channels.=Du hast nicht die nötigen Rechte um den Kanal zu wechseln.
 
 ### cmd_join.lua ###
 ### cmd_leave.lua ###
@@ -91,6 +92,12 @@ Leaves a channel=Verlässt einen Kanal
 
 List all player in the channel.=Zeigt alle Spieler in dem Kanal.
 Player in Channel=Spieler im Kanal
+
+### cmd_lock_channel.lua ###
+
+Has locked the Channel with the Password:=Hat den Kanal mit einem Passwort versperrt.
+Locks a Channel with <Password>.=Sperrt einen Kanal mit <Passwort>.
+You can't lock the public Channel.=Du kannst den öffentlichen Kanal nicht sperren.
 
 ### cmd_mark_channel.lua ###
 
@@ -182,6 +189,7 @@ unknown=unkebannt
 Can manage Chatchannels.=Kann Chatkanäle verwalten.
 Can manage the entire Chat.=Kann den gesamten Chat veralten.
 Gives Simple_Chat a command with or without Parameter.=Gibt Simple_Chat ein Kommando mit oder ohne Parameter.
+Player can join to Channels.=Spieler kann den Kanal wechseln.
 
 ### irc.lua ###
 

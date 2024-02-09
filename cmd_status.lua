@@ -63,31 +63,31 @@ sc.registered_commands[cname] = function(player, parameter)
         say(player, line)
 
     end -- if(sc.irc_running
-    
+
     line = sc.green .. "Matterbridge = "
-    
+
     if(sc.matterbridge) then
         line = line .. sc.yellow .. "on"
-        
+
     else
         line = line .. sc.yellow .. "off"
-        
+
     end -- if(sc.matterbridge
-    
+
     say(player, line)
-    
+
     line = sc.green .. "Matterbridge IRC = "
-    
+
     if(sc.matterbridge_irc) then
         line = line .. sc.yellow .. "on"
-        
+
     else
         line = line .. sc.yellow .. "off"
-        
+
     end -- if(sc.matterbridge_irc
-    
+
     say(player, line)
-    
+
 end -- sc[template
 
 sc.registered_commands[short] = function(player, parameter)

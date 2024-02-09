@@ -29,7 +29,7 @@ if(sc.mattersbridge_irc) then
 else
     mattersbridge_irc = "off"
     sc.matterbridge_irc = false
-  
+
 end
 
 minetest.log("action","[MOD] " .. sc.modname .. ": Modul mattersbridge :yl_mattersbridge = " .. mattersbridge)
