@@ -1,34 +1,51 @@
 #Command all
 smart_chat.cmd_all (Enable command all) bool true
+
 #Command channels
 smart_chat.cmd_channels (Enable command channels) bool true
+
 #Command free_channel
 smart_chat.cmd_free_channel (Enable command free) bool true
+
 #Command help
 smart_chat.cmd_help (Enable command Help) bool true
+
 #Command invite
 smart_chat.cmd_invite (Enable command invite) bool true
+
 #Command join
 smart_chat.cmd_join (Enable command join) bool true
 smart_chat.join_with_priv (Join with privileg) bool false
+
 #Command kick
 smart_chat.cmd_kick (Enable command kick) bool true
+
 #Command leave
 smart_chat.cmd_leave (Enable command leave) bool true
+
 #Command list
 smart_chat.cmd_list (Enable command list) bool true
+
 #Command move
 smart_chat.cmd_move (Enable command move) bool true
+
 #Command status
 smart_chat.cmd_status (Enable command Status for Chat) bool true
+
 #Command store_channel
 smart_chat.cmd_store_channel (Enable command store_channel) bool true
+
 #Command talk2public
 smart_chat.cmd_talk2public (Enable command talk2public) bool true
+
 #Command toggle
 smart_chat.cmd_toggle (Enable command toggle) bool true
+
 #Command where
 smart_chat.cmd_where (Enable command where) bool true
+
+#Command me
+smart_chat.do_not_overwrite_me_command (Overwrite ME to be compatible) bool false
 
 #IRC-Settings
 smart_chat.irc_on (Enable IRC) bool false

@@ -255,14 +255,12 @@ function lib.send_2_irc(playername, text)
 
     local line = string.gsub(text, "\27/%([^()]*%)", "")
     local me = string.sub(line, 1, 6)
-    print("Check" .. me .. " > " .. line)
+
     if((me) == ("ACTION")) then
         line = "PRIVMSG " .. lib.irc_channel .. " :* " .. playername .. string.sub(line, 7, string.len(line)) .. lib.crlf
-        print("ME " .. line)
 
     else
         line = "PRIVMSG "   .. lib.irc_channel .. " :<" .. playername .. "> " .. line .. lib.crlf
-        print("CHAT " .. line)
 
     end
 
