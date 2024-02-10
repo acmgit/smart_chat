@@ -47,6 +47,9 @@ smart_chat.cmd_where (Enable command where) bool true
 #Command me
 smart_chat.do_not_overwrite_me_command (Overwrite ME to be compatible) bool false
 
+#General
+smart_chat.log_channels (Enables the log for all channels) bool false
+
 #IRC-Settings
 smart_chat.irc_on (Enable IRC) bool false
 smart_chat.host_ip (IP of the IRC) string localhost

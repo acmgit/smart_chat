@@ -312,13 +312,29 @@ function lib.chat(playername, text)
                 minetest.chat_send_player(pname, "<" .. playername .. "> " .. text)
             end
 
-            minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: chat: <" .. playername .. "> " .. text)
+            if(lib.log_channels) then
+                 minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: chat: <" .. playername .. "> " .. text)
+
+
+            else
+                minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: chat: <" .. playername .. "> " .. text)
+
+            end
+
 
          elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, lib.yellow .. "<" .. lib.orange .. playername .. "@"
                                                             .. channel .. lib.yellow .. "> " .. text)
-                minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: chat: <"
-                                                .. playername .. "@" .. channel .. "> " .. text)
+
+                if(lib.log_channels) then
+                    minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: chat: <"
+                                                     .. playername .. "@" .. channel .. "> " .. text)
+
+                else
+                    minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: chat: <"
+                                                     .. playername .. "@" .. channel .. "> " .. text)
+
+                end
 
         end -- if(channel == nil
 
@@ -366,7 +382,13 @@ function lib.me(playername, text)
                 minetest.chat_send_player(pname, me_text)
             end
 
-            minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: me: " .. text)
+            if (lib.log_channels) then
+                minetest.log("action", "[MOD] " .. lib.modname .. " : Module lib: me: " .. text)
+
+            else
+                minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: me: " .. text)
+
+            end
 
          elseif(lib.check_channel(pname, channel)) then
                 minetest.chat_send_player(pname, me_text)
