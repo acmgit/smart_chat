@@ -45,7 +45,8 @@ smart_chat.cmd_toggle (Enable command toggle) bool true
 smart_chat.cmd_where (Enable command where) bool true
 
 #Command me
-smart_chat.do_not_overwrite_me_command (Overwrite ME to be compatible) bool false
+smart_chat.do_not_overwrite_me_command (Don't overwrite ME to be compatible) bool false
+smart_chat.me_colorize_public_chat (Colorize ME in public chat) bool false
 
 #General
 smart_chat.log_channels (Enables the log for all channels) bool false

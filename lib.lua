@@ -365,7 +365,17 @@ end -- function chat
 --]]
 
 function lib.me(playername, text)
-    local me_text = lib.orange .. "* " .. lib.yellow .. playername .. " " .. lib.green .. text
+    local me_text = function (colored)
+                        if (colored) then
+                            return lib.orange .. "* " .. lib.yellow .. playername .. " " .. lib.green .. text
+
+                        else
+                            return "* " .. playername .. " " .. text
+
+                        end
+
+                    end
+
     local all_player = minetest.get_connected_players()
     local channel = lib.player[playername] -- Get the Channel of the player
 
@@ -374,12 +384,25 @@ function lib.me(playername, text)
 
         if(channel == nil) then
             if(lib.check_global(pname)) then
-                minetest.chat_send_player(pname, me_text)
+                if(lib.me_colorize_public_chat) then
+                    minetest.chat_send_player(pname, me_text(true))
+
+                else
+                    minetest.chat_send_player(pname, me_text(false))
+
+                end
 
             end -- if(lib.check_global(
 
             if(lib.public[pname] and pname ~= playername) then -- name is in public-mode and not the player self
-                minetest.chat_send_player(pname, me_text)
+                if(lib.me_colorize_public_chat) then
+                    minetest.chat_send_player(pname, me_text(true))
+
+                else
+                    minetest.chat_send_player(pname, me_text(false))
+
+                end
+
             end
 
             if (lib.log_channels) then
@@ -391,7 +414,7 @@ function lib.me(playername, text)
             end
 
          elseif(lib.check_channel(pname, channel)) then
-                minetest.chat_send_player(pname, me_text)
+                minetest.chat_send_player(pname, me_text(true))
                 minetest.log("verbose", "[MOD] " .. lib.modname .. " : Module lib: me: <"
                                                 .. playername .. "@" .. channel .. "> " .. text)
 

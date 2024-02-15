@@ -51,7 +51,7 @@ sc.matterbridge_irc = minetest.settings:get_bool("smart_chat.matterbridge_irc") 
 sc.join_with_priv = minetest.settings:get_bool("smart_chat.join_with_priv") or false
 sc.do_not_overwrite_me_command = minetest.settings:get_bool("smart_chat.do_not_overwrite_me_command") or false
 sc.log_channels = minetest.settings:get_bool("smart_chat.log_channels") or false
-
+sc.me_colorize_public_chat = minetest.settings:get_bool("smart_chat.me_colorize_public_chat") or false
 sc.irc_line = ""
 
 sc.S = nil
