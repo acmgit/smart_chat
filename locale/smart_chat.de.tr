@@ -3,13 +3,9 @@
 
 ### cmd_all.lua ###
 
+Error - require 'basic_privs' privilege.=Fehler - 'basic_privs' Privileg benötigt.
 Error: No Message given.=Fehler: Keine Nachricht angebeben.
 Send's a message on all.=Sendet eine Nachricht an alle.
-
-### cmd_all.lua ###
-### cmd_talk2public.lua ###
-
-Error - require 'basic_privs' privilege.=Fehler - 'basic_privs' Privileg benötigt.
 
 ### cmd_channels.lua ###
 
@@ -149,6 +145,7 @@ max.=max.
 
 ### cmd_talk2public.lua ###
 
+Error - require 'interact' privilege.=
 Send's a message to the public channel.=
 You're already in the public channel.=Du bist schon im öffentlichem Kanal.
 
@@ -186,10 +183,17 @@ unknown=unkebannt
 
 ### init.lua ###
 
+<Player> <Message>: Sends a direct message to player.=<Spieler> <Nachricht>: Sendet eine Direktnachricht an Spieler.
 Can manage Chatchannels.=Kann Chatkanäle verwalten.
 Can manage the entire Chat.=Kann den gesamten Chat veralten.
+DM from=DN von
+DM to=DN an
 Gives Simple_Chat a command with or without Parameter.=Gibt Simple_Chat ein Kommando mit oder ohne Parameter.
+Message=Nachricht
+Player=Spieler
 Player can join to Channels.=Spieler kann den Kanal wechseln.
+You try to send an empty Message.= Du versuchst eine leere Nachricht zu senden.
+isn't online.=ist nicht oline.
 
 ### irc.lua ###
 
@@ -206,6 +210,7 @@ Unknown Command. No helpsystem available.=Unbekanntes Kommando. Hilfssystem nich
 
 ##### not used anymore #####
 
+Player Message: Sends a direct message to player.=Spielernachricht: Sendet eine direkte Nachricht an Spieler.
 IRC is already connected.=IRC ist schon verbunden.
 joins the World=betritt die Welt.
 leaves the World=verlässt die Welt.

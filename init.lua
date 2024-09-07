@@ -52,6 +52,7 @@ sc.join_with_priv = minetest.settings:get_bool("smart_chat.join_with_priv") or f
 sc.do_not_overwrite_me_command = minetest.settings:get_bool("smart_chat.do_not_overwrite_me_command") or false
 sc.log_channels = minetest.settings:get_bool("smart_chat.log_channels") or false
 sc.me_colorize_public_chat = minetest.settings:get_bool("smart_chat.me_colorize_public_chat") or false
+sc.use_own_msg_command = minetest.settings:get_bool("smart_chat.use_own_msg_command") or false
 sc.irc_line = ""
 
 sc.S = nil
@@ -154,5 +155,39 @@ minetest.register_chatcommand("c",{
             end -- function
 
 }) -- minetest.register_chatcommand
+
+if(sc.use_own_msg_command) then
+    print("Use own Message-command.")
+    minetest.unregister_chatcommand("msg")
+    minetest.register_chatcommand("msg", {
+        param = "<" .. S("Player") .. ">" .. " <" .. S("Message") .. ">",
+        description = sc.white .. S("<Player> <Message>: Sends a direct message to player."),
+        func = function(player, message)
+            local cmd = sc.split(message)
+            local to_player = cmd[1]
+            local all_player = minetest.get_connected_players()
+            local msg=string.sub(message,string.len(to_player)+1,string.len(message))
+            if(string.len(msg) == 0) then
+                return false
+
+            end
+
+            local to_msg = sc.yellow .. "* " .. sc.green .. S("DM to") .. " " .. sc.orange .. to_player .. ": " .. sc.yellow .. msg
+            sc.print(player, to_msg)
+
+            if(sc.is_player_online(to_player)) then
+                local from_msg = sc.yellow .. "* " .. sc.green .. S("DM from") .. " " .. sc.orange .. player .. ": " .. sc.yellow .. msg
+                sc.print(to_player, from_msg)
+
+
+            else
+                sc.print(player, sc.red .. S("Player") .. " " .. sc.orange .. to_player .. sc.red .. ": " .. S("isn't online."))
+
+            end
+        end
+
+    })
+
+end
 
 minetest.log("action", "[MOD] " .. sc.modname .. " v " .. sc.version .. "." .. sc.revision .. " loaded.")

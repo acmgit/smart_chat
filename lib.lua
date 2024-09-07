@@ -161,6 +161,35 @@ end -- lib.report(
 
 --[[
    ****************************************************************
+   *******              Function is_player_online            ******
+   ****************************************************************
+   Checks if the given player is online. Return false on offline.
+]]--
+
+function lib.is_player_online(playername)
+
+    local all_player = minetest.get_connected_players()
+
+    for _,players in pairs(all_player) do
+        local pname = players:get_player_name()
+
+        if(string.len(pname) == string.len(playername)) then
+            if(string.match(pname, playername)) then
+                return true
+
+            end
+
+        end
+
+    end
+
+    return false
+
+end
+
+
+--[[
+   ****************************************************************
    *******              Function report()                    ******
    ****************************************************************
 
