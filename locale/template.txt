@@ -3,13 +3,9 @@
 
 ### cmd_all.lua ###
 
+Error - require 'basic_privs' privilege.=
 Error: No Message given.=
 Send's a message on all.=
-
-### cmd_all.lua ###
-### cmd_talk2public.lua ###
-
-Error - require 'basic_privs' privilege.=
 
 ### cmd_channels.lua ###
 
@@ -149,6 +145,7 @@ max.=
 
 ### cmd_talk2public.lua ###
 
+Error - require 'interact' privilege.=
 Send's a message to the public channel.=
 You're already in the public channel.=
 
@@ -186,10 +183,17 @@ unknown=
 
 ### init.lua ###
 
+<Player> <Message>: Sends a direct message to player.=
 Can manage Chatchannels.=
 Can manage the entire Chat.=
+DM from=
+DM to=
 Gives Simple_Chat a command with or without Parameter.=
+Message=
+Player=
 Player can join to Channels.=
+You try to send an empty Message to =
+isn't online.=
 
 ### irc.lua ###
 

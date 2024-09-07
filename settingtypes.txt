@@ -48,6 +48,9 @@ smart_chat.cmd_where (Enable command where) bool true
 smart_chat.do_not_overwrite_me_command (Don't overwrite ME to be compatible) bool false
 smart_chat.me_colorize_public_chat (Colorize ME in public chat) bool false
 
+#Command msg
+smart_chat.use_own_msg_command (Overwrites the original msg command) bool false
+
 #General
 smart_chat.log_channels (Enables the log for all channels) bool false
 
